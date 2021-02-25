@@ -7,10 +7,16 @@
 </head>
 <body>
     <?php
-    
-    
-    
-    
+
+      /*
+
+      Giải thích
+      Mỗi sản phẩm có nhiều thuộc tính
+
+      Liene ket nhieu nhieu san pham va thuoc tinh
+      */
+
+
     ?>
 </body>
 </html>

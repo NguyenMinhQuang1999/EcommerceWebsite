@@ -22,6 +22,27 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin'],  function() {
     Route::get('delete/{id}', 'AdminCategoryController@delete')->name('admin.category.delete');
     });
 
+     //Route danh muc san pham
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('', 'AdminUserController@index')->name('admin.user.index');
+   
+        Route::get('delete/{id}', 'AdminUserController@delete')->name('admin.user.delete');
+    });
+
+
+    Route::group(['prefix' => 'attribute'], function() {
+        Route::get('', 'AdminAttributeController@index')->name('admin.attribute.index');
+        Route::get('create', 'AdminAttributeController@create')->name('admin.attribute.create');
+        Route::post('create', 'AdminAttributeController@store');
+
+        Route::get('update/{id}', 'AdminAttributeController@edit')->name('admin.attribute.update');
+        Route::post('update/{id}', 'AdminAttributeController@update');
+
+        Route::get('active/{id}', 'AdminAttributeController@active')->name('admin.attribute.active');
+        Route::get('hot/{id}', 'AdminAttributeController@hot')->name('admin.attribute.hot');
+        Route::get('delete/{id}', 'AdminAttributeController@delete')->name('admin.attribute.delete');
+        });
+
     Route::group(['prefix' => 'keyword'], function() {
     Route::get('', 'AdminKeywordController@index')->name('admin.keyword.index');
     Route::get('create', 'AdminKeywordController@create')->name('admin.keyword.create');

@@ -213,8 +213,17 @@
             <a href="{{ route('admin.keyword.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Category
+              Keyword
                 <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.attribute.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Keyword
+                <span class="right badge badge-info">New</span>
               </p>
             </a>
         </li>
@@ -223,6 +232,15 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
               Product
+                <span class="right badge badge-info">New</span>
+              </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.user.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+              User
                 <span class="right badge badge-info">New</span>
               </p>
             </a>

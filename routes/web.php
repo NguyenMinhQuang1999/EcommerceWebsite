@@ -16,13 +16,40 @@ use Illuminate\Support\Facades\Route;
 
 include ('router_admin.php');
 
+Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function() {
+    Route::get('register', 'RegisterController@getFormRegister')->name('get.register');
+    Route::post('register', 'RegisterController@postRegister');
 
-Route::group((['namespace' => 'fontend']), function() {
+    Route::get('login', 'LoginController@getFormLogin')->name('get.login');
+    Route::post('login', 'LoginController@postLogin');
+
+    Route::get('logout', 'LoginController@logout')->name('get.logout');
+});
+
+
+Route::group(['namespace' => 'fontend'], function() {
     //
 
     Route::get('', 'HomeController@index')->name('home');
-    Route::get('product-list', "ProductController@index")->name('product.list');
+    Route::get('product-list', "ProductController@index")->name('product-list');
+    Route::get('danh-muc/{slug}', "CategoryController@index")->name('category.list');
     Route::get('san-pham/{slug}', "ProductDetailController@index")->name('product.detail');
+
+    //Gio hang
+    Route::get('don-hang','ShoppingCart@index' )->name('get.shopping.list');
+    Route::group(['prefix' => 'shopping'], function() {
+        Route::get('add/{id}', 'ShoppingCart@add')->name('get.shopping.add');
+        Route::get('delete/{id}', 'ShoppingCart@deleteItem')->name('get.shopping.delete');
+        Route::get('update/{id}', 'ShoppingCart@update')->name('get.shopping.update');
+        Route::get('checkout', 'ShoppingCart@checkout')->name('get.checkout');
+      
+
+    });
+    Route::post('pay', 'ShoppingCart@postPay')->name('post.shopping.pay');
 
 });
 
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

@@ -14,7 +14,7 @@ class ProductDetailController extends Controller
         $id = array_pop($arraySlug);// xoa phan tu cuoi mang tra ve phan tu do
 
         if($id) {
-            $product = Product::findOrFail($id);
+            $product = Product::with('category:id,c_name,c_slug')->findOrFail($id);
             $viewData = [
                 'product' => $product
             ];

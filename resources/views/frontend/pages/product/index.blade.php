@@ -1,8 +1,30 @@
 
 @extends('layouts.app_master_home')
+@section('css')
+<style type="text/css">
+    .pagination {
+        margin: 10px auto;
+        display:flex;
+        margin-left: 9px;
+    }
+    .pagination {
+        padding: 5px;
+        margin: 5px;
+        margin: 0 2px;
+        border: 1px solid #dededede
+    }
+    .pagination li a, .pagination li span {
+        line-height: 25px;
+        display: block;
+        text-align:center;
+        width:25px;
+        height: 25px;
+    }
+</style>
+@endsection
 @section('content')
 <div class="breadcrumbs_area">
-    <div class="container">   
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="breadcrumb_content">
@@ -13,7 +35,7 @@
                 </div>
             </div>
         </div>
-    </div>         
+    </div>
 </div>
 <!--breadcrumbs area end-->
 
@@ -22,7 +44,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-12">
-                
+
                 <!--shop banner area start-->
                 <div class="shop_banner_area mb-30">
                     <div class="row">
@@ -55,11 +77,16 @@
                         </form>
                     </div>
                     <div class="page_amount">
-                        <p>Showing 1–9 of 21 results</p>
+                        {{-- <p>Showing 1–9 of 21 results</p> --}}
+                        <p> Co tong {{ $products->total()}} san pham </p>
+
                     </div>
                 </div>
                  <!--shop toolbar end-->
                  <div class="row shop_wrapper">
+                 @foreach($products as $product)
+                     @include('frontend.components.product_item',['product' => $product] )
+                 @endforeach
                     <div class="col-lg-3 col-md-4 col-12 ">
                         <article class="single_product">
                             <figure>
@@ -86,8 +113,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                     </div>
@@ -95,9 +122,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -112,8 +139,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -123,7 +150,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -160,8 +187,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$310.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$310.00</span>
                                             <span class="current_price">$110.00</span>
                                         </div>
                                     </div>
@@ -169,9 +196,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -186,8 +213,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$310.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$310.00</span>
                                             <span class="current_price">$110.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -197,7 +224,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -234,8 +261,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$280.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$280.00</span>
                                             <span class="current_price">$140.00</span>
                                         </div>
                                     </div>
@@ -243,9 +270,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -260,8 +287,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$280.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$280.00</span>
                                             <span class="current_price">$140.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -271,7 +298,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -308,8 +335,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                     </div>
@@ -317,9 +344,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -334,8 +361,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -345,7 +372,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -382,8 +409,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$350.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$350.00</span>
                                             <span class="current_price">$150.00</span>
                                         </div>
                                     </div>
@@ -391,9 +418,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -408,8 +435,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$350.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$350.00</span>
                                             <span class="current_price">$150.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -419,7 +446,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -456,8 +483,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$260.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$260.00</span>
                                             <span class="current_price">$160.00</span>
                                         </div>
                                     </div>
@@ -465,9 +492,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -482,8 +509,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$260.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$260.00</span>
                                             <span class="current_price">$160.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -493,7 +520,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -530,8 +557,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                     </div>
@@ -539,9 +566,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -556,8 +583,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -567,7 +594,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -604,8 +631,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$220.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$220.00</span>
                                             <span class="current_price">$122.00</span>
                                         </div>
                                     </div>
@@ -613,9 +640,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -630,8 +657,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$220.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$220.00</span>
                                             <span class="current_price">$122.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -641,7 +668,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -678,8 +705,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                     </div>
@@ -687,9 +714,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -704,8 +731,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -715,7 +742,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -752,8 +779,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$276.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$276.00</span>
                                             <span class="current_price">$173.00</span>
                                         </div>
                                     </div>
@@ -761,9 +788,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -778,8 +805,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                             <span class="old_price">$276.00</span> 
+                                        <div class="price_box">
+                                             <span class="old_price">$276.00</span>
                                             <span class="current_price">$173.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -789,7 +816,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -826,8 +853,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                     </div>
@@ -835,9 +862,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -852,8 +879,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -863,7 +890,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -900,8 +927,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                     </div>
@@ -909,9 +936,9 @@
                                          <ul>
                                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                             <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li> 
+                                            <li class="compare"><a href="#" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                                         </ul>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="product_content list_content">
                                     <div class="left_caption">
@@ -926,8 +953,8 @@
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                            </ul>
                                         </div>
-                                        <div class="price_box"> 
-                                            <span class="old_price">$320.00</span> 
+                                        <div class="price_box">
+                                            <span class="old_price">$320.00</span>
                                             <span class="current_price">$120.00</span>
                                         </div>
                                         <div class="product_desc">
@@ -937,7 +964,7 @@
                                     <div class="right_caption">
                                         <p class="text_available">Availability: <span>In Stock</span></p>
                                         <div class="action_links">
-                                            <ul> 
+                                            <ul>
                                                 <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
                                                 <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="icon-heart"></i>  Add to Wishlist</a></li>
                                                 <li class="compare"><a href="#" title="compare"><i class="icon-rotate-cw"></i>Add to Compare</a></li>
@@ -951,6 +978,10 @@
                 </div>
 
                 <div class="shop_toolbar t_bottom">
+                    <div style="display:block">
+                        {!! $products->appends([])->links() !!}
+                    </div>
+
                     <div class="pagination">
                         <ul>
                             <li class="current">1</li>
@@ -986,13 +1017,28 @@
                     </div>
                     <div class="widget_list widget_filter">
                         <h3>Price</h3>
-                        <form action="#"> 
-                            <div id="slider-range"></div>   
+                        <form action="#">
+                            <div id="slider-range"></div>
                             <button type="submit">Filter</button>
-                            <input type="text" name="text" id="amount" />   
+                            <input type="text" name="text" id="amount" />
 
-                        </form> 
+                        </form>
                     </div>
+                    @foreach($attributes as $key => $attribute)
+                    <div class="widget_list widget_categories">
+                        <h3>{{ $key }}</h3>
+                        @foreach($attribute as $key => $item)
+                        <ul>
+                            <li>
+                                 <input id="check1" type="checkbox">
+                            <label for="check1">{{ $item['atb_name'] }}</label>
+                                 <span class="checkmark"></span>
+                             </li>
+                         </ul>
+                        @endforeach
+
+                    </div>
+                    @endforeach
                     <div class="widget_list widget_categories">
                         <h3>Manufacturer</h3>
                         <ul>

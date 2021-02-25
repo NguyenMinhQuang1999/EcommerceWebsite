@@ -45,6 +45,8 @@
                       <th>STT</th>
                       <th>Name</th>
                       <th>Avatar</th>
+                      <th>Price</th>
+                      <th>Category</th>
                       <th>Active</th>
                       <th>Hot</th>
                       <th>Info</th>
@@ -58,9 +60,25 @@
                       <td>{{ $product->id }}</td>
                       <td>{{ $product->pro_name }}</td>
                       <td>
-                        {{--  <img src="{{ pare_url_file($product->pro_avatar) }}" width="80px" height="80px" alt="Image">  --}}
+                         <img src="{{ pare_url_file($product->pro_avatar) }}" width="80px" height="80px" alt="Image"> 
                       </td>
-                      <td>{{ number_format($product->pro_price, 0, ',','.') }} vnd</td>
+                      <td>
+                          @if($product->pro_sale)
+                          <span style="text-decoration: line-through"> {{ number_format($product->pro_price,0,',','.')  }} vnd</span>
+                          <br>
+                          @php
+                              $price = ((100 - $product->pro_sale) * $product->pro_price) /100;
+                          @endphp
+                          <span >
+                              {{ number_format($price, 0, ',', '.') }} vnd
+                          </span>
+                          @else
+                              {{ number_format($product->pro_price, 0, ',', '.')  }} vnd
+                          @endif
+                      </td>
+                      <td>
+                          <span class="badge badge-success">{{ $product->category->c_name ?? ['N/A'] }}</span>
+                      </td>
                       <td>
                         @if($product->pro_active == 1)
                         <a href="{{ route('admin.product.active', $product->id) }}" class="badge badge-info">Hot</a>

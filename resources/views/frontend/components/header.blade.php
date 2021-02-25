@@ -27,12 +27,21 @@
                     <div class="col-lg-8 col-md-7">
                         <div class="header_top_links text-right">
                             <ul>
-                                <li><a href="login.html">Register</a></li>
-                                <li><a href="login.html">login</a></li>
-                                <li><a href="cart.html">Shopping Cart</a></li>
+                                {{--  //kiem tra nguoi dung da dang nhap hay chua  --}}
+                                @if(Auth::check())
+                                {{--  //lay ra thong tin nguoi dung auth::user()  --}}
+                                    <li><a href="#">Hi {{ Auth::user()->name }}</a></li>
+                                    <li><a href="{{ route('get.logout') }}">Dang xuat</a></li>
+                                @else
+                                    <li><a href="{{ route('get.register') }}">Register</a></li>
+                                    <li><a href="{{ route('get.login') }}">login</a></li>
+                                @endif
+
+                                <li><a href="{{ route('get.shopping.list') }}">Shopping Cart </a></li>
+
                                 <li><a href="checkout.html">Checkout</a></li>
                             </ul>
-                        </div>   
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,7 +63,7 @@
                                 <form action="#">
                                    <div class="hover_category">
                                         <select class="select_option" name="select" id="categori2">
-                                            <option selected value="1">All Categories</option>
+                                            <a href="{{ route('product-list') }}"><option selected value="1">All Categories</option></a>
                                             @if(isset($categories))
                                                @foreach($categories as $value)
                                                 <option value="1">{{$value->c_name}}</option>
@@ -73,11 +82,11 @@
                                             <option value="14">Laptops & Desktops</option>
                                             <option value="15">Watchs</option>
                                             <option value="16">Electronic</option>
-                                        </select>                        
+                                        </select>
                                    </div>
                                     <div class="search_box">
                                         <input placeholder="Search product..." type="text">
-                                        <button type="submit">Search</button> 
+                                        <button type="submit">Search</button>
                                     </div>
                                 </form>
                             </div>
@@ -88,10 +97,10 @@
                                     </a>
                                 </div>
                                 <div class="mini_cart_wrapper">
-                                    <a href="javascript:void(0)">
+                                    <a href="{{  route('get.shopping.list') }}">
                                         <i class="icon-shopping-bag2"></i>
                                         <span class="cart_price">$152.00 <i class="ion-ios-arrow-down"></i></span>
-                                        <span class="cart_count">2</span>
+                                        <span class="cart_count">{{ \Cart::count() }}</span>
                                     </a>
                                     <!--mini cart-->
                                     <div class="mini_cart">
@@ -110,7 +119,7 @@
                                                </div>
                                                 <div class="cart_info">
                                                     <a href="#">Fusce Aliquam</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>    
+                                                    <p>Qty: 1 X <span> $60.00 </span></p>
                                                 </div>
                                                 <div class="cart_remove">
                                                     <a href="#"><i class="ion-android-close"></i></a>
@@ -122,7 +131,7 @@
                                                </div>
                                                 <div class="cart_info">
                                                     <a href="#">Ras Neque Metus</a>
-                                                     <p>Qty: 1 X <span> $60.00 </span></p>    
+                                                     <p>Qty: 1 X <span> $60.00 </span></p>
                                                 </div>
                                                 <div class="cart_remove">
                                                     <a href="#"><i class="ion-android-close"></i></a>
@@ -164,8 +173,8 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-7">
-                        <div class="main_menu menu_two menu_position text-left"> 
-                            <nav>  
+                        <div class="main_menu menu_two menu_position text-left">
+                            <nav>
                                 <ul>
                                     <li><a class="active"  href="index.html">home<i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu">
@@ -175,7 +184,7 @@
                                             <li><a href="index-4.html">Home shop 4</a></li>
                                         </ul>
                                     </li>
-                                    <li class="mega_items"><a href="shop.html">shop<i class="fa fa-angle-down"></i></a> 
+                                    <li class="mega_items"><a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
                                         <div class="mega_menu">
                                             <ul class="mega_menu_inner">
                                                 <li><a href="#">Shop Layouts</a>
@@ -232,13 +241,13 @@
 
                                     <li><a href="about.html">About Us</a></li>
                                     <li><a href="contact.html"> Contact Us</a></li>
-                                </ul>  
-                            </nav> 
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--header bottom end-->
-    </div> 
+    </div>
 </header>

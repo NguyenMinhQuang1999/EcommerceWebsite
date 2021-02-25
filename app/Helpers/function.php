@@ -34,8 +34,8 @@
             if ($folder)
                 $path = public_path().'/uploads/'.$folder.'/'.date('Y/m/d/');
 
-            // if ( !\File::exists($path))
-            //     mkdir($path,0777,true);
+            if ( !\File::exists($path))
+                mkdir($path,0777,true);
 
             // di chuyen file vao thu muc uploads
             move_uploaded_file($_FILES[$file]['tmp_name'], $path. $filename);
@@ -66,7 +66,19 @@
             return '/uploads/'.$folder.'/' . date('Y/m/d', strtotime($time)) . '/' . $image;
         }
     }
+
+
 }
+
+     function number_price($price, $sale = 0) 
+    {
+        if($sale == 0) {
+            return $price;
+        }
+        $price = ((100 - $sale) * $price) / 100;
+        return $price;
+        
+    }
 
 
     ?>

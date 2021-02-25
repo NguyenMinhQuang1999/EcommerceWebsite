@@ -65,8 +65,8 @@
                         </div>
                         <div class="header_top_links">
                             <ul>
-                                <li><a href="login.html">Register</a></li>
-                                <li><a href="login.html">login</a></li>
+                                <li><a href="{{ route('get.register') }}">Register</a></li>
+                                <li><a href="{{ route('get.login') }}">Login</a></li>
                                 <li><a href="cart.html">Shopping Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                             </ul>
