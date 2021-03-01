@@ -62,13 +62,16 @@ class ShoppingCart extends Controller
             $shopping =\Cart::content();
             foreach($shopping as $key => $item) {
                 Order::insert([
-                    'od_transition_id' => $transitionId,
+                    'od_transaction_id' => $transitionId,
                     'od_product_id' =>$item->id,
                     'od_sale' => $item->options->sale,
                     'od_qty' => $item->qty,
                     'od_price' => $item->price,
                     'created_at' => Carbon::now()
                 ]);
+                //Tang so luong lan mua san pham do;
+                \DB::table('products')->where('id', $item->id)//chon san pham nao
+                                      ->increment('pro_pay');//tang cot pro_pay len 1
             }
         }
         \Cart::destroy();

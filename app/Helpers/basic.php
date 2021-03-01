@@ -14,6 +14,10 @@
       Mỗi sản phẩm có nhiều thuộc tính
 
       Liene ket nhieu nhieu san pham va thuoc tinh
+
+      San pham mua nhieu
+      + Dang cho thanh toan goi 
+      + Hoac thanh toan roi
       */
 
 

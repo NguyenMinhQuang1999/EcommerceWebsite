@@ -4,7 +4,7 @@
 
 <!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
-    <div class="container">   
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="breadcrumb_content">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-    </div>         
+    </div>
 </div>
 <!--breadcrumbs area end-->
 
@@ -26,41 +26,41 @@
             <div class="row">
                <div class="col-12">
                     <div class="user-actions">
-                        <h3> 
+                        <h3>
                             <i class="fa fa-file-o" aria-hidden="true"></i>
                             Returning customer?
-                            <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_login" aria-expanded="true">Click here to login</a>     
+                            <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_login" aria-expanded="true">Click here to login</a>
 
                         </h3>
                          <div id="checkout_login" class="collapse" data-parent="#accordion">
                             <div class="checkout_info">
-                                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>  
-                                <form action="#">  
+                                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
+                                <form action="#">
                                     <div class="form_group">
                                         <label>Username or email <span>*</span></label>
-                                        <input type="text">     
+                                        <input type="text">
                                     </div>
                                     <div class="form_group">
                                         <label>Password  <span>*</span></label>
-                                        <input type="text">     
-                                    </div> 
+                                        <input type="text">
+                                    </div>
                                     <div class="form_group group_3 ">
                                         <button type="submit">Login</button>
                                         <label for="remember_box">
                                             <input id="remember_box" type="checkbox">
                                             <span> Remember me </span>
-                                        </label>     
+                                        </label>
                                     </div>
                                     <a href="#">Lost your password?</a>
-                                </form>          
+                                </form>
                             </div>
-                        </div>    
+                        </div>
                     </div>
                     <div class="user-actions">
-                        <h3> 
+                        <h3>
                             <i class="fa fa-file-o" aria-hidden="true"></i>
                             Returning customer?
-                            <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_coupon" aria-expanded="true">Click here to enter your code</a>     
+                            <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_coupon" aria-expanded="true">Click here to enter your code</a>
 
                         </h3>
                          <div id="checkout_coupon" class="collapse" data-parent="#accordion">
@@ -70,8 +70,8 @@
                                     <button type="submit">Apply coupon</button>
                                 </form>
                             </div>
-                        </div>    
-                    </div>    
+                        </div>
+                    </div>
                </div>
             </div>
             <div class="checkout_form">
@@ -85,25 +85,24 @@
 
                                     <div class="col-lg-6 mb-20">
                                         <label>First Name <span>*</span></label>
-                                        <input name= 'tst_name' type="text">    
+                                        <input name= 'tst_name' value="{{ get_user_data('web','name') }}" type="text">
                                     </div>
-                                 
 
                                     <div class="col-12 mb-20">
                                         <label>Street address  <span>*</span></label>
-                                        <input name="tst_address" placeholder="House number and street name" type="text">     
+                                        <input name="tst_address"  value="{{ get_user_data('web','address') }}" placeholder="House number and street name" type="text">
                                     </div>
-                                   
+
                                     <div class="col-lg-6 mb-20">
                                         <label>Phone<span>*</span></label>
-                                        <input name='tst_phone' type="text"> 
+                                        <input name='tst_phone'  value="{{ get_user_data('web','phone') }}" type="text">
 
-                                    </div> 
+                                    </div>
                                      <div class="col-lg-6 mb-20">
                                         <label> Email Address   <span>*</span></label>
-                                          <input name="tst_email" type="text"> 
+                                          <input name="tst_email"  value="{{ get_user_data('web','email') }}" type="text">
 
-                                    </div> 
+                                    </div>
                                     <div class="col-12 mb-20">
                                         <input id="account" type="checkbox" data-target="createp_account" />
                                         <label for="account" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">Create an account?</label>
@@ -111,7 +110,7 @@
                                         <div id="collapseOne" class="collapse one" data-parent="#accordion">
                                             <div class="card-body1">
                                                <label> Account password   <span>*</span></label>
-                                                <input placeholder="password" type="password">  
+                                                <input placeholder="password" type="password">
                                             </div>
                                         </div>
                                     </div>
@@ -123,58 +122,58 @@
                                            <div class="row">
                                                 <div class="col-lg-6 mb-20">
                                                     <label>First Name <span>*</span></label>
-                                                    <input type="text">    
+                                                    <input type="text">
                                                 </div>
                                                 <div class="col-lg-6 mb-20">
                                                     <label>Last Name  <span>*</span></label>
-                                                    <input type="text"> 
+                                                    <input type="text">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <label>Company Name</label>
-                                                    <input type="text">     
+                                                    <input type="text">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <div class="select_form_select">
                                                         <label for="countru_name">country <span>*</span></label>
-                                                        <select class="niceselect_option" id="countru_name"> 
-                                                            <option value="2">bangladesh</option>      
-                                                            <option value="3">Algeria</option> 
-                                                            <option value="4">Afghanistan</option>    
-                                                            <option value="5">Ghana</option>    
-                                                            <option value="6">Albania</option>    
-                                                            <option value="7">Bahrain</option>    
-                                                            <option value="8">Colombia</option>    
-                                                            <option value="9">Dominican Republic</option>   
+                                                        <select class="niceselect_option" id="countru_name">
+                                                            <option value="2">bangladesh</option>
+                                                            <option value="3">Algeria</option>
+                                                            <option value="4">Afghanistan</option>
+                                                            <option value="5">Ghana</option>
+                                                            <option value="6">Albania</option>
+                                                            <option value="7">Bahrain</option>
+                                                            <option value="8">Colombia</option>
+                                                            <option value="9">Dominican Republic</option>
 
                                                         </select>
-                                                    </div> 
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-12 mb-20">
                                                     <label>Street address  <span>*</span></label>
-                                                    <input placeholder="House number and street name" type="text">     
+                                                    <input placeholder="House number and street name" type="text">
                                                 </div>
                                                 <div class="col-12 mb-20">
-                                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text">     
+                                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <label>Town / City <span>*</span></label>
-                                                    <input  type="text">    
-                                                </div> 
+                                                    <input  type="text">
+                                                </div>
                                                  <div class="col-12 mb-20">
                                                     <label>State / County <span>*</span></label>
-                                                    <input type="text">    
-                                                </div> 
+                                                    <input type="text">
+                                                </div>
                                                 <div class="col-lg-6 mb-20">
                                                     <label>Phone<span>*</span></label>
-                                                    <input type="text"> 
+                                                    <input type="text">
 
-                                                </div> 
+                                                </div>
                                                  <div class="col-lg-6">
                                                     <label> Email Address   <span>*</span></label>
-                                                      <input type="text"> 
+                                                      <input type="text">
 
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -184,18 +183,18 @@
                                             <textarea name ="tst_notes" id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                         </div>
                                         <div class="order_button">
-                                            <button id="order_submit"  type="submit">Thanh toan</button> 
-                                        </div>  
-                                    </div>     	    	    	    	    	    	    
+                                            <button id="order_submit"  type="submit">Thanh toan</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form> 
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="checkout_form_right">
-                            <form action="{{ route('post.shopping.pay') }}" method="post">   
-                                @csrf 
-                                <h3>Your order</h3> 
+                            <form action="{{ route('post.shopping.pay') }}" method="post">
+                                @csrf
+                                <h3>Your order</h3>
                                 <div class="order_table table-responsive">
                                     <table>
                                         <thead>
@@ -238,7 +237,7 @@
                                                 <td><strong>$220.00</strong></td>
                                             </tr>
                                         </tfoot>
-                                    </table>     
+                                    </table>
                                 </div>
                                 <div class="payment_method">
                                    <div class="panel-default">
@@ -250,26 +249,26 @@
                                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                    <div class="panel-default">
                                         <input id="payment_defult" name="check_method" type="radio" data-target="createp_account" />
                                         <label for="payment_defult" data-toggle="collapse" data-target="#collapsedefult" aria-controls="collapsedefult">PayPal <img src="assets/img/icon/papyel.png" alt=""></label>
 
                                         <div id="collapsedefult" class="collapse one" data-parent="#accordion">
                                             <div class="card-body1">
-                                               <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p> 
+                                               <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="order_button">
-                                        <button id="order_submit"  type="button">Proceed to PayPal</button> 
-                                    </div>    
-                                </div> 
-                            </form> 
-                        </div>        
+                                        <button id="order_submit"  type="button">Proceed to PayPal</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div> 
-            </div>        
+                </div>
+            </div>
         </div>
     </div>
 </div>

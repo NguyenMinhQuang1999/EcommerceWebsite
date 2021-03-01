@@ -1,4 +1,6 @@
  <?php
+ use Illuminate\Support\Facades\Auth;
+
  if (!function_exists('upload_image'))
     {
         /**
@@ -70,14 +72,22 @@
 
 }
 
-     function number_price($price, $sale = 0) 
+     function number_price($price, $sale = 0)
     {
         if($sale == 0) {
             return $price;
         }
         $price = ((100 - $sale) * $price) / 100;
         return $price;
-        
+
+    }
+
+
+    if(!function_exists('get_user_data')) {
+        function get_user_data($type, $field= 'id')
+        {
+            return Auth::guard($type)->user() ? Auth::guard($type)->user()->$field : '';
+        }
     }
 
 

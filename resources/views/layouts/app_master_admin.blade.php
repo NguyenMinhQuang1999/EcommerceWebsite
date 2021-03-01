@@ -245,6 +245,15 @@
               </p>
             </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.transaction.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i></i>
+            <p>
+            Transaction
+              <span class="right badge badge-info">New</span>
+            </p>
+          </a>
+      </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -775,7 +784,10 @@
 });
 </script>
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
+@yield('script')
 </body>
 </html>
