@@ -120,6 +120,15 @@
                             <div class="product_meta">
                                 <span>Category: <a href="#">Clothing</a></span>
                             </div>
+                            @if(isset($product->keywords))
+                            <div class="product_meta">
+                                @foreach($product->keywords as $keyword)
+                                <span >Keyword: <a href="#" style="border:1px solid red; padding: 5px; font-size: 13px; margin-right: 10px; color: rgb(196, 19, 19);
+                                    border-radius: 5px">
+                                     {{$keyword->k_name}}</a></span>
+                                @endforeach
+                            </div>
+                            @endif
 
                         </form>
                         <div class="priduct_social">
@@ -278,6 +287,9 @@
             </div>
             <div class="row">
                 <div class="product_carousel product_details_column5 owl-carousel">
+                @foreach($productSuggests as $product)
+                     @include('frontend.components.product_item',['product' => $product] )
+                 @endforeach
                    <div class="col-lg-3">
                         <article class="single_product">
                                 <figure>

@@ -3,6 +3,11 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use Illuminate\Support\Facades\Route;
 
+Route::group(['prefix' => 'admin-auth', 'namespace' => 'Admin\Auth'], function() {
+
+    Route::get('login', 'AdminLoginController@getLoginAdmin')->name('get.login.admin');
+    Route::post('login', 'AdminLoginController@postLogin');
+});
 
 Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin'],  function() {
     Route::get('/', function() {

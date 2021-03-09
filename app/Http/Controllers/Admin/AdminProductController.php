@@ -10,6 +10,7 @@ use App\Models\Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Models\KeyWord;
 use Illuminate\Support\Facades\DB;
 
 class AdminProductController extends Controller
@@ -27,13 +28,14 @@ class AdminProductController extends Controller
     public function create() {
         $attributes = $this->syncAttributesGroup();
         $categories = Category::all();
+        $keywords = KeyWord::all();
         $attributeOld = [];
 
-        return view('admin.product.create', compact('categories', 'attributes', 'attributeOld'));
+        return view('admin.product.create', compact('keywords','categories', 'attributes', 'attributeOld'));
     }
 
     public function store(AdminRequestProduct $request) {
-        $data = $request->except('_token', 'pro_avatar', 'attribute');
+        $data = $request->except('_token', 'pro_avatar', 'attribute', 'keywords');
         $data['pro_slug'] = Str::slug($request->pro_name);
         $data['created_at'] = Carbon::now();
         if($request->pro_avatar) {
@@ -46,6 +48,8 @@ class AdminProductController extends Controller
         $id =  Product::insertGetId($data);
         if($id) {
             $this->syncAttribute($request->attribute, $id);
+            $this->syncKeyword($request->keywords, $id);
+
         }
 
         return redirect()->back();
@@ -58,6 +62,7 @@ class AdminProductController extends Controller
         // $attributes = Attribute::orderByDesc('atb_type')->get();
         $attributes = $this->syncAttributesGroup();
         $product = Product::findOrFail($id);
+        $keywords = KeyWord::all();
         $attributeOld = DB::table('products_attributes')
         ->where('pa_product_id', $id)
         ->pluck('pa_attribute_id')
@@ -65,15 +70,21 @@ class AdminProductController extends Controller
         if(!$attributeOld) {
             $attributeOld = [];
         }
+        $keywordOld = DB::table('product_keywords')
+        ->where('pk_product_id', $id)
+        ->pluck('pk_keyword_id')
+        ->toArray();
+        if(!$keywordOld) {
+            $keywordOld = [];
+        }
         $viewData = [
+            'keywordOld' => $keywordOld,
+            'keywords' => $keywords,
             'categories' => $categories,
             'product' => $product,
             'attributeOld' => $attributeOld,
             'attributes' => $attributes
         ];
-
-
-
         return view('admin.product.update', $viewData);
     }
 
@@ -125,7 +136,6 @@ class AdminProductController extends Controller
                     'pa_product_id' => $idProduct,
                     'pa_attribute_id' => $value
                 ];
-
             }
         }
         if(!empty($datas) ) {
@@ -134,6 +144,24 @@ class AdminProductController extends Controller
             DB::table('products_attributes')->insert($datas);
         }
     }
+
+    public function syncKeyword($keywords, $idProduct)
+     {
+         if(!empty($keywords)) {
+             $datas = [];
+             foreach($keywords as $key => $value) {
+                 $datas[] = [
+                     'pk_product_id' => $idProduct,
+                     'pk_keyword_id' => $value
+                 ];
+             }
+         }
+         if(!empty($datas)) {
+            DB::table('product_keywords')->where('pk_product_id', $idProduct)
+            ->delete();
+            DB::table('product_keywords')->insert($datas);
+        }
+     }
 
     public function syncAttributesGroup() {
         $attributes = Attribute::get();

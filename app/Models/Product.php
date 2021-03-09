@@ -21,4 +21,9 @@ class Product extends Model
     public function category() {
         return $this->belongsTo(Category::class, 'pro_category_id');
     }
+
+    public function keywords() 
+    {
+        return $this->belongsToMany(KeyWord::class, 'product_keywords', 'pk_product_id', 'pk_keyword_id');
+    }
 }

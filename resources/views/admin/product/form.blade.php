@@ -20,8 +20,15 @@
                       <label for="">Khuyen mai: </label>
                       <input type="number" value="{{ $product->pro_sale ?? old('pro_sale') }}" class="form-control" name="pro_sale" id="">
                   </div>
-
-
+                  <div class="form-group">
+                    <label for="">Keyword </label>
+                    <select name="keywords[]" class="form-control js-select2-keyword" id="">
+                        <option value="0">__Click__</option>
+                        @foreach($keywords as $item)
+                        <option {{ in_array($item['id'], $attributeOld) ? 'checked' : '' }} value="{{ $item['id'] }}"> {{ $item->k_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
                   <div class="form-group">
                       <label for="">Hình ảnh</label>
                       <input type="file" class="form-control-file" name="pro_avatar" id="">

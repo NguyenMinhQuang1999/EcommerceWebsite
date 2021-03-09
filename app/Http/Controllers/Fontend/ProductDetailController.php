@@ -14,14 +14,29 @@ class ProductDetailController extends Controller
         $id = array_pop($arraySlug);// xoa phan tu cuoi mang tra ve phan tu do
 
         if($id) {
-            $product = Product::with('category:id,c_name,c_slug')->findOrFail($id);
+            $product = Product::with('category:id,c_name,c_slug','keywords')->findOrFail($id);
             $viewData = [
-                'product' => $product
+                'product' => $product,
+                'productSuggests' => $this->getProductSuggests($product->pro_category_id)
             ];
             return view('frontend.pages.product_detail.index', $viewData);
         }
         return redirect()->to('/');
         
+    }
+
+    public function getProductSuggests($categoryId) 
+    {
+        $products = Product::where([
+            'pro_active' => 1,
+            'pro_category_id' => $categoryId
+        ])
+          ->orderByDesc('id')
+          ->select('id', 'pro_name', 'pro_sale', 'pro_avatar', 'pro_price')
+          ->limit(12)
+          ->get();
+
+        return $products;
     }
 
 }

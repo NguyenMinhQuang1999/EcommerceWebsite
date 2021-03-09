@@ -16,6 +16,7 @@
    <link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
+  {{--  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />  --}}
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -777,17 +778,26 @@
 <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
+{{--  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  --}}
+
+<script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
     $(".js-example-placeholder-single").select2({
     placeholder: "Select a state",
     allowClear: true
 });
+
+  if($('.js-select2-keyword').length > 0) {
+      $('.js-select2-keyword').select2({
+        placeholder: "Chon tu khoa",
+        allowClear: true,
+        maximumSelectionLength: 3
+      });
+  }
 </script>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
 @yield('script')
 </body>
 </html>
