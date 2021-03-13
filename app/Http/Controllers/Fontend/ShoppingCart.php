@@ -15,8 +15,11 @@ class ShoppingCart extends Controller
     public function index()
     {
         $shopping = \Cart::content();
-
-        return view('frontend.pages.shopping.index', compact('shopping', $shopping));
+        $viewData = [
+            'shopping' =>  $shopping,
+             'title_page' => 'Gio hang'
+        ];
+        return view('frontend.pages.shopping.index', $viewData);
     }
     public function add($id)
     {
@@ -35,7 +38,9 @@ class ShoppingCart extends Controller
                 'price_old' => $product->pro_price
             ]
         ]);
+        toastr()->success('Them thanh cong');
         return redirect()->back();
+       
     }
 
     public function deleteItem($rowId)  {
@@ -46,7 +51,11 @@ class ShoppingCart extends Controller
     public function checkout() 
     {
         $shopping = \Cart::content();
-        return view('frontend.pages.shopping.checkout', compact('shopping', $shopping));
+        $viewData = [
+            'shopping' =>  $shopping,
+             'title_page' => 'Thanh toan'
+        ];
+        return view('frontend.pages.shopping.checkout', $viewData);
     }
 
     public function postPay(Request $request) 

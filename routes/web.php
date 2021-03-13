@@ -34,6 +34,8 @@ Route::group(['namespace' => 'fontend'], function() {
     Route::get('product-list', "ProductController@index")->name('product-list');
     Route::get('danh-muc/{slug}', "CategoryController@index")->name('category.list');
     Route::get('san-pham/{slug}', "ProductDetailController@index")->name('product.detail');
+    //Blog
+    Route::get('bai-viet', 'BlogController@index')->name('get.blog.index');
 
     //Gio hang
     Route::get('don-hang','ShoppingCart@index' )->name('get.shopping.list');
@@ -42,6 +44,8 @@ Route::group(['namespace' => 'fontend'], function() {
         Route::get('delete/{id}', 'ShoppingCart@deleteItem')->name('get.shopping.delete');
         Route::get('update/{id}', 'ShoppingCart@update')->name('get.shopping.update');
         Route::get('checkout', 'ShoppingCart@checkout')->name('get.checkout');
+    
+   
       
 
     });

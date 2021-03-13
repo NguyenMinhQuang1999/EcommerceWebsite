@@ -28,7 +28,7 @@ class RequestRegister extends FormRequest
             'email' => 'required|min:3|max:190|email|unique:users,email,'.$this->id,
             'name' => 'required',
             'password' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|unique:users,phone,'.$this->id,
     
         ];
     }
@@ -40,7 +40,8 @@ class RequestRegister extends FormRequest
             'email.unique' => 'Email da ton tai!',
             'email.email'  => 'Hay nhap dung dinh dang email',
             'name.required' => 'Mời nhập ten!',
-            'phone.required' => 'Mời nhập fien thoai!',            
+            'phone.required' => 'Mời nhập fien thoai!',  
+            'phone.unique' => 'Du lieu da ton tai!',           
             'password.required' => 'Mời nhập mat khau!',
         ];
     }

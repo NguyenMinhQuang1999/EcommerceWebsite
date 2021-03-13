@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Mazlay - Car Accessories Shop HTML Template </title>
+    <title> {{ $title_page ?? 'Trang chu' }} </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -20,6 +20,7 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{asset('fontend/assets/css/style.css')}}">
     @yield('css')
+    @toastr_css
 </head>
 
 <body>
@@ -336,6 +337,10 @@
 <script src="{{asset('fontend/assets/js/main.js')}}"></script>
 
  @yield('script')
+
+@jquery
+@toastr_js
+@toastr_render
 
 </body>
 

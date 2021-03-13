@@ -7,9 +7,10 @@ Route::group(['prefix' => 'admin-auth', 'namespace' => 'Admin\Auth'], function()
 
     Route::get('login', 'AdminLoginController@getLoginAdmin')->name('get.login.admin');
     Route::post('login', 'AdminLoginController@postLogin');
+    Route::get('logout', 'AdminLoginController@getLogout')->name('get.logout.admin');
 });
 
-Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin'],  function() {
+Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => 'check_login_admin'],  function() {
     Route::get('/', function() {
         return view('admin.index');
     });
@@ -78,9 +79,38 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin'],  function() {
         Route::get('update/{id}', 'AdminProductController@edit')->name('admin.product.update');
         Route::post('update/{id}', 'AdminProductController@update');
 
-         Route::get('active/{id}', 'AdminProductController@active')->name('admin.product.active');
+        Route::get('active/{id}', 'AdminProductController@active')->name('admin.product.active');
         Route::get('hot/{id}', 'AdminProductController@hot')->name('admin.product.hot');
         Route::get('delete/{id}', 'AdminProductController@delete')->name('admin.product.delete');
+
+    });
+
+    Route::group(['prefix' => 'article'], function() {
+        Route::get('', 'AdminArticleController@index')->name('admin.article.index');
+        Route::get('create', 'AdminArticleController@create')->name('admin.article.create');
+        Route::post('create', 'AdminArticleController@store');
+
+        Route::get('update/{id}', 'AdminArticleController@edit')->name('admin.article.update');
+        Route::post('update/{id}', 'AdminArticleController@update');
+
+        Route::get('active/{id}', 'AdminArticleController@active')->name('admin.article.active');
+        Route::get('status', 'AdminArticleController@changeStatus')->name('admin.article.status');
+        Route::get('hot/{id}', 'AdminArticleController@hot')->name('admin.article.hot');
+        Route::get('delete/{id}', 'AdminArticleController@delete')->name('admin.article.delete');
+
+    });
+
+    Route::group(['prefix' => 'menu'], function() {
+        Route::get('', 'AdminMenuController@index')->name('admin.menu.index');
+        Route::get('create', 'AdminMenuController@create')->name('admin.menu.create');
+        Route::post('create', 'AdminMenuController@store');
+
+        Route::get('update/{id}', 'AdminMenuController@edit')->name('admin.menu.update');
+        Route::post('update/{id}', 'AdminMenuController@update');
+
+        Route::get('active/{id}', 'AdminMenuController@active')->name('admin.menu.active');
+        Route::get('hot/{id}', 'AdminMenuController@hot')->name('admin.menu.hot');
+        Route::get('delete/{id}', 'AdminMenuController@delete')->name('admin.menu.delete');
 
     });
 

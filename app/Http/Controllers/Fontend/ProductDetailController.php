@@ -17,7 +17,8 @@ class ProductDetailController extends Controller
             $product = Product::with('category:id,c_name,c_slug','keywords')->findOrFail($id);
             $viewData = [
                 'product' => $product,
-                'productSuggests' => $this->getProductSuggests($product->pro_category_id)
+                'productSuggests' => $this->getProductSuggests($product->pro_category_id),
+                'title_page' => $product->pro_name
             ];
             return view('frontend.pages.product_detail.index', $viewData);
         }

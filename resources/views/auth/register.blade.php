@@ -59,14 +59,14 @@
                             @csrf
                             <p>   
                                 <label> Name <span>*</span></label>
-                                <input name= "name" type="text">
+                                <input value="{{ old('name') }}" name= "name" type="text">
                             @error('name')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                              </p>
                             <p>   
                                 <label>Email address <span>*</span></label>
-                                <input name= "email" type="text">
+                                <input name= "email" value="{{old('email')}}" type="text">
                              @error('email')
                                 <span class="text-danger"> {{$message}} </span>
                              @enderror
@@ -81,7 +81,7 @@
                              </p>
                              <p>   
                                 <label>Phone <span>*</span></label>
-                                <input name="phone" type="text">
+                                <input name="phone" value="{{ old('phone') }}" type="text">
                             @error('phone')
                                 <span class="text-danger"> {{$message}} </span>
                              @enderror

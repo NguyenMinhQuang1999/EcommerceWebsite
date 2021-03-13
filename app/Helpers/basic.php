@@ -18,6 +18,9 @@
       San pham mua nhieu
       + Dang cho thanh toan goi 
       + Hoac thanh toan roi
+
+      - tao middleware kiem tra nguoi dung dang nhap login hay 
+      chua, va chi nguoi dang nhap login moi biet trang login thoi
       */
 
 

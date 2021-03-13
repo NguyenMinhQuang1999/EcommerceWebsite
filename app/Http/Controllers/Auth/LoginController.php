@@ -39,7 +39,8 @@ class LoginController extends Controller
     }
 
     function getFormLogin() {
-        return view('auth.login');
+        $title_page = 'Danh nhap';
+        return view('auth.login', compact('title_page'));
     }
     function postLogin(RequestLogin $request) {
         $credentials = $request->only('email', 'password');
