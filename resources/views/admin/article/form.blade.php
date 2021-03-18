@@ -9,8 +9,8 @@
            @enderror
         </div>
         <div class="form-group  ? 'is-invalid': '' }} ">
-            <label for="exampleInputEmail1">Nội dung <span class="text-danger">(*)</span></label>
-             <textarea class="form-control {{ $errors->first('a_description') ? 'is-invalid': '' }}" name="a_description" id="a_description" cols="30" rows="5">{{ $article->a_description ?? old('a_description') }}</textarea>
+            <label  for="exampleInputEmail1">Mo ta <span class="text-danger">(*)</span></label>
+             <textarea id="description" class="form-control {{ $errors->first('a_description') ? 'is-invalid': '' }}" name="a_description" id="a_description" cols="30" rows="5">{{ $article->a_description ?? old('a_description') }}</textarea>
              @error('a_description')
                  <span class="text-danger">{{$message}}</span>
              @enderror
@@ -27,7 +27,7 @@
 
         <div class="form-group  ? 'is-invalid': '' }} ">
           <label for="exampleInputEmail1">Nội dung <span class="text-danger">(*)</span></label>
-           <textarea class="form-control {{ $errors->first('a_content') ? 'is-invalid': '' }}" name="a_content" id="a_content" cols="30" rows="5">{{ $article->a_content ?? old('a_content') }}</textarea>
+           <textarea  id='content' class="form-control {{ $errors->first('a_content') ? 'is-invalid': '' }}" name="a_content" id="a_content" cols="30" rows="5">{{ $article->a_content ?? old('a_content') }}</textarea>
            @error('a_content')
                <span class="text-danger">{{$message}}</span>
            @enderror
@@ -60,3 +60,22 @@
         <a class="btn btn-danger" href="{{route('admin.article.index')}}">Quay lại <i class="fa fa-undo"></i></a>
       </div>
     </form>
+
+    @section('script')
+    <script src="{{  asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+          };
+
+         CKEDITOR.replace('content', options);
+         CKEDITOR.replace('description');
+        
+
+            
+    </script>
+    
+    @endsection

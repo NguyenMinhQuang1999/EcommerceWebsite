@@ -59,4 +59,30 @@ class AdminTransactionController extends Controller
             
         }
     }
+
+    public function action($action, $id) {
+        $transaction = Transaction::find($id);
+     
+        if($transaction) {
+            switch($action) {
+                case 'process': {
+                    $transaction->tst_status = 2;
+                    break;
+                }
+                case 'success': {
+                    $transaction->tst_status = 3;
+                    break;
+                }
+                case 'cancel': {
+                    $transaction->tst_status = -1;
+                    break;
+                }
+            }
+            $transaction->save();
+           
+        }
+
+        return redirect()->back();
+       
+    }
 }

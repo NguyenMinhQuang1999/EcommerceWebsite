@@ -19,6 +19,10 @@
   <!-- Google Font: Source Sans Pro -->
   {{--  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />  --}}
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
+
+@yield('css')
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -343,7 +347,10 @@
 
 @toastr_js
 @toastr_render
+
+
 @yield('script')
+
 
 </body>
 </html>

@@ -91,7 +91,23 @@
                           <a data-id={{ $transaction->id }} class="btn btn-primary btn-xs js-preview-transaction" href="{{  route('ajax.admin.transaction.detailt', $transaction->id) }}" >
                             <i class="fa fa-eye"></i> View
                           </a>
-                        <a href="{{ route('admin.transaction.delete', $transaction->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>Delete</a>
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Thao tác</button>
+                                    <div class="dropdown-menu">
+                                   <a href="{{ route('admin.transaction.delete', $transaction->id) }}" class="dropdown-item" >
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Xóa đơn hàng
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{{ route('admin.transaction.action', ['process', $transaction->id]) }}" class="dropdown-item" >
+                                       <i class="fas fa-ban"> </i>  Đã xác thực</a>
+                                    <a  href="{{ route('admin.transaction.action', ['success', $transaction->id]) }}" class="dropdown-item"> <i class="fas fa-ban"> </i>  Đã chuyển giao</a>
+                                    <a  href="{{ route('admin.transaction.action', ['cancel', $transaction->id]) }}" class="dropdown-item"> <i class="fas fa-ban"> </i>   Đã hủy</a>
+          
+                                  </div>
+                           </div>
                       </td>
                     </tr>
                     @endforeach
@@ -173,4 +189,12 @@
         });
 
     </script>
+@endsection
+
+@section('css')
+   <style>
+       .dropdown-item {
+           cursor: pointer;
+       }
+   </style>
 @endsection

@@ -9,8 +9,8 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li>blog</li>
+                        <li><a href="/">home</a></li>
+                        <li><a style="color: #C70909" href="{{ route('get.blog.index') }}">blog</a></li>
                     </ul>
                 </div>
             </div>
@@ -30,7 +30,9 @@
                             <h1>Blog</h1>
                         </div>
                         <div class="blog_wrapper_inner">
-                            @include('frontend.pages.article.include.inc_blog_item')
+                            @foreach($articles as $article)
+                            @include('frontend.pages.article.include.inc_blog_item', $article)
+                            @endforeach
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
@@ -239,15 +241,17 @@
                             <div class="widget_title">
                                 <h3>Recent Posts</h3>
                             </div>
+                            @foreach($articleHot as $value)
                             <div class="post_wrapper">
                                 <div class="post_thumb">
-                                    <a href="blog-details.html"><img src="assets/img/blog/blog6.jpg" alt=""></a>
+                                    <a href="{{ route('get.detail.index', $value->a_slug . '-'. $value->id) }}"><img src="{{ pare_url_file($value->a_avatar) }}" alt=""></a>
                                 </div>
                                 <div class="post_info">
-                                    <h4><a href="blog-details.html">Blog image post</a></h4>
-                                    <span>March 16, 2018 </span>
+                                    <h4><a href="{{ route('get.detail.index', $value->a_slug . '-'. $value->id) }}">{{ $value->a_name}}</a></h4>
+                                    <span>{{ $value->created_at }} </span>
                                 </div>
                             </div>
+                            @endforeach
                              <div class="post_wrapper">
                                 <div class="post_thumb">
                                     <a href="blog-details.html"><img src="assets/img/blog/blog7.jpg" alt=""></a>

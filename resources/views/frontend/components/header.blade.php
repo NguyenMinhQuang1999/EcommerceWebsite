@@ -218,7 +218,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
+                                    <li><a href="{{route('get.blog.index')}}"">blog<i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
                                             <li><a href="blog-details.html">blog details</a></li>
                                             <li><a href="blog-fullwidth.html">blog fullwidth</a></li>

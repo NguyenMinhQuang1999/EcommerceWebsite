@@ -41,6 +41,7 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::get('delete/{id}', 'AdminTransactionController@delete')->name('admin.transaction.delete');
         Route::get('delete-order-item/{id}', 'AdminTransactionController@deleteOrderItem')->name('ajax_admin.transaction.delete_item');
         Route::get('view-detail/{id}', 'AdminTransactionController@getTransactionDetail')->name('ajax.admin.transaction.detailt');
+        Route::get('action/{action}/{id}', 'AdminTransactionController@action')->name('admin.transaction.action');
     });
 
 

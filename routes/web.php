@@ -36,6 +36,7 @@ Route::group(['namespace' => 'fontend'], function() {
     Route::get('san-pham/{slug}', "ProductDetailController@index")->name('product.detail');
     //Blog
     Route::get('bai-viet', 'BlogController@index')->name('get.blog.index');
+    Route::get('bai-viet/{slug}', 'ArticleDetailController@index')->name('get.detail.index');
 
     //Gio hang
     Route::get('don-hang','ShoppingCart@index' )->name('get.shopping.list');
@@ -44,16 +45,18 @@ Route::group(['namespace' => 'fontend'], function() {
         Route::get('delete/{id}', 'ShoppingCart@deleteItem')->name('get.shopping.delete');
         Route::get('update/{id}', 'ShoppingCart@update')->name('get.shopping.update');
         Route::get('checkout', 'ShoppingCart@checkout')->name('get.checkout');
-    
-   
-      
+
+
+
 
     });
     Route::post('pay', 'ShoppingCart@postPay')->name('post.shopping.pay');
 
 });
 
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'check_login_admin']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
