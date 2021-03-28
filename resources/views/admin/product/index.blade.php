@@ -25,6 +25,23 @@
             <div class="card">
               <div class="card-header">
                 {{-- <h3 class="card-title">Responsive Hover Table</h3> --}}
+                <div class="box-title">
+                    <form method="get" class="form-inline">
+                        <input type="text" class="form-control" value="{{ Request::get('id') }}" name="id" placeholder="Id">
+                        <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Nhap ten san pham">
+                        <select name="category" class="form-control">
+                            <option disabled value="0">Chon danh muc</option>
+                            @foreach($categories as $item)
+
+                            <option value="{{ $item->id }}" {{Request::get('category') == $item->id ? 'selected="selected"' : '' }}>{{ $item->c_name }}</option>
+                            @endforeach
+                        </select>                       
+                        <button type="submit" class="btn btn-lg btn-success"> <i class="fa fa-search">Search</i> </button>
+                        <button type="submit" value="true" name="export" class="btn btn-lg btn-info"> <i class="fa fa-save">Export</i> </button>
+
+
+                    </form>
+                </div>
                 <a class="btn btn-primary" href="{{route('admin.product.create')}}">Thêm mới <i class="fa fa-plus"></i></a>
 
                 <div class="card-tools">

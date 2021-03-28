@@ -21,10 +21,19 @@ class ShoppingCart extends Controller
         ];
         return view('frontend.pages.shopping.index', $viewData);
     }
-    public function add($id)
+    public function add(Request $request, $id)
     {
         $product = Product::find($id);
         if(!$product) return redirect()->to('/');
+        // if($request->sale_number < $product->pro_number) {
+        //     toastr()->error('So luong khong du');
+        //     return redirect()->back();
+        // }
+
+        if($product->pro_number <= 0) {
+            toastr()->error('So luong khong du');
+            return redirect()->back();
+        }
 
         \Cart::add([
             'id' => $product->id,
@@ -47,6 +56,26 @@ class ShoppingCart extends Controller
         \Cart::remove($rowId);
         return redirect()->back();
     }
+
+    public function update(Request $request, $id) 
+    {
+        if($request->ajax()) {
+            //lay tham so
+            $qty = $request->qty ?? 1;
+            $idProduct = $request->idProduct;
+            $product= Product::find($idProduct);
+
+            //kiem tra ton tai san pham
+            if(!$product) {
+                return response(['message' => 'Khong ton tai san pham can cap nhat']);
+            }
+            if($product->pro_number < $qty) {
+                return response(['message' => 'So luong cap nhat khong du']);
+            }
+            \Cart::update($id, $qty);
+            return response(['message' => 'Cap nhat so luong thanh cong!']);
+        }
+    } 
 
     public function checkout() 
     {

@@ -18,7 +18,12 @@
         display: block;
         text-align:center;
         width:25px;
-        height: 25px;
+        height: 25px;\
+
+
+    }
+    .active {
+        color: #C70909
     }
 </style>
 @endsection
@@ -979,7 +984,7 @@
 
                 <div class="shop_toolbar t_bottom">
                     <div style="display:block">
-                        {!! $products->appends([])->links() !!}
+                        {!! $products->appends($query ?? [])->links() !!}
                     </div>
 
                     <div class="pagination">
@@ -1029,16 +1034,51 @@
                         <h3>{{ $key }}</h3>
                         @foreach($attribute as $key => $item)
                         <ul>
-                            <li>
-                                 <input id="check1" type="checkbox">
-                            <label for="check1">{{ $item['atb_name'] }}</label>
-                                 <span class="checkmark"></span>
+                            <li class ={{ Request::get('att_'.$item['atb_type']) == $item['id'] ? 'active' : '' }}>
+
+                                 <a href="{{  request()->fullUrlWithQuery(['att_'. $item['atb_type'] => $item['id']]) }}">
+
+                                    {{ $item['atb_name'] }}
+
+                                </a>
+
                              </li>
+
                          </ul>
                         @endforeach
 
                     </div>
                     @endforeach
+
+                    <div class="widget_list widget_categories">
+                        <h3>Loc theo gia</h3>
+                        <ul>
+                            @for($i = 1; $i <= 5; $i++)
+                           <li class= {{  Request::get('price') == $i ? 'active' : ''}}>
+                               <a href="{{  request()->fullUrlWithQuery(['price' => $i]) }}" >{{  $i == 6  ? 'Lon hon 10 trieu' : "Gia < ".  $i * 1000000 ."  trieu"}}</a>
+                            </li>
+                            @endfor
+
+                        </ul>
+                    </div>
+                    <div class="widget_list widget_categories">
+                        <h3>Xuat xu</h3>
+                        @foreach($country as $key => $item)
+                        <ul>
+                            <li class ={{ Request::get('country') == $item ? 'active' : '' }}>
+
+                                 <a href="{{  request()->fullUrlWithQuery(['country' => $item]) }}">
+
+                                    {{ $item }}
+
+                                </a>
+
+                             </li>
+
+                         </ul>
+                        @endforeach
+                        </ul>
+                    </div>
                     <div class="widget_list widget_categories">
                         <h3>Manufacturer</h3>
                         <ul>

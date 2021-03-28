@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Fontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Services\ProcessViewService;
+
 class ProductDetailController extends Controller
 {
     //
@@ -12,7 +14,7 @@ class ProductDetailController extends Controller
     {
         $arraySlug = explode('-', $slug);// tach chuoi thanh mang theo ki tu phan cach
         $id = array_pop($arraySlug);// xoa phan tu cuoi mang tra ve phan tu do
-
+        ProcessViewService::view('products', 'pro_view','product', $id);
         if($id) {
             $product = Product::with('category:id,c_name,c_slug','keywords')->findOrFail($id);
             $viewData = [

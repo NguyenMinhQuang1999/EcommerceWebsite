@@ -77,7 +77,7 @@
                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                   <li class="review"><a href="#">(1 customer review )</a></li>
+                                   <li class="review"><a href="#">(View: {{ $product->pro_view }} )</a></li>
                                </ul>
                             </div>
                             <div class="price_box">

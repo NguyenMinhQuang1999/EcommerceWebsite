@@ -282,6 +282,17 @@
         </a>
       </li>
 
+      
+      <li class="nav-item">
+        <a href="{{ route('admin.slider.index') }}" class="nav-link">
+          <i class="nav-icon fas fa-th"></i></i>
+          <p>
+          Slider
+            <span class="right badge badge-info">New</span>
+          </p>
+        </a>
+      </li>
+
           <li class="nav-item">
             <a href="{{  route('get.logout.admin') }}" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>

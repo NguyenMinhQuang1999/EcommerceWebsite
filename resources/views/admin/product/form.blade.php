@@ -81,6 +81,11 @@
                         <label for="">Do chi nuonc</label>
                         <input type="text" name="pro_resistant" value="{{ $product->pro_resistant ?? '' }}" placeholder="Do chi nuoc" class="form-control" id="">
                     </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="">So luong</label>
+                        <input type="number" min= 1 name="pro_number" value="{{ $product->pro_number ?? '' }}" placeholder="So luong" class="form-control" id="">
+                    </div>
                     </div>
                   <div class="form-group  ? 'is-invalid': '' }} ">
                     <label for="exampleInputEmail1">Nội dung <span class="text-danger">(*)</span></label>

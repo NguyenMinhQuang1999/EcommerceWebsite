@@ -10,15 +10,53 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     //
-    public function index() {
+    public function index(Request $request) {
+        $paramAtbSearch = $request->except('price', 'page', 'key', 'country');
+
+        $productContry = new Product();
+        //tra ve tat ca gia tri cua mot mang
+        $paramAtbSearch = array_values($paramAtbSearch);
+
+
         $attributes = $this->syncAttributesGroup();
-        $product = Product::where(['pro_active'=> 1])
-                    ->orderByDesc('id')
-                    ->select('id', 'pro_name', 'pro_price', 'pro_slug', 'pro_sale','pro_avatar', 'pro_price')
-                    ->paginate(12);
+        $product = Product::where(['pro_active'=> 1]);
+        if(!empty($paramAtbSearch)) {
+            $product->whereHas('attributes', function($query) use($paramAtbSearch) {
+                $query->whereIn('pa_attribute_id', $paramAtbSearch);
+            });
+        }
+
+        //Tim kiem theo ten
+        if($request->key) {
+            $product->where('pro_name', 'like', '%' . $request->key . '%');
+        }
+
+        //Loc theo xuat xu
+
+        if($request->country) {
+            $product->where('pro_country', $request->country);
+        }
+
+        //Loc theo gia neu price == 6 thi loc lon hon 10 trieu
+        //nguoc lai loc theo gia 10000 * so thu tu $price = 1
+        if($request->price) {
+            $price = $request->price;
+            if($price == 6) {
+                $product->where('pro_price' ,'>', 10000000);
+            }else {
+                $product->where('pro_price', '<=', 1000000 * $price);
+            }
+
+        }
+
+        $product = $product->orderByDesc('id')
+                           ->select('id', 'pro_name', 'pro_price', 'pro_slug', 'pro_sale','pro_avatar', 'pro_price')
+                           ->paginate(12);
         $viewData = [
             'products' => $product,
-            'attributes' => $attributes
+            'attributes' => $attributes,
+            'query' => $request->query(),
+            'country' => $productContry->country
         ];
 
         return view('frontend.pages.product.index', $viewData);

@@ -241,7 +241,7 @@
                             <div class="widget_title">
                                 <h3>Recent Posts</h3>
                             </div>
-                            @foreach($articleHot as $value)
+                            {{--  @foreach($articleHot as $value)
                             <div class="post_wrapper">
                                 <div class="post_thumb">
                                     <a href="{{ route('get.detail.index', $value->a_slug . '-'. $value->id) }}"><img src="{{ pare_url_file($value->a_avatar) }}" alt=""></a>
@@ -251,7 +251,8 @@
                                     <span>{{ $value->created_at }} </span>
                                 </div>
                             </div>
-                            @endforeach
+                            @endforeach  --}}
+                            @include('frontend.components.article_hot', ['articles' => $articleHot])
                              <div class="post_wrapper">
                                 <div class="post_thumb">
                                     <a href="blog-details.html"><img src="assets/img/blog/blog7.jpg" alt=""></a>

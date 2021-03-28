@@ -52,7 +52,12 @@
                                                    @endif
                                                 </td>
                                                
-                                                <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="{{ $item->qty }}" type="number"></td>
+                                                <td class="product_quantity"><label>Quantity</label> 
+                                                    <input min="1" data-url ="{{  route('get.shopping.update', $key) }}"
+                                                    data-id-product = {{ $item->id }}
+                                                    data-id = {{ $key}}
+                                                    class="update-item-cart"
+                                                    value="{{ $item->qty }}" type="number"></td>
                                                 <td class="product_total">{{ number_format($item->price * $item->qty, 0, ',', '.') }}</td>
 
 
@@ -260,4 +265,33 @@
 <!--newsletter area end-->
 
 
+@endsection
+
+
+@section('script')
+<script>
+    $(function() {
+        $('.update-item-cart').change(function(event) {
+            event.preventDefault();
+            let $this = $(this);
+            let url = $this.attr('data-url');
+            let idProduct = $this.attr('data-id-product');
+            let qty = $(this).val();
+            if(url) {
+                $.ajax({
+                    url: url,
+                    data: {
+                        idProduct: idProduct,
+                        qty: qty
+                    }
+                }).done(function(result) {                    
+                    location.reload();
+                    toastr.success(result.message, 'Thong bao');
+                 
+                })
+            }
+
+        })
+    })
+</script>
 @endsection

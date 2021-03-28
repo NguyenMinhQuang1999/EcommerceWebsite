@@ -21,6 +21,8 @@
 
       - tao middleware kiem tra nguoi dung dang nhap login hay 
       chua, va chi nguoi dang nhap login moi biet trang login thoi
+
+      loc theo gia loc theo thuoc tinh
       */
 
 

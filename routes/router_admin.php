@@ -44,6 +44,19 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::get('action/{action}/{id}', 'AdminTransactionController@action')->name('admin.transaction.action');
     });
 
+    Route::group(['prefix' => 'slider'], function() {
+        Route::get('', 'AdminSliderController@index')->name('admin.slider.index');
+        Route::get('create', 'AdminSliderController@create')->name('admin.slider.create');
+        Route::post('create', 'AdminSliderController@store');
+
+        Route::get('update/{id}', 'AdminSliderController@edit')->name('admin.slider.update');
+        Route::post('update/{id}', 'AdminSliderController@update');
+
+        Route::get('active/{id}', 'AdminSliderController@active')->name('admin.slider.active');
+        Route::get('hot/{id}', 'AdminSliderController@hot')->name('admin.slider.hot');
+        Route::get('delete/{id}', 'AdminSliderController@delete')->name('admin.slider.delete');
+        });
+
 
     Route::group(['prefix' => 'attribute'], function() {
         Route::get('', 'AdminAttributeController@index')->name('admin.attribute.index');
@@ -57,6 +70,8 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::get('hot/{id}', 'AdminAttributeController@hot')->name('admin.attribute.hot');
         Route::get('delete/{id}', 'AdminAttributeController@delete')->name('admin.attribute.delete');
         });
+
+
 
     Route::group(['prefix' => 'keyword'], function() {
     Route::get('', 'AdminKeywordController@index')->name('admin.keyword.index');

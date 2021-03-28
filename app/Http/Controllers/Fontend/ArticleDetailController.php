@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
-class ArticleDetailController extends Controller
+class ArticleDetailController extends BlogBaseController
 {
     //
     public function index(Request $request, $slug) 
@@ -14,6 +14,7 @@ class ArticleDetailController extends Controller
         $arraySlug = explode('-',$slug);
         $id = array_pop($arraySlug);
         $article = Article::find($id);
-        return view('frontend.pages.article_detail.index', compact('article'));
+        $articleHot = $this->getBlogHot();
+        return view('frontend.pages.article_detail.index', compact('article', 'articleHot'));
     }
 }

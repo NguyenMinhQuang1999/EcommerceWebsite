@@ -28,7 +28,8 @@ class BlogBaseController extends Controller
     public function getBlogHot() 
     {
         $articleHot = Article::where([
-            'a_hot' => '1'
+            'a_hot' => '1',
+            'a_active' => 1
         ])
         ->orderByDesc('created_at')
         ->limit(5)

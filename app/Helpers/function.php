@@ -1,7 +1,26 @@
  <?php
  use Illuminate\Support\Facades\Auth;
 
- if (!function_exists('upload_image'))
+
+if (!function_exists('pare_url_file')) {
+    function pare_url_file($image,$folder = '')
+    {
+        if (!$image)
+        {
+            return'/images/no-image.jpg';
+        }
+        $explode = explode('__', $image);
+
+        if (isset($explode[0])) {
+            $time = str_replace('_', '/', $explode[0]);
+            return '/uploads/'.$folder.'/' . date('Y/m/d', strtotime($time)) . '/' . $image;
+        }
+    }
+}
+
+
+
+if (!function_exists('upload_image'))
     {
         /**
          * @param $file [tên file trùng tên input]
@@ -54,23 +73,10 @@
     }
 
 
-   if (!function_exists('pare_url_file')) {
-    function pare_url_file($image,$folder = '')
-    {
-        if (!$image)
-        {
-            return'/images/no-image.jpg';
-        }
-        $explode = explode('__', $image);
-
-        if (isset($explode[0])) {
-            $time = str_replace('_', '/', $explode[0]);
-            return '/uploads/'.$folder.'/' . date('Y/m/d', strtotime($time)) . '/' . $image;
-        }
-    }
 
 
-}
+
+
 
      function number_price($price, $sale = 0)
     {
@@ -88,6 +94,26 @@
         {
             return Auth::guard($type)->user() ? Auth::guard($type)->user()->$field : '';
         }
+    }
+
+    // Function to get the client IP address
+    function get_client_ip() {
+        $ipaddress = '';
+        if (getenv('HTTP_CLIENT_IP'))
+            $ipaddress = getenv('HTTP_CLIENT_IP');
+        else if(getenv('HTTP_X_FORWARDED_FOR'))
+            $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+        else if(getenv('HTTP_X_FORWARDED'))
+            $ipaddress = getenv('HTTP_X_FORWARDED');
+        else if(getenv('HTTP_FORWARDED_FOR'))
+            $ipaddress = getenv('HTTP_FORWARDED_FOR');
+        else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+        else if(getenv('REMOTE_ADDR'))
+            $ipaddress = getenv('REMOTE_ADDR');
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
     }
 
 

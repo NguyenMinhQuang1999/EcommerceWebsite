@@ -16,11 +16,22 @@ use Illuminate\Support\Facades\DB;
 class AdminProductController extends Controller
 {
     //
-    public function index() {
-        $products = Product::with('category:id,c_name')->paginate(10);
+    public function index(Request $request) {
+        
+        $products = Product::with('category:id,c_name');
+        if($request->name) {
+            $products->where('pro_name', 'like', '%'. $request->name . '%');
+        }
+        if($request->category) {
+            $products->where('pro_category_id',  $request->category);
+
+        }
+        $products= $products->orderByDesc('id')->paginate(10);
+        $categories = Category::all();
         $attributes = $this->syncAttributesGroup();
         $viewData = [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ];
         return view('admin.product.index', $viewData);
     }
@@ -96,7 +107,7 @@ class AdminProductController extends Controller
         if($request->pro_avatar) {
             $image = upload_image('pro_avatar');
             if($image['code'] == 1) {
-                $data['pro_avartar'] == $image['name'];
+                $data['pro_avartar'] = $image['name'];
             }
         }
         $this->syncAttribute($request->attribute, $id);

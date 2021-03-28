@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\TransactionExport;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -9,12 +10,39 @@ use App\Models\Order;
 class AdminTransactionController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::orderBy('id')
+        $transactions = Transaction::whereRaw(1);
+
+        if($request->id) $transactions->where('id', $request->id);
+        if($email = $request->email){
+            $transactions->where('tst_email', 'like', '%'.$email .'%');
+
+        }
+
+        if($type= $request->type) {
+            if($type == 1) {
+                $transactions->where('tst_user_id', "<>", 0);
+            }else {
+                $transactions->where('tst_user_id', 0);
+            }
+        }
+
+        if($status = $request->status) {
+            $transactions->where('tst_status', $status);
+        }
+
+        $transactions = $transactions->orderBy('id')
                         ->paginate(10);
+
+
+        if($request->export) {
+            return \Maatwebsite\Excel\Facades\Excel::download(new TransactionExport($transactions), 'don-hang.csv');
+        }
+
         $viewData = [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'query' => $request->query()
         ];
         return view('admin.transaction.index', $viewData);
     }
@@ -44,7 +72,7 @@ class AdminTransactionController extends Controller
     public function deleteOrderItem(Request $request, $id) {
         if($request->ajax()) {
             $order = Order::find($id); // tim dong chua san pham trong chi tiet don hang
-            if($order) 
+            if($order)
             {
                 //tong tien ma san pham do mua
                 $money = $order->od_price * $order->od_qty;
@@ -53,16 +81,16 @@ class AdminTransactionController extends Controller
                       ->where('id', $order->od_transaction_id)
                       ->decrement('tst_total_money', $money);
                       //xoa trong dong trong chi tiet don hang
-                      $order->delete(); 
+                      $order->delete();
             }
             return response(['code' => 200]);
-            
+
         }
     }
 
     public function action($action, $id) {
         $transaction = Transaction::find($id);
-     
+
         if($transaction) {
             switch($action) {
                 case 'process': {
@@ -79,10 +107,10 @@ class AdminTransactionController extends Controller
                 }
             }
             $transaction->save();
-           
+
         }
 
         return redirect()->back();
-       
+
     }
 }

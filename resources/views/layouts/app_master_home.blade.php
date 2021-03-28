@@ -95,8 +95,10 @@
                                     </select>
                                </div>
                                 <div class="search_box">
-                                    <input placeholder="Search product..." type="text">
-                                    <button type="submit">Search</button>
+                                    <form method="GET" action=" {{ route('product-list') }}}}">
+                                        <input name="key" value="{{ Request::get('key') }}" placeholder="Search product..." type="text">
+                                        <button type="submit">Search</button>
+                                     </form>
                                 </div>
                             </form>
                         </div>

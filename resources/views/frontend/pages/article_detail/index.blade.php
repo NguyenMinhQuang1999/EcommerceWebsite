@@ -255,6 +255,8 @@
                             <div class="widget_title">
                                 <h3>Recent Posts</h3>
                             </div>
+                            @include('frontend.components.article_hot', ['articles' => $articleHot])
+
                             <div class="post_wrapper">
                                 <div class="post_thumb">
                                     <a href="blog-details.html"><img src="assets/img/blog/blog6.jpg" alt=""></a>

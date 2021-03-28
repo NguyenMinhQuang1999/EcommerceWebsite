@@ -23,18 +23,41 @@
          <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header with-border">
                 {{-- <h3 class="card-title">Responsive Hover Table</h3> --}}
+                <div class="box-title">
+                    <form method="get" class="form-inline">
+                        <input type="text" class="form-control" value="{{ Request::get('id') }}" name="id" placeholder="Id">
+                        <input type="text" class="form-control" value="{{ Request::get('email') }}" name="email" placeholder="Email">
+                        <select name="type" class="form-control">
+                            <option value="0">Phan loai khach hang</option>
+                            <option value="1" {{Request::get('type') == 1 ? 'selected="selected"' : '' }}>Thanh vien</option>
+                            <option value="2" {{Request::get('type') == 2 ? 'selected="selected"' : '' }}>Khach</option>
+                        </select>
 
+                        <select name="status" class="form-control" id="">
+                            <option value="0" disiable>Trang thai</option>
+                            <option value="1" {{ Request::get('status') == 1 ? "selected='selected'" : "" }}>Tiep nhan</option>
+                            <option value="2" {{ Request::get('status') == 2 ? "selected='selected'" : "" }}>Dang van chuyen</option>
+                            <option value="3" {{ Request::get('status') == 3 ? "selected='selected'" : "" }}>Da ban giao</option>
+                            <option value="-1" {{ Request::get('status') == -1 ? "selected='selected'" : "" }}>Huy bo</option>
+
+                        </select>
+                        <button type="submit" class="btn btn-lg btn-success"> <i class="fa fa-search">Search</i> </button>
+                        <button type="submit" value="true" name="export" class="btn btn-lg btn-info"> <i class="fa fa-save">Export</i> </button>
+
+
+                    </form>
+                </div>
 
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
+                  {{-- <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
               <!-- /.card-header -->
@@ -105,7 +128,7 @@
                                        <i class="fas fa-ban"> </i>  Đã xác thực</a>
                                     <a  href="{{ route('admin.transaction.action', ['success', $transaction->id]) }}" class="dropdown-item"> <i class="fas fa-ban"> </i>  Đã chuyển giao</a>
                                     <a  href="{{ route('admin.transaction.action', ['cancel', $transaction->id]) }}" class="dropdown-item"> <i class="fas fa-ban"> </i>   Đã hủy</a>
-          
+
                                   </div>
                            </div>
                       </td>
@@ -119,7 +142,7 @@
               <!-- /.card-body -->
 
             </div>
-            {!! $transactions->links() !!}
+            {!! $transactions->appends('query')->links() !!}
             <!-- /.card -->
           </div>
       </div><!-- /.container-fluid -->
@@ -139,7 +162,7 @@
       </div>
       <div class="modal-body">
         <div class="content">
-            
+
         </div>
       </div>
       <div class="modal-footer">
@@ -171,7 +194,7 @@
                         show: true
                     });
                 });
-                
+
             });
 
             $('body').on('click', '.delete-item', function() {
