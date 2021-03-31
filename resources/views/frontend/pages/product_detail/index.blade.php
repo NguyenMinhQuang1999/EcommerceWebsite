@@ -113,7 +113,7 @@
                             </div>
                             <div class=" product_d_action">
                                <ul>
-                                   <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                   <li><a href="{{  route('ajax_get.user.add_favourite', $product->id) }}" class="add_favourite" title="Add to wishlist">+ Thêm yêu thích</a></li>
                                    <li><a href="#" title="Add to wishlist">+ Compare</a></li>
                                </ul>
                             </div>
@@ -944,4 +944,34 @@
 <!--newsletter area end-->
 
 
+@endsection
+
+@section('script')
+
+<script>
+    $(function() {
+        $('.add_favourite').click(function(event) {
+            event.preventDefault();
+            let $this = $(this);
+            let URL = $this.attr('href');            
+            //console.log(URL);         
+           
+                if(URL) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: "POST",
+                        url: URL
+                    }).done(function(result) {                    
+                          console.log(result.messages);
+                          toastr.success(result.messages,'Thong bao');
+
+                     
+                    });
+                }
+            
+        })
+    })
+</script>
 @endsection

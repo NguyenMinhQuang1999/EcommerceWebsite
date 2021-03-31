@@ -31,6 +31,7 @@
                                 @if(Auth::check())
                                 {{--  //lay ra thong tin nguoi dung auth::user()  --}}
                                     <li><a href="#">Hi {{ Auth::user()->name }}</a></li>
+                                    <li><a href="{{ route('get.user.dashboard') }}}">Quan ly tai khoan</a></li>
                                     <li><a href="{{ route('get.logout') }}">Dang xuat</a></li>
                                 @else
                                     <li><a href="{{ route('get.register') }}">Register</a></li>

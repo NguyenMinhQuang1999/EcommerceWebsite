@@ -9,6 +9,9 @@ use App\Models\Product;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransactionSuccess;
+
 class ShoppingCart extends Controller
 {
     //
@@ -93,11 +96,12 @@ class ShoppingCart extends Controller
         if(isset(Auth::user()->id)) {
             $data['tst_user_id'] = Auth::user()->id;
         }
-        $data['tst_total_money'] = str_replace(',', '', \Cart::subtotal(0));
+        $data['tst_total_money'] = str_replace(',', '', \Cart::subtotal());
         $data['created_at'] = Carbon::now();
         $transitionId = Transaction::insertGetId($data);
         if($transitionId) {
             $shopping =\Cart::content();
+            Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
             foreach($shopping as $key => $item) {
                 Order::insert([
                     'od_transaction_id' => $transitionId,

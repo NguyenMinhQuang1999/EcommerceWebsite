@@ -10,7 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RequestRegister;
+use App\Mail\RegisterSuccess;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -56,11 +58,15 @@ class RegisterController extends Controller
         $data['password'] = Hash::make($request->password);//ma hoa hash
         $data['created_at'] = Carbon::now();
         $id = User::insertGetId($data);
+        Mail::to($request->email)->send(new RegisterSuccess($request->name));
+
+
         if($id) {
             //neu ton tai ma thi chuyen trang login
             if(\Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                return redirect()->intended('/');
                 toastr()->success('Dang nhap thanh cong');
+                return redirect()->intended('/');
+
             }
             return redirect()->route('get.login');
         }

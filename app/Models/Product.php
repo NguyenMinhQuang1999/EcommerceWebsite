@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Product extends Model
 {
     //
@@ -30,5 +30,10 @@ class Product extends Model
     public function attributes() 
     {
         return $this->belongsToMany(Attribute::class, 'products_attributes', 'pa_product_id', 'pa_attribute_id');
+    }
+
+    public function favourite() 
+    {
+        return $this->belongsToMany(User::class, 'user_favourites', 'uf_product_id', 'uf_user_id');
     }
 }

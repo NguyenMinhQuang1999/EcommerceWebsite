@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 include ('router_admin.php');
+include ('router_user.php');
 
 Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function() {
     Route::get('register', 'RegisterController@getFormRegister')->name('get.register');
