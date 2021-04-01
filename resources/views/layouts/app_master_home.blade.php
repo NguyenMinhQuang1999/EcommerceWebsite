@@ -341,6 +341,15 @@
 <script src="{{asset('fontend/assets/js/main.js')}}"></script>
 
  @yield('script')
+ <script>
+     $(function() {
+         $('.js-show-login').click(function(event) {
+            event.preventDefault();
+            toastr.warning('Ban phai dang nhap de thuc hien tinh nang nay!');
+            return false;
+         })
+     })
+ </script>
 
 @jquery
 @toastr_js

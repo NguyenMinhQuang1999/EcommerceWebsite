@@ -18,7 +18,7 @@
                   </div>
                   <div class="form-group">
                       <label for="">Khuyen mai: </label>
-                      <input type="number" value="{{ $product->pro_sale ?? old('pro_sale') }}" class="form-control" name="pro_sale" id="">
+                      <input type="number" value="{{ $product->pro_sale ?? old('pro_sale', 0) }}" class="form-control" name="pro_sale" id="">
                   </div>
                   <div class="form-group">
                     <label for="">Keyword </label>
@@ -84,7 +84,7 @@
 
                     <div class="form-group col-sm-3">
                         <label for="">So luong</label>
-                        <input type="number" min= 1 name="pro_number" value="{{ $product->pro_number ?? '' }}" placeholder="So luong" class="form-control" id="">
+                        <input type="number" min= 1 name="pro_number" value="{{ $product->pro_number ?? old('pro_price', 0) }}" placeholder="So luong" class="form-control" id="">
                     </div>
                     </div>
                   <div class="form-group  ? 'is-invalid': '' }} ">

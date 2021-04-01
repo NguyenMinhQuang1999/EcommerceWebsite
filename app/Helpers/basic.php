@@ -16,13 +16,17 @@
       Liene ket nhieu nhieu san pham va thuoc tinh
 
       San pham mua nhieu
-      + Dang cho thanh toan goi 
+      + Dang cho thanh toan goi
       + Hoac thanh toan roi
 
-      - tao middleware kiem tra nguoi dung dang nhap login hay 
+      - tao middleware kiem tra nguoi dung dang nhap login hay
       chua, va chi nguoi dang nhap login moi biet trang login thoi
 
       loc theo gia loc theo thuoc tinh
+
+      danh gia
+      dang nhap moi danh gia hoac la mua hang moi danh gia
+      them danh gia san pham
       */
 
 

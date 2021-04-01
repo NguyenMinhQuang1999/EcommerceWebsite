@@ -113,7 +113,7 @@
                             </div>
                             <div class=" product_d_action">
                                <ul>
-                                   <li><a href="{{  route('ajax_get.user.add_favourite', $product->id) }}" class="add_favourite" title="Add to wishlist">+ Thêm yêu thích</a></li>
+                                   <li><a href="{{  route('ajax_get.user.add_favourite', $product->id) }}" class="{{ \Auth::id() ? 'add_favourite' : 'js-show-login' }}"  title="Add to wishlist">+ Thêm yêu thích</a></li>
                                    <li><a href="#" title="Add to wishlist">+ Compare</a></li>
                                </ul>
                             </div>
@@ -124,7 +124,7 @@
                             <div class="product_meta">
                                 @foreach($product->keywords as $keyword)
                                 <span >Keyword: <a href="#" style="border:1px solid red; padding: 5px; font-size: 13px; margin-right: 10px; color: rgb(196, 19, 19);
-                                    border-radius: 5px">
+                                    border-radius: 5px">yu
                                      {{$keyword->k_name}}</a></span>
                                 @endforeach
                             </div>
@@ -218,11 +218,11 @@
                                                 <div class="reviews_meta">
                                                     <div class="product_rating">
                                                        <ul>
-                                                           <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                           <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                           <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                           <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                           <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                                        </ul>
                                                     </div>
                                                     <p><strong>admin </strong>- September 12, 2018</p>
@@ -238,31 +238,34 @@
                                         <div class="product_rating mb-10">
                                            <h3>Your rating</h3>
                                             <ul>
-                                               <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                               <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                               <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                               <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                               <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                @for($i = 1; $i <= 5; $i++)
+                                                <li class="ratings"><a href="#"><i data-i="{{ $i }}" class="active_star ion-android-star-outline"></i></a></li>
+                                             
+                                                @endfor
+                                               
                                            </ul>
                                         </div>
                                         <div class="product_review_form">
-                                            <form action="#">
+                                            <form id="form-review" method="POST" action="{{ route('ajax_post.user.rating') }}">
+                                                @csrf
                                                 <div class="row">
+                                                    <input type="hidden" class="review_value" name="review" value="5">
+                                                    <input type="hidden" value="{{ $product->id }}" name="product_id">
                                                     <div class="col-12">
                                                         <label for="review_comment">Your review </label>
-                                                        <textarea name="comment" id="review_comment" ></textarea>
+                                                        <textarea name="comment"class="review_text" id="review_comment" ></textarea>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <label for="author">Name</label>
-                                                        <input id="author"  type="text">
+                                                        <input id="author"  name="name"  value="{{ \Auth::user()->name ?? '' }}" type="text">
 
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <label for="email">Email </label>
-                                                        <input id="email"  type="text">
+                                                        <input id="email" name="email" value="{{ \Auth::user()->email ?? '' }}"  type="text">
                                                     </div>
                                                 </div>
-                                                <button type="submit">Submit</button>
+                                                <button class="{{ \Auth::id() ? 'process_review' : 'js-show-login' }}" type="button">Submit</button>
                                              </form>
                                         </div>
                                     </div>
@@ -953,9 +956,9 @@
         $('.add_favourite').click(function(event) {
             event.preventDefault();
             let $this = $(this);
-            let URL = $this.attr('href');            
-            //console.log(URL);         
-           
+            let URL = $this.attr('href');
+            //console.log(URL);
+
                 if(URL) {
                     $.ajax({
                         headers: {
@@ -963,15 +966,70 @@
                         },
                         method: "POST",
                         url: URL
-                    }).done(function(result) {                    
+                    }).done(function(result) {
                           console.log(result.messages);
                           toastr.success(result.messages,'Thong bao');
 
-                     
+
                     });
                 }
-            
+
         })
+
+       //review san pham
+
+       let $item = $('.ratings i');
+       let arrTextRating = {
+           1: 'Rat khong hai long',
+           2: 'Khong hai long',
+           3: "Binh thuong",
+           4: 'Hai long',
+           5: 'Rat hai long'
+       }
+
+       $item.mouseover(function() {
+           let $this = $(this);
+           let $i = $this.attr('data-i');
+           $('.review_value').val($i);
+           $item.removeClass('active_star');
+           $item.each(function(key, value) {
+               if(key + 1  <= $i) {
+                  // $(this).addClass('active_star')
+                  $(this).addClass('active_star')
+                 
+               }
+               $(".review_text").text(arrTextRating[$i]);
+           })
+       })
+
+       $(".process_review").click(function(){
+           let URL = $(this).parents('form').attr('action');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: URL,
+            method: "POST",
+            data: $('#form-review').serialize()
+        }).done(function(result) {
+            $('#form-review')[0].reset();
+            $(".review_text").text('');
+              console.log(result.message);
+              toastr.success(result.message);
+
+
+        });
+       })
     })
 </script>
+@endsection
+
+@section('css')
+
+<style>
+.active_star {
+    color: #C70909 ;
+}
+</style>
+
 @endsection

@@ -12,5 +12,5 @@ Route::group(['prefix' => 'account', 'namespace' => 'User', 'middleware' => 'che
     Route::get('favourite', 'UserFavouriteController@index')->name('get.user.favourite');
 
     Route::post('ajax-favourite/{idProduct}', 'UserFavouriteController@addFavourite')->name('ajax_get.user.add_favourite');
-
+    Route::post('ajax-rating', 'UserRatingController@addRatingProduct')->name('ajax_post.user.rating');
 });
