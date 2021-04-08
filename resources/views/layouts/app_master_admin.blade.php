@@ -292,6 +292,25 @@
           </p>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{ route('admin.rating.index') }}" class="nav-link">
+          <i class="nav-icon fas fa-th"></i></i>
+          <p>
+          Rating
+            <span class="right badge badge-info">New</span>
+          </p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ route('get.sactistical') }}" class="nav-link">
+          <i class="nav-icon fas fa-th"></i></i>
+          <p>
+          Sactistical
+            <span class="right badge badge-info">New</span>
+          </p>
+        </a>
+      </li>
 
           <li class="nav-item">
             <a href="{{  route('get.logout.admin') }}" class="nav-link">

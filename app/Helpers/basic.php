@@ -27,6 +27,27 @@
       danh gia
       dang nhap moi danh gia hoac la mua hang moi danh gia
       them danh gia san pham
+
+
+      thong ke danh gia
+//so 
+$age = $product->pro_review_star / $product->pro_pro_review_star;
+% so sao
+so luong * chia cho so review star
+$item['count_number] / $product->pro_review_star * 100    | $item['count_number]
+
+$age = 0;
+if($product->pro_review_star) {
+    $age = $product->pro_review_star / $product->pro_pro_review_star;
+
+}
+
+$ageItem = 0;
+if($product->pro_review_star) {
+    
+}
+
+
       */
 
 

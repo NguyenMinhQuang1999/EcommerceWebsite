@@ -35,6 +35,8 @@ Route::group(['namespace' => 'fontend'], function() {
     Route::get('product-list', "ProductController@index")->name('product-list');
     Route::get('danh-muc/{slug}', "CategoryController@index")->name('category.list');
     Route::get('san-pham/{slug}', "ProductDetailController@index")->name('product.detail');
+    Route::get('san-pham/{slug}/danh-gia', "ProductDetailController@getListRatingProduct")->name('get.product.rating_list');
+
     //Blog
     Route::get('bai-viet', 'BlogController@index')->name('get.blog.index');
     Route::get('bai-viet/{slug}', 'ArticleDetailController@index')->name('get.detail.index');

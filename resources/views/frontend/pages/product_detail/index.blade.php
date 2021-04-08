@@ -209,8 +209,12 @@
 
                                 <div class="tab-pane fade" id="reviews" role="tabpanel" >
                                     <div class="reviews_wrapper">
-                                        <h2>1 review for Donec eu furniture</h2>
+                                        <h2> @php
+                                            echo count($ratings)
+                                        @endphp review for Donec eu furniture</h2>
+                                        @foreach($ratings as $rating)
                                         <div class="reviews_comment_box">
+                                          
                                             <div class="comment_thmb">
                                                 <img src="{{asset('fontend/assets/img/blog/comment2.jpg')}}" alt="">
                                             </div>
@@ -218,19 +222,24 @@
                                                 <div class="reviews_meta">
                                                     <div class="product_rating">
                                                        <ul>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                           @for ($i = 1; $i <=5; $i++ )
+                                                           <li><a href="#" class="{{ $i <= $rating->r_number ? 'active_star' : '' }}"><i class="ion-android-star-outline"></i></a></li>
+                                                           @endfor
+                                                      
+                                                      
                                                        </ul>
                                                     </div>
-                                                    <p><strong>admin </strong>- September 12, 2018</p>
-                                                    <span>roadthemes</span>
+                                                    <p><strong>{{ $rating->user->name }} </strong> / {{  date_format($rating->created_at, 'd-m-Y') }}</p>
+                                                    <span>{{ $rating->r_comment }}</span>
                                                 </div>
                                             </div>
 
+                                        
+
                                         </div>
+                                        @endforeach
+                                      <a  href="#" class="btn btn-sm btn-info"> More Review</a>
+
                                         <div class="comment_title">
                                             <h2>Add a review </h2>
                                             <p>Your email address will not be published.  Required fields are marked </p>

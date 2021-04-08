@@ -10,11 +10,25 @@ Route::group(['prefix' => 'admin-auth', 'namespace' => 'Admin\Auth'], function()
     Route::get('logout', 'AdminLoginController@getLogout')->name('get.logout.admin');
 });
 
+Route::get('tk', function() {
+    return view('admin.sactistical.index');
+});
+
+
 Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => 'check_login_admin'],  function() {
     Route::get('/', function() {
         return view('admin.index');
     });
+
+    //Route thong ke
+    Route::group(['prefix' => 'sactistical'], function() {
+        Route::get('', 'AdminSactisticalController@index')->name('get.sactistical');
+
+    });
+
     //Route danh muc san pham
+
+
     Route::group(['prefix' => 'category'], function() {
     Route::get('', 'AdminCategoryController@index')->name('admin.category.index');
     Route::get('create', 'AdminCategoryController@create')->name('admin.category.create');
@@ -31,18 +45,26 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
      //Route danh muc san pham
     Route::group(['prefix' => 'user'], function() {
         Route::get('', 'AdminUserController@index')->name('admin.user.index');
-   
+
         Route::get('delete/{id}', 'AdminUserController@delete')->name('admin.user.delete');
     });
 
       //Route transaction
       Route::group(['prefix' => 'transaction'], function() {
-        Route::get('', 'AdminTransactionController@index')->name('admin.transaction.index');   
+        Route::get('', 'AdminTransactionController@index')->name('admin.transaction.index');
         Route::get('delete/{id}', 'AdminTransactionController@delete')->name('admin.transaction.delete');
         Route::get('delete-order-item/{id}', 'AdminTransactionController@deleteOrderItem')->name('ajax_admin.transaction.delete_item');
         Route::get('view-detail/{id}', 'AdminTransactionController@getTransactionDetail')->name('ajax.admin.transaction.detailt');
         Route::get('action/{action}/{id}', 'AdminTransactionController@action')->name('admin.transaction.action');
     });
+
+     //Route transaction
+     Route::group(['prefix' => 'rating'], function() {
+        Route::get('', 'AdminRatingController@index')->name('admin.rating.index');
+        Route::get('delete/{id}', 'AdminRatingController@delete')->name('admin.rating.delete');
+
+    });
+
 
     Route::group(['prefix' => 'slider'], function() {
         Route::get('', 'AdminSliderController@index')->name('admin.slider.index');

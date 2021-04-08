@@ -89,13 +89,7 @@
 
                       </td>
                       <td>{{ number_format($transaction->tst_total_money,0,',', '.') }}</td>
-                      {{-- <td>
-                        @if($transaction->k_hot == 1)
-                        <a href="{{ route('admin.transaction.hot', $transaction->id) }}" class="badge badge-info">Hot</a>
-                        @else
-                        <a href="{{ route('admin.transaction.hot', $transaction->id) }}" class="badge badge-danger">None</a>
-                        @endif
-                        </td>--}}
+                  
                         <td>
                           @if($transaction->tst_user_id != 0)
                            <span  class="badge badge-success"> Thanh vien</span>
