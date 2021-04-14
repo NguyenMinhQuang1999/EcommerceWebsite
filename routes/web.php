@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 include ('router_admin.php');
 include ('router_user.php');
 
+Route::get('/callback/{social}', 'Auth\SocialAuthController@callback');
+Route::get('redirect/{social}', 'Auth\SocialAuthController@redirect')->name('get.login.google');
 Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function() {
     Route::get('register', 'RegisterController@getFormRegister')->name('get.register');
     Route::post('register', 'RegisterController@postRegister');
@@ -25,6 +27,15 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function() {
     Route::post('login', 'LoginController@postLogin');
 
     Route::get('logout', 'LoginController@logout')->name('get.logout');
+    Route::get('reset-password', 'ResetPasswordController@getEmailReset')->name('get_reset_password');
+    Route::post('reset-password', 'ResetPasswordController@checkEmailResetPassword');
+    Route::get('change-password', 'ResetPasswordController@changePassword')->name('get.new_password');
+    Route::post('change-password', 'ResetPasswordController@savePassword');
+
+    Route::get('/{social}/redirect', 'SocialAuthController@redirect')->name('get.login.social');
+    Route::get('/{social}/callback/', 'SocialAuthController@callback')->name('get.login.social_callbale');
+
+
 });
 
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="breadcrumbs_area">
-    <div class="container">   
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="breadcrumb_content">
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-    </div>         
+    </div>
 </div>
 <!--breadcrumbs area end-->
 
@@ -28,22 +28,23 @@
                         <h2>login</h2>
                         <form action="" method="post">
                             @csrf
-                            <p>   
+                            <p>
                                 <label>Username or email <span>*</span></label>
                                 <input name="email" type="text">
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                              </p>
-                             <p>   
+                             <p>
                                 <label>Passwords <span>*</span></label>
                                 <input name="password" type="password">
                                 @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                             </p>   
+                             </p>
                             <div class="login_submit">
-                               <a href="#">Lost your password?</a>
+                               <a href="{{  route('get_reset_password')}}">Lost your password?</a>
+                               <a href="{{  route('get.login.google', ['social' => 'google'])}}">  <i class="fa fa-google"></i>  Dang nhap Googgle</a>
                                 <label for="remember">
                                     <input id="remember" type="checkbox">
                                     Remember me
@@ -53,7 +54,7 @@
                             </div>
 
                         </form>
-                     </div>    
+                     </div>
                 </div>
                 <!--login area start-->
 
@@ -62,11 +63,11 @@
                     <div class="account_form register">
                         <h2>Register</h2>
                         <form action="#">
-                            <p>   
+                            <p>
                                 <label>Email address  <span>*</span></label>
                                 <input type="text">
                              </p>
-                             <p>   
+                             <p>
                                 <label>Passwords <span>*</span></label>
                                 <input type="password">
                              </p>
@@ -74,10 +75,10 @@
                                 <button type="submit">Register</button>
                             </div>
                         </form>
-                    </div>    
+                    </div>
                 </div>
                 <!--register area end-->
-            </div>   
+            </div>
         </div>
     </div>
 </div>
