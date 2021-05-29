@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> {{ $title_page ?? 'Trang chu' }} </title>
+    <title> {{ $title_page ?? 'Cửa hàng' }} </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -345,7 +345,7 @@
      $(function() {
          $('.js-show-login').click(function(event) {
             event.preventDefault();
-            toastr.warning('Ban phai dang nhap de thuc hien tinh nang nay!');
+            toastr.warning('Bạn phải đăng nhập để thực hiện tính năng này!');
             return false;
          })
      })

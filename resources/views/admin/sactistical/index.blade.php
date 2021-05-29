@@ -12,13 +12,13 @@
         stroke-dasharray: 2, 2;
         stroke-width: 2px;
     }
-    
+
     .highcharts-figure, .highcharts-data-table table {
-        min-width: 320px; 
+        min-width: 320px;
         max-width: 600px;
         margin: 1em auto;
     }
-    
+
     .highcharts-data-table table {
         font-family: Verdana, sans-serif;
         border-collapse: collapse;
@@ -46,11 +46,11 @@
     .highcharts-data-table tr:hover {
         background: #f1f7ff;
     }
-       
-    
+
+
     /**/
 
-   
+
 
 
 
@@ -89,7 +89,7 @@
                 <span class="info-box-text">Đánh giá</span>
                 <span class="info-box-number">
                   {{ $totalRatings}}
-                
+
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -143,14 +143,14 @@
         </div>
         <!-- /.row -->
 
-   
+
         <!-- /.row -->
 <div class="row">
   <div class="col-md-8">
     <figure class="highcharts-figure">
         <div id="container2" data-day="{{ $listDay }}" data-money-default="{{ $arrRevenueTransactionMonthDefault}}" data-money="{{ $arrRevenueTractionMonth }}"></div>
         <p class="highcharts-description">
-           
+
         </p>
     </figure>
   </div>
@@ -158,10 +158,10 @@
     <figure class="highcharts-figure">
         <div id="container" data-json= "{{ $statusTransaction }}"</div>
         <p class="highcharts-description">
-        
+
         </p>
     </figure>
-    
+
   </div>
 </div>
         <!-- Main row -->
@@ -169,18 +169,18 @@
           <!-- Left col -->
           <div class="col-md-8">
             <!-- MAP & BOX PANE -->
-          
+
             <!-- /.card -->
-          
-       
+
+
             <div class="row">
-             
+
               <!-- /.col -->
 
               <div class="col-md-6">
                 <!-- USERS LIST -->
-                
-              
+
+
                 <!--/.card -->
               </div>
               <!-- /.col -->
@@ -213,7 +213,7 @@
                         <th>Mô tả</th>
                         <th>Trạng thái</th>
                         <th>Ngày tạo</th>
-                      
+
                     </tr>
                     </thead>
                     <tbody>
@@ -227,10 +227,10 @@
                             <li>Email: {{$transaction->tst_email   }}</li>
                             <li>Phone: {{$transaction->tst_phone   }}</li>
                           </ul>
-  
+
                         </td>
-                        <td>{{ number_format($transaction->tst_total_money,0,',', '.') }}</td>
-                    
+                        <td>{{ number_format($transaction->tst_total_money,0,',', '.') }} đ</td>
+
                           <td>
                             @if($transaction->tst_user_id != 0)
                              <span  class="badge badge-success"> Thành viên</span>
@@ -238,14 +238,14 @@
                              <span class="badge badge-info">Khách hàng</span>
                              @endif
                           </td>
-  
+
                           <td>
                               <span class="badge badge-{{ $transaction->getStatus($transaction->tst_status)['class'] }}">
                                   {{ $transaction->getStatus($transaction->tst_status)['name'] }}
                               </span>
                           </td>
                         <td> {{ date('d-m-Y', strtotime($transaction->created_at)) }} </td>
-                       
+
                       </tr>
                       @endforeach
                       @endif
@@ -266,7 +266,7 @@
                 <div class="card-header border-transparent">
 
                   <h3 class="card-title">Sản phẩm sắp hết   </h3>
-  
+
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                       <i class="fas fa-minus"></i>
@@ -305,14 +305,14 @@
                             <td>
                                 <img src="{{ pare_url_file($product->pro_avatar) }}" alt="Product Image" class="img-size-50">
                             </td>
-    
-                            
+
+
                           <td>{{ date('d-m-Y', strtotime($product->created_at)) }}</td>
-                         
+
                         </tr>
                         @endforeach
                         @endif
-  
+
                       </tbody>
                     </table>
                   </div>
@@ -333,7 +333,7 @@
             <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Sản phẩm mua nhiều</h3>
-  
+
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                       <i class="fas fa-minus"></i>
@@ -449,8 +449,8 @@
     let listMoneyMonthDefault = $('#container2').attr('data-money-default');
     listMoneyMonthDefault = JSON.parse(listMoneyMonthDefault);
     console.log(listMoneyMonthDefault);
-    
-    
+
+
 
 
     Highcharts.chart('container', {
@@ -458,15 +458,15 @@
         chart: {
             styledMode: true
         },
-    
+
         title: {
             text: 'Biểu đồ thống kê trạng thái đơn hàng'
         },
-    
+
         xAxis: {
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
-    
+
         series: [{
             type: 'pie',
             allowPointSelect: true,
@@ -480,7 +480,7 @@
 
 
 
-    
+
     Highcharts.chart('container2', {
         chart: {
             type: 'spline'
@@ -523,7 +523,7 @@
                 symbol: 'square'
             },
             data:listMoneyMonth
-    
+
         },
         {
             name: 'Tiếp nhận giao dịch',
@@ -531,7 +531,7 @@
                 symbol: 'square'
             },
             data:listMoneyMonthDefault
-    
+
         }, ]
     });
 

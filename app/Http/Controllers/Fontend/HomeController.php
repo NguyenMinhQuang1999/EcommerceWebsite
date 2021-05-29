@@ -25,7 +25,7 @@ class HomeController extends Controller
             $viewData = [
                 'productsNew' => $productsNew,
                 'productsHot' => $productsHot,
-                'title_page' => 'Trang chu'
+                'title_page' => 'Cửa hàng'
             ];
         return view('frontend.pages.home.index', $viewData);
     }

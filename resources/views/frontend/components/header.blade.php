@@ -7,16 +7,16 @@
                     <div class="col-lg-4 col-md-5">
                         <div class="header_account">
                             <ul>
-                                <li class="language"><a href="#"><img src="assets/img/logo/language.png" alt=""> english <i class="ion-chevron-down"></i></a>
+                                <li class="language"><a href="#"><img src="assets/img/logo/language.png" alt=""> Việt Nam <i class="ion-chevron-down"></i></a>
                                     <ul class="dropdown_language">
                                         <li><a href="#">English</a></li>
-                                        <li><a href="#">Germany</a></li>
+                                        <li><a href="#">Vietnamese</a></li>
                                         <li><a href="#">Japanese</a></li>
                                     </ul>
                                 </li>
-                                <li class="currency"><a href="#">USD <i class="ion-chevron-down"></i></a>
+                                <li class="currency"><a href="#">VNĐ <i class="ion-chevron-down"></i></a>
                                     <ul class="dropdown_currency">
-                                        <li><a href="#">EUR – Euro</a></li>
+                                        <li><a href="#">USD – VietNam</a></li>
                                         <li><a href="#">GBP – British Pound</a></li>
                                         <li><a href="#">INR – India Rupee</a></li>
                                     </ul>
@@ -31,16 +31,16 @@
                                 @if(Auth::check())
                                 {{--  //lay ra thong tin nguoi dung auth::user()  --}}
                                     <li><a href="#">Hi {{ Auth::user()->name }}</a></li>
-                                    <li><a href="{{ route('get.user.dashboard') }}}">Quan ly tai khoan</a></li>
-                                    <li><a href="{{ route('get.logout') }}">Dang xuat</a></li>
+                                    <li><a href="{{ route('get.user.dashboard') }}}">Quản lý tài khoản</a></li>
+                                    <li><a href="{{ route('get.logout') }}">Đăng xuất</a></li>
                                 @else
-                                    <li><a href="{{ route('get.register') }}">Register</a></li>
-                                    <li><a href="{{ route('get.login') }}">login</a></li>
+                                    <li><a href="{{ route('get.register') }}">Đăng kí</a></li>
+                                    <li><a href="{{ route('get.login') }}">Đăng nhập</a></li>
                                 @endif
 
-                                <li><a href="{{ route('get.shopping.list') }}">Shopping Cart </a></li>
+                                <li><a href="{{ route('get.shopping.list') }}">Giỏ hàng </a></li>
 
-                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="checkout.html">Thanh toán</a></li>
                             </ul>
                         </div>
                     </div>
@@ -61,34 +61,21 @@
                     <div class="col-lg-10 col-md-6 col-sm-6 col-6">
                         <div class="header_right_box">
                             <div class="search_container">
-                                <form action="#">
+                                <form action="{{ route('product-list')}}">
                                    <div class="hover_category">
                                         <select class="select_option" name="select" id="categori2">
-                                            <a href="{{ route('product-list') }}"><option selected value="1">All Categories</option></a>
+                                            <a href="{{ route('product-list') }}"><option  value="1">Danh mục</option></a>
                                             @if(isset($categories))
                                                @foreach($categories as $value)
                                                 <option value="1">{{$value->c_name}}</option>
                                                @endforeach
                                             @endif
-                                            <option value="4">Butters & Eggs</option>
-                                            <option value="5">Camera & Video </option>
-                                            <option value="6">Mornitors</option>
-                                            <option value="7">Tablets</option>
-                                            <option value="8">Laptops</option>
-                                            <option value="9">Handbags</option>
-                                            <option value="10">Headphone & Speaker</option>
-                                            <option value="11">Herbs & botanicals</option>
-                                            <option value="12">Vegetables</option>
-                                            <option value="13">Shop</option>
-                                            <option value="14">Laptops & Desktops</option>
-                                            <option value="15">Watchs</option>
-                                            <option value="16">Electronic</option>
                                         </select>
                                    </div>
                                     <div class="search_box">
-                                        <form method="GET" action=" {{ route('product-list') }}}}">
-                                        <input name="key" value="{{ Request::get('key') }}" placeholder="Search product..." type="text">
-                                        <button type="submit">Search</button>
+                                        <form method="GET" action="{{ route('product-list')}}">
+                                        <input name="key" value="{{ Request::get('key') }}" placeholder="Tìm kiến sản phẩm..." type="text">
+                                        <button type="submit">Tìm kiếm</button>
                                         </form>
                                     </div>
                                 </form>
@@ -102,7 +89,7 @@
                                 <div class="mini_cart_wrapper">
                                     <a href="{{  route('get.shopping.list') }}">
                                         <i class="icon-shopping-bag2"></i>
-                                        <span class="cart_price">$152.00 <i class="ion-ios-arrow-down"></i></span>
+                                        <span class="cart_price">{{ \Cart::total() }} đ <i class="ion-ios-arrow-down"></i></span>
                                         <span class="cart_count">{{ \Cart::count() }}</span>
                                     </a>
                                     <!--mini cart-->
@@ -128,29 +115,7 @@
                                                     <a href="#"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="cart_item">
-                                               <div class="cart_img">
-                                                   <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                                               </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Ras Neque Metus</a>
-                                                     <p>Qty: 1 X <span> $60.00 </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="mini_cart_table">
-                                                <div class="cart_total">
-                                                    <span>Sub total:</span>
-                                                    <span class="price">$138.00</span>
-                                                </div>
-                                                <div class="cart_total mt-10">
-                                                    <span>total:</span>
-                                                    <span class="price">$138.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                         </div>
                                         <div class="mini_cart_footer">
                                            <div class="cart_button">
                                                 <a href="cart.html">View cart</a>
@@ -179,49 +144,12 @@
                         <div class="main_menu menu_two menu_position text-left">
                             <nav>
                                 <ul>
-                                    <li><a class="active"  href="index.html">home<i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu">
-                                            <li><a href="index.html">Home shop 1</a></li>
-                                            <li><a href="index-2.html">Home shop 2</a></li>
-                                            <li><a href="index-3.html">Home shop 3</a></li>
-                                            <li><a href="index-4.html">Home shop 4</a></li>
-                                        </ul>
+                                    <li><a class="active"  href="/">Trang chủ</i></a>
                                     </li>
-                                    <li class="mega_items"><a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
-                                        <div class="mega_menu">
-                                            <ul class="mega_menu_inner">
-                                                <li><a href="#">Shop Layouts</a>
-                                                    <ul>
-                                                        <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                        <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
-                                                        <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
-                                                        <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
-                                                        <li><a href="shop-list.html">List View</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">other Pages</a>
-                                                    <ul>
-                                                        <li><a href="cart.html">cart</a></li>
-                                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
-                                                        <li><a href="my-account.html">my account</a></li>
-                                                        <li><a href="404.html">Error 404</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Product Types</a>
-                                                    <ul>
-                                                        <li><a href="product-details.html">product details</a></li>
-                                                        <li><a href="product-sidebar.html">product sidebar</a></li>
-                                                        <li><a href="product-grouped.html">product grouped</a></li>
-                                                        <li><a href="variable-product.html">product variable</a></li>
-                                                        <li><a href="product-countdown.html">product countdown</a></li>
-
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <li class="mega_items"><a href="/">Cửa hàng</a>
+                                        
                                     </li>
-                                    <li><a href="{{route('get.blog.index')}}"">blog<i class="fa fa-angle-down"></i></a>
+                                    <li><a href="{{route('get.blog.index')}}">Bài viết<i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
                                             <li><a href="blog-details.html">blog details</a></li>
                                             <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
@@ -229,7 +157,7 @@
                                             <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#">Về Chúng Tôi <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
                                             <li><a href="about.html">About Us</a></li>
                                             <li><a href="faq.html">Frequently Questions</a></li>
@@ -242,8 +170,7 @@
                                         </ul>
                                     </li>
 
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="contact.html"> Contact Us</a></li>
+                                    <li><a href="contact.html"> Liên Hệ</a></li>
                                 </ul>
                             </nav>
                         </div>
