@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Transction</h1>
+            <h1>Quản lý đơn hàng</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Tranction</li>
+              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+              <li class="breadcrumb-item active">Đơn hàng</li>
             </ol>
           </div>
         </div>
@@ -27,24 +27,24 @@
                 {{-- <h3 class="card-title">Responsive Hover Table</h3> --}}
                 <div class="box-title">
                     <form method="get" class="form-inline">
-                        <input type="text" class="form-control" value="{{ Request::get('id') }}" name="id" placeholder="Id">
-                        <input type="text" class="form-control" value="{{ Request::get('email') }}" name="email" placeholder="Email">
-                        <select name="type" class="form-control">
-                            <option value="0">Phan loai khach hang</option>
-                            <option value="1" {{Request::get('type') == 1 ? 'selected="selected"' : '' }}>Thanh vien</option>
-                            <option value="2" {{Request::get('type') == 2 ? 'selected="selected"' : '' }}>Khach</option>
+                        <input type="text" class="form-control mr-2" value="{{ Request::get('id') }}" name="id" placeholder="Mã đơn hàng">
+                        <input type="text" class="form-control mr-2" value="{{ Request::get('email') }}" name="email" placeholder="Email">
+                        <select name="type" class="form-control mr-2">
+                            <option value="0" disiable>--Lựa chọn khách hàng--</option>
+                            <option value="1" {{Request::get('type') == 1 ? 'selected="selected"' : '' }}>Thành viên</option>
+                            <option value="2" {{Request::get('type') == 2 ? 'selected="selected"' : '' }}>Khách hàng</option>
                         </select>
 
-                        <select name="status" class="form-control" id="">
-                            <option value="0" disiable>Trang thai</option>
-                            <option value="1" {{ Request::get('status') == 1 ? "selected='selected'" : "" }}>Tiep nhan</option>
-                            <option value="2" {{ Request::get('status') == 2 ? "selected='selected'" : "" }}>Dang van chuyen</option>
-                            <option value="3" {{ Request::get('status') == 3 ? "selected='selected'" : "" }}>Da ban giao</option>
-                            <option value="-1" {{ Request::get('status') == -1 ? "selected='selected'" : "" }}>Huy bo</option>
+                        <select name="status" class="form-control mr-2" id="">
+                            <option value="0" disiable>Trạng thái</option>
+                            <option value="1" {{ Request::get('status') == 1 ? "selected='selected'" : "" }}>Tiếp nhận</option>
+                            <option value="2" {{ Request::get('status') == 2 ? "selected='selected'" : "" }}>Đang vận chuyển</option>
+                            <option value="3" {{ Request::get('status') == 3 ? "selected='selected'" : "" }}>Đã bàn giao</option>
+                            <option value="-1" {{ Request::get('status') == -1 ? "selected='selected'" : "" }}>Hủy đơn</option>
 
                         </select>
-                        <button type="submit" class="btn btn-lg btn-success"> <i class="fa fa-search">Search</i> </button>
-                        <button type="submit" value="true" name="export" class="btn btn-lg btn-info"> <i class="fa fa-save">Export</i> </button>
+                        <button type="submit" class="btn btn-success btn-md mr-2"> <i class="fa fa-search"> Tìm kiếm</i> </button>
+                        <button type="submit" value="true" name="export" class="btn btn-md btn-info"> <i class="fa fa-download"> Excel </i> </button>
 
 
                     </form>
@@ -66,35 +66,35 @@
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>Thong tin</th>
-                      <th>Tong tien</th>
-                      <td>Description</td>
-                      <th>Status</th>
-                      <th>Created_at</th>
-                      <th>Action</th>
+                      <th>Thông tin</th>
+                      <th>Tổng tiền</th>
+                      <th>Loại khách hàng</th>
+                      <th>Trạng thái</th>
+                      <th>Ngày tạo</th>
+                      <th>Thao tác</th>
                     </tr>
                   </thead>
                   <tbody>
                     @if($transactions)
-                      @foreach($transactions as $transaction)
+                      @foreach($transactions as $key => $transaction)
                     <tr>
-                      <td>{{ $transaction->id }}</td>
+                      <td>{{ ++$key}}</td>
                       <td>
                         <ul>
-                          <li>Name: {{$transaction->tst_name   }}</li>
+                          <li>Tên khách hàng: {{$transaction->tst_name   }}</li>
                           <li>Email: {{$transaction->tst_email   }}</li>
-                          <li>Phone: {{$transaction->tst_phone   }}</li>
-                          <li>Address: {{$transaction->tst_od_address   }}</li>
+                          <li>Điện thoại: {{$transaction->tst_phone   }}</li>
+                          <li>Địa chỉ: {{$transaction->tst_od_address   }}</li>
                         </ul>
 
                       </td>
-                      <td>{{ number_format($transaction->tst_total_money,0,',', '.') }}</td>
+                      <td>{{ number_format($transaction->tst_total_money,0,',', '.') }} đ</td>
                   
                         <td>
                           @if($transaction->tst_user_id != 0)
-                           <span  class="badge badge-success"> Thanh vien</span>
+                           <span  class="badge badge-success">Thành viên</span>
                            @else
-                           <span class="badge badge-info">Khach hang</span>
+                           <span class="badge badge-info">Khách hàng</span>
                            @endif
                         </td>
 
@@ -103,7 +103,7 @@
                                 {{ $transaction->getStatus($transaction->tst_status)['name'] }}
                             </span>
                         </td>
-                      <td>{{ $transaction->created_at }}</td>
+                      <td>{{ date('d-m-Y', strtotime($transaction->created_at)) }}</td>
                       <td>
                           <a data-id={{ $transaction->id }} class="btn btn-primary btn-xs js-preview-transaction" href="{{  route('ajax.admin.transaction.detailt', $transaction->id) }}" >
                             <i class="fa fa-eye"></i> View
@@ -149,7 +149,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Chi tiet don hang <span id="title"> </span> </h5>
+        <h5 class="modal-title" >Chi tiết đơn hàng <span id="title"> </span> </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -160,8 +160,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
       </div>
     </div>
   </div>

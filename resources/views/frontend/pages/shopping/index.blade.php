@@ -42,7 +42,7 @@
                                         <tbody>
                                             @foreach($shopping as $key => $item)
                                             <tr>
-                                               <td class="product_remove"><a href="{{route('get.shopping.delete', $key)}}"><i class="fa fa-trash-o"></i></a></td>
+                                               <td class="product_remove"><a class="remove-item" href="{{route('get.shopping.delete', $key)}}"><i class="fa fa-trash-o"></i></a></td>
                                                 <td class="product_thumb"><a href="{{route('product.detail', \Str::slug($item->name).'-'. $item->id)}}"><img src="{{pare_url_file($item->options->image)}}" alt=""></a></td>
                                                 <td class="product_name"><a href="#">{{ $item->name }}</a></td>
                                                 <td class="product-price">{{ number_format($item->price, 0, ',', '.')  }}<br>
@@ -51,14 +51,23 @@
                                                    <span style="text-decoration: line-through">   {{ number_format(number_price($item->options->price_old), 0,',', '.') }} </span>
                                                    @endif
                                                 </td>
-                                               
-                                                <td class="product_quantity"><label>Quantity</label> 
+
+                                                <td class="product_quantity"><label>Quantity</label>
                                                     <input min="1" data-url ="{{  route('get.shopping.update', $key) }}"
                                                     data-id-product = {{ $item->id }}
                                                     data-id = {{ $key}}
                                                     class="update-item-cart"
-                                                    value="{{ $item->qty }}" type="number"></td>
-                                                <td class="product_total">{{ number_format($item->price * $item->qty, 0, ',', '.') }}</td>
+                                                    value="{{ $item->qty }}" type="number">
+                                                    <span 
+                                                    data-url ="{{  route('get.shopping.update', $key) }}"
+                                                    data-id-product = {{ $item->id }} data-price="{{ $item->price}}">
+                                                        <span class="js-increase">+</span>
+                                                        <span class="js-decrement">-</span>
+                                                    </span>
+                                                </td>
+                                                <td class="product_total">
+                                                  <span class="js-total-item"> {{ number_format($item->price * $item->qty, 0, ',', '.') }}</span>
+                                                </td>
 
 
                                             </tr>
@@ -274,8 +283,8 @@
         $('.update-item-cart').change(function(event) {
             event.preventDefault();
             let $this = $(this);
-            let url = $this.attr('data-url');
-            let idProduct = $this.attr('data-id-product');
+            var url = $this.attr('data-url');
+            var idProduct = $this.attr('data-id-product');
             let qty = $(this).val();
             if(url) {
                 $.ajax({
@@ -284,14 +293,111 @@
                         idProduct: idProduct,
                         qty: qty
                     }
-                }).done(function(result) {                    
+                }).done(function(result) {
                     location.reload();
                     toastr.success(result.message, 'Thong bao');
-                 
+
                 })
             }
 
         })
+
+        $('.remove-item').click(function(event) {
+            event.preventDefault();
+            let $this = $(this);
+            var url = $this.attr('href');
+            var idProduct = $this.attr('data-id-product');
+        
+            if(url) {
+                $.ajax({
+                    url: url,
+                }).done(function(result) {
+                    toastr.success(result.message, 'Thong bao');
+                    $('.cart_amount').text(result.totalMoney + ' d');
+                    $this.parents('tr').remove();
+                })
+            }
+
+        })
+
+        //Tang san pham
+        $('.js-increase').click(function(event){
+            let $this = $(this);
+            console.log($this);
+            let $input = $this.parent().prev();
+            let number = parseInt($input.val());
+            if(number >= 10) {
+                toastr.warning('Moi san pham chi duoc mua toi da 10 san pham!');
+                return false;
+            }
+            let price = $this.parent().attr('data-price');
+            number = number + 1;
+            console.log(number);
+            console.log(price);
+            
+            let url = $this.parent().attr('data-url');
+            let idProduct = $this.parent().attr('data-id-product');
+          
+            if(url) {
+                $.ajax({
+                    url: url,
+                    data: {
+                        idProduct: idProduct,
+                        qty: number
+                    }, 
+                    success: function(result) {
+                        if(result.totalMoney !== 'undefined'  && result.error != 'true'){
+                            console.log(result);
+                            $input.val(number);
+                            $this.parents('tr').find('.js-total-item').text(result.totalItem  + ' d');
+                            $('.cart_amount').text(result.totalMoney + ' d');
+                            toastr.success(result.message, 'Thong bao');
+                        } else {
+                            $input.val(number - 1);
+                            toastr.success(result.message, 'Thong bao');
+
+                        }
+                    
+                    }
+                   
+                })
+            }
+        })
+
+        $('.js-decrement').click(function(event) {
+            let $this = $(this);
+            let $input = $this.parent().prev();
+            let number = parseInt($input.val());
+            if(number <= 1) {
+                toastr.warning('So luong san pham phai lon hon 1');
+                return false;
+            } 
+             number = number - 1;
+            let url = $this.parent().attr('data-url');
+            let idProduct = $this.parent().attr('data-id-product');
+
+            if(url) {
+                $.ajax({
+                    url: url,
+                    data: {
+                        idProduct: idProduct,
+                        qty: number
+                    }, 
+                    success: function(result) {
+                        if(result.totalMoney !== 'undefined'){
+                            $input.val(number);
+                            $this.parents('tr').find('.js-total-item').text(result.totalItem + ' d');
+                            $('.cart_amount').text(result.totalMoney + ' d');
+                            toastr.success(result.message, 'Thong bao');
+                        } else {
+                            $input.val(number + 1);
+                            toastr.success(result.message, 'Thong bao');
+                        }
+                    }
+                })
+            }
+        })
+
     })
 </script>
 @endsection

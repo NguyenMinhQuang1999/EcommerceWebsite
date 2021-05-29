@@ -41,6 +41,7 @@ class AdminProductController extends Controller
         $categories = Category::all();
         $keywords = KeyWord::all();
         $attributeOld = [];
+   
 
         return view('admin.product.create', compact('keywords','categories', 'attributes', 'attributeOld'));
     }
@@ -62,6 +63,7 @@ class AdminProductController extends Controller
             $this->syncKeyword($request->keywords, $id);
 
         }
+        toastr()->success('Thêm sản phẩm thành công');
 
         return redirect()->back();
     }
@@ -112,7 +114,10 @@ class AdminProductController extends Controller
         }
         $this->syncAttribute($request->attribute, $id);
         $product->update($data);
+        toastr()->success('Cập nhật sản phẩm thành công');
+
         return redirect('api-admin/product');
+
 
 
 
@@ -136,7 +141,8 @@ class AdminProductController extends Controller
         $product = Product::find($id);
         if($product) {
             $product->delete();
-            return redirect()->back();
+        toastr()->success('Xóa sản phẩm thành công');
+        return redirect()->back();
         }
     }
     public function syncAttribute($attributes, $idProduct) {

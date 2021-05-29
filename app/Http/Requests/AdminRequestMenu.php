@@ -32,9 +32,9 @@ class AdminRequestMenu extends FormRequest
     public function messages() {
         return[
             'mn_name.required' => 'Mời nhập tên menu!',
-            'mn_name.unique' => 'Du lieu da ton tai!',
-            'mn_name.max' => 'Ban nhap qua ky tu cho phep!',
-            'mn_name.min' => 'Nhap it nhat 3 ky tu tro len!',
+            'mn_name.unique' => 'Dữ liệu đã tồn tại ',
+            'mn_name.max' => 'Nhập quá kí tự cho phép!',
+            'mn_name.min' => 'Nhập ít nhất 3 kí tự!',
         ];
     }
 }

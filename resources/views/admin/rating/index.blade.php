@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Quan ly binh luan </h1>
+            <h1>Quản lý bình luận </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Rating</li>
+              <li class="breadcrumb-item active">Đánh giá</li>
             </ol>
           </div>
         </div>
@@ -52,11 +52,11 @@
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>Ten san pham</th>
-                      <th>Nguoi danh gia</th>
-                      <th>So sao</th>
-                      <th>Create at</th>
-                      <th>Action</th>
+                      <th>Tên sản phẩm</th>
+                      <th>Người đánh giá</th>
+                      <th> Số sao</th>
+                      <th>Ngày tạo</th>
+                      <th>Thao tác</th>
 
                   </thead>
                   <tbody>
@@ -72,9 +72,9 @@
                           @endfor
 
                        </td>
-                      <td>{{ date("d-m-Y H:m:s", strtotime($rating->created_at)) }}</td>
+                      <td>{{ date("d-m-Y", strtotime($rating->created_at)) }}</td>
                       <td>
-                          <a href="{{ route('admin.rating.delete', $rating->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>Delete</a>
+                          <a href="{{ route('admin.rating.delete', $rating->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Xóa</a>
                       </td>
                     </tr>
                     @endforeach

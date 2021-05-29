@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Icons</title>
+  <title>Trang quản trị</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -17,7 +17,6 @@
    @toastr_css
   <link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
-  {{--  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />  --}}
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -34,24 +33,14 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="../../index3.html" class="nav-link">Trang chủ </a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link">Liên hệ</a>
       </li>
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -157,7 +146,7 @@
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Quản lý cửa hàng</span>
     </a>
 
     <!-- Sidebar -->
@@ -168,8 +157,8 @@
           <img src="{{asset('backend/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ get_user_data('admins','name')  }}
-            Alexander Pierce</a>
+          <a href="#" class="d-block"> Xin chào {{ get_user_data('admins','name')  }} 
+            </a>
         </div>
       </div>
 
@@ -182,55 +171,34 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
+                Quản trị
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
+
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.category.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Category
-                <span class="right badge badge-danger">New</span>
+                Danh mục sản phẩm
+                <span class="right badge badge-success">Mới</span>
               </p>
             </a>
           </li>
-        <li class="nav-item">
+        {{--  <li class="nav-item">
             <a href="{{ route('admin.keyword.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Keyword
-                <span class="right badge badge-danger">New</span>
+                Từ khóa
+
               </p>
             </a>
-        </li>
+        </li>  --}}
         <li class="nav-item">
             <a href="{{ route('admin.attribute.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Keyword
-                <span class="right badge badge-info">New</span>
+                Thuộc tính sản phẩm
               </p>
             </a>
         </li>
@@ -238,8 +206,8 @@
             <a href="{{ route('admin.product.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Product
-                <span class="right badge badge-info">New</span>
+              Sản phẩm
+
               </p>
             </a>
         </li>
@@ -247,8 +215,7 @@
             <a href="{{ route('admin.user.index') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-              User
-                <span class="right badge badge-info">New</span>
+              Người dùng
               </p>
             </a>
         </li>
@@ -256,48 +223,44 @@
           <a href="{{ route('admin.transaction.index') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i></i>
             <p>
-            Transaction
-              <span class="right badge badge-info">New</span>
+                Đơn hàng
             </p>
           </a>
       </li>
 
-      <li class="nav-item">
+      {{--  <li class="nav-item">
         <a href="{{ route('admin.menu.index') }}" class="nav-link">
           <i class="nav-icon fas fa-th"></i></i>
           <p>
           Menu
-            <span class="right badge badge-info">New</span>
           </p>
         </a>
-      </li>
+      </li>  --}}
 
-      <li class="nav-item">
+      {{--  <li class="nav-item">
         <a href="{{ route('admin.article.index') }}" class="nav-link">
           <i class="nav-icon fas fa-th"></i></i>
           <p>
-          Article
-            <span class="right badge badge-info">New</span>
+            Bài viết
+            <span class="right badge badge-info"></span>
           </p>
         </a>
-      </li>
+      </li>  --}}
 
-      
-      <li class="nav-item">
+
+      {{--  <li class="nav-item">
         <a href="{{ route('admin.slider.index') }}" class="nav-link">
           <i class="nav-icon fas fa-th"></i></i>
           <p>
           Slider
-            <span class="right badge badge-info">New</span>
           </p>
         </a>
-      </li>
+      </li>  --}}
       <li class="nav-item">
         <a href="{{ route('admin.rating.index') }}" class="nav-link">
           <i class="nav-icon fas fa-th"></i></i>
           <p>
-          Rating
-            <span class="right badge badge-info">New</span>
+            Đánh giá
           </p>
         </a>
       </li>
@@ -306,8 +269,7 @@
         <a href="{{ route('get.sactistical') }}" class="nav-link">
           <i class="nav-icon fas fa-th"></i></i>
           <p>
-          Sactistical
-            <span class="right badge badge-info">New</span>
+          Thống kê
           </p>
         </a>
       </li>
@@ -315,7 +277,7 @@
           <li class="nav-item">
             <a href="{{  route('get.logout.admin') }}" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">Logout</p>
+              <p class="text">Đăng xuất</p>
             </a>
           </li>
 
@@ -336,8 +298,8 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.4
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2021<a href="http://adminlte.io">Quản trị website</a>.</strong> 
+
   </footer>
 
   <!-- Control Sidebar -->

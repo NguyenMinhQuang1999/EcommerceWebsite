@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manager User</h1>
+            <h1>Quản lý người dùng</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User</li>
+              <li class="breadcrumb-item active">Người dùng</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Tìm kiếm">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -43,25 +43,25 @@
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>Name</th>
+                      <th>Tên người dùng</th>
                       <th>Email</th>
-                      <th>Phone</th>
-                      <th>Create at</th>
-                      <th>Action</th>
+                      <th>Điện thoại</th>
+                      <th>Ngày tạo</th>
+                      <th>Thao tác</th>
                       
                   </thead>
                   <tbody>
                     @if(isset($users))
-                      @foreach($users as $user)
+                      @foreach($users as $key => $user)
                     <tr>
-                      <td>{{ $user->id }}</td>
+                      <td>{{ ++$key }}</td>
                       <td>{{ $user->name }}</td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->phone }}</td>
-                      <td>{{ $user->created_at }}</td>
+                      <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
                       <td>
                           {{--  <a href="{{ route('admin.user.update', $user->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pen"></i>Edit</a>  --}}
-                          <a href="{{ route('admin.user.delete', $user->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>Delete</a>
+                          <a href="{{ route('admin.user.delete', $user->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Xóa</a>
                       </td>
                     </tr>
                     @endforeach

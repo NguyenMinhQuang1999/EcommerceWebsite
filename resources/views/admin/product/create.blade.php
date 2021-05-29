@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Porduct</h1>
+            <h1>Quản lý sản phẩm</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.product.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Product</li>
+              <li class="breadcrumb-item"><a href="{{route('admin.product.index')}}">Trang chủ</a></li>
+              <li class="breadcrumb-item active">Sản phẩm</li>
             </ol>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <div class="col-10">
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Thêm product</h3>
+                <h3 class="card-title">Thêm sản phẩm</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->

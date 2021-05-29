@@ -34,8 +34,8 @@ class AdminRequestSlide extends FormRequest
 
     public function messages() {
         return[
-            'sd_title.required' => 'Mời nhập tên tieu de!',
-            'sd_link.required' => 'Mời nhập tên duong dan!',
+            'sd_title.required' => 'Mời nhập tên tiêu đề!',
+            'sd_link.required' => 'Mời nhập tên đường dẫn!',
 
         ];
     }

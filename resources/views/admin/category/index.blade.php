@@ -5,12 +5,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Icons</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Icons</li>
+              {{--  <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>  --}}
+  
             </ol>
           </div>
         </div>
@@ -43,11 +42,11 @@
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>Name</th>
-                      <th>Status</th>
-                      <th>Hot</th>
-                      <th>Created_at</th>
-                      <th>Action</th>
+                      <th>Tên danh mục</th>
+                      <th>Trạng thái</th>
+                      <th>Nổi bật</th>
+                      <th>Ngày tạo</th>
+                      <th>Thao tác</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -71,7 +70,7 @@
                         @endif
                         </td>
 
-                      <td>{{ $category->created_at }}</td>
+                      <td>{{ date('d-m-Y', strtotime($category->created_at) )}}</td>
                       <td>
                           <a href="{{ route('admin.category.update', $category->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pen"></i>Edit</a>
                           <a href="{{ route('admin.category.delete', $category->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>Delete</a>

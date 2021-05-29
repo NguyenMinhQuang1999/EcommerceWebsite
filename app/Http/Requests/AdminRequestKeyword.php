@@ -32,10 +32,10 @@ class AdminRequestKeyword extends FormRequest
 
     public function message() {
         return [
-            'k_name.requried' =>'Du lieu khong duoc de trong!',
-            'k_name.unique' =>'Du lieu khong ton tai!',
-            'k_name.max' =>'Du lieu khong qua 190 ky tu!',
-            'k_name.min' =>'Du lieu nhieu hon 3 ky tu!',
+            'k_name.requried' =>'Tên không được để trống!',
+            'k_name.unique' =>'Tên đã tồn tại!',
+            'k_name.max' =>'Dữ liệu không vuợt quá  190 ký tự!',
+            'k_name.min' =>'Tên nhập ít nhất ự ký tự!',
         ];
     }
 }

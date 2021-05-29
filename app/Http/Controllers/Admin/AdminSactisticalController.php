@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Transaction;
 use App\HelpersClass\Date;
-
+use GuzzleHttp\Handler\Proxy;
 
 class AdminSactisticalController extends Controller
 {
@@ -37,6 +37,9 @@ class AdminSactisticalController extends Controller
         $topPayProduct = Product::orderByDesc('pro_pay')
                             ->limit(5)
                             ->get();
+         $sanPhamSapHet = Product::where('pro_number', '<', 10)->paginate(5);
+                           
+    
 
         //thong ke trang thai
         $default = Transaction::where('tst_status', 1)->select('id')->count();
@@ -48,10 +51,10 @@ class AdminSactisticalController extends Controller
         $cancel = Transaction::where('tst_status', -1)->select('id')->count();
 
         $statusTransaction  = [
-            ['Tiep nhan',$default, false ],
-            ['Huy don',$cancel, false ],
-            ['Thanh cong',$success, false ],           
-            ['Dang xu ly',$process, false ],
+            ['Tiếp nhận',$default, false ],
+            ['Hủy đơn',$cancel, false ],
+            ['Thành công',$success, false ],           
+            ['Đang xử lý',$process, false ],
         ];
 
         $listDay = Date::getListDayInMonth(); 
@@ -101,6 +104,7 @@ class AdminSactisticalController extends Controller
             'totalRatings' => $totalRatings,
             'transactions' => $transactions,
             'products' => $products,
+            'sanPhamSapHet' => $sanPhamSapHet,
             'topPayProduct' => $topPayProduct,
             'statusTransaction' => json_encode($statusTransaction),
             'listDay' => json_encode($listDay),

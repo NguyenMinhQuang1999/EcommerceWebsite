@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Attribute</h1>
+            <h1>Thuộc tính sản phẩm</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.attribute.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Attribute</li>
+              <li class="breadcrumb-item"><a href="{{route('admin.attribute.index')}}">Trang chủ</a></li>
+              <li class="breadcrumb-item active">Thuộc tính sản phẩm</li>
             </ol>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <div class="col-8">
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Thêm thuoc tinh san pham</h3>
+                <h3 class="card-title">Thêm thuộc tính sản phẩm</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -32,29 +32,28 @@
               @csrf
                 <div class="card-body">
                   <div class="form-group {{ $errors->first('atb_name') ? 'is-invalid': '' }} ">
-                    <label for="exampleInputEmail1">Name <span class="text-danger">(*)</span></label>
-                    <input type="text" class="form-control {{ $errors->first('atb_name') ? 'is-invalid': '' }}" id="atb_name" name="atb_name" placeholder="Name...">
+                    <label for="exampleInputEmail1">Tên thuộc tính <span class="text-danger">(*)</span></label>
+                    <input type="text" class="form-control {{ $errors->first('atb_name') ? 'is-invalid': '' }}" id="atb_name" name="atb_name" placeholder="Tên thuộc tính">
                      @error('atb_name')
                          <span class="text-danger">{{$message}}</span>
                      @enderror
                   </div>
                   <div class="form-group {{ $errors->first('atb_type') ? 'is-invalid': '' }} ">
-                    <label for="exampleInputEmail1">Group <span class="text-danger">(*)</span></label>
+                    <label for="exampleInputEmail1">Nhóm thuộc tính <span class="text-danger">(*)</span></label>
                     <select class="form-control" name="atb_type" id="">
-                        <option disabled>Chon nhom thuoc tinh</option>
-                        <option value="1">Doi</option>
-                        <option value="2">Nang luong</option>
-                        <option value="3">Loai day</option>
-                        <option value="4">Loai vo</option>
+                        <option disabled>--Chọn nhóm thuộc tính sản phẩm--</option>
+                        <option value="1">Đặc điểm sản phẩm</option>
+                        <option value="2">Công nghệ</option>
+                        <option value="3">Thông tin chung</option>
                     </select>
                      @error('atb_type')
                          <span class="text-danger">{{$message}}</span>
                      @enderror
                   </div>
                   <div class="form-group {{ $errors->first('atb_category_id') ? 'is-invalid': '' }} ">
-                    <label for="exampleInputEmail1">attribute <span class="text-danger">(*)</span></label>
+                    <label for="exampleInputEmail1">Danh mục <span class="text-danger">(*)</span></label>
                     <select class="form-control" name="atb_category_id" id="">
-                        <option disabled>Chon nhom danh muc</option>
+                        <option disabled>Chọn danh mục</option>
                         @foreach($categories as $key => $value)
                         <option value="{{ $value->id }}">{{ $value->c_name }}</option>
                         @endforeach

@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Icons</h1>
+            <h1>Quản lý thuộc tính sản phẩm</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Icons</li>
+              <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+ 
             </ol>
           </div>
         </div>
@@ -43,29 +43,32 @@
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Category</th>
-                      <th>Created_at</th>
-                      <th>Action</th>
+                      <th>Tên thuộc tính</th>
+                      <th>Loại thuộc tính</th>
+                      <th>Danh mục</th>
+                      <th>Ngày tạo</th>
+                      <th>Thao tác</th>
                     </tr>
                   </thead>
                   <tbody>
                     @if($attributes)
+                    @php
+                    $i = 1
+                    @endphp
                       @foreach($attributes as $attribute)
                     <tr>
-                      <td>{{ $attribute->id }}</td>
+                      <td>{{ $i++ }}</td>
                       <td>{{ $attribute->atb_name }}</td>
-
+                        <td> 
                           <span class="{{ $attribute->getType($attribute->atb_type)['class'] }}">
                             {{ $attribute->getType($attribute->atb_type)['name'] }}
                           </span>
                       </td>
                       <td>{{ $attribute->category->c_name ?? "[N/A]" }}</td>
-                      <td>{{ $attribute->created_at }}</td>
+                      <td>{{date("d-m-Y", strtotime($attribute->created_at) )  }}</td>
                       <td>
-                          <a href="{{ route('admin.attribute.update', $attribute->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pen"></i>Edit</a>
-                          <a href="{{ route('admin.attribute.delete', $attribute->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>Delete</a>
+                          <a href="{{ route('admin.attribute.update', $attribute->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pen"></i> Cập nhật</a>
+                          <a href="{{ route('admin.attribute.delete', $attribute->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Xóa</a>
                       </td>
                     </tr>
                     @endforeach
@@ -77,7 +80,7 @@
               <!-- /.card-body -->
 
             </div>
-            {{-- {!! $attributes->links() !!} --}}
+            {{--  {!! $attributes->links() !!}  --}}
             <!-- /.card -->
           </div>
       </div><!-- /.container-fluid -->

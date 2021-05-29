@@ -36,13 +36,13 @@ class RequestRegister extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Mời nhập  email!',
-            'email.unique' => 'Email da ton tai!',
-            'email.email'  => 'Hay nhap dung dinh dang email',
-            'name.required' => 'Mời nhập ten!',
-            'phone.required' => 'Mời nhập fien thoai!',  
-            'phone.unique' => 'Du lieu da ton tai!',           
-            'password.required' => 'Mời nhập mat khau!',
+            'email.required' => 'Email không được để trống!',
+            'email.unique' => 'Email đã tồn tại!',
+            'email.email'  => 'Email không hợp lệ',
+            'name.required' => 'Tên không được để trống!',
+            'phone.required' => 'Số điện thoại không được để trống!',  
+            'phone.unique' => 'Số điện thoại đã tồn tại!',           
+            'password.required' => 'Mật khẩu không được để trống!',
         ];
     }
 }

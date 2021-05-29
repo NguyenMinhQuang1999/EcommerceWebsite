@@ -32,9 +32,9 @@ class UserRequestNewPassword extends FormRequest
 
     public function messages() {
         return[
-            'password.required' => 'Du lieu khong de trong!',
-            'password_confirm.required' => 'Du lieu khong de trong!',
-            'password_confirm.same' => 'Mat khau khong khop!',
+            'password.required' => 'Mời nhập mật khẩu!',
+            'password_confirm.required' => 'Mời nhập lại mật khẩu!',
+            'password_confirm.same' => 'Mật khẩu không khớp!',
           
         ];
     }

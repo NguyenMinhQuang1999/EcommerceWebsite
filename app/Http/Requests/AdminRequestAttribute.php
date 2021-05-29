@@ -35,11 +35,11 @@ class AdminRequestAttribute extends FormRequest
     public function messages() {
         return[
             'atb_name.required' => 'Mời nhập tên thuộc tính sản phẩm!',
-            'atb_name.unique' => 'Du lieu da ton tai!',
-            'atb_name.max' => 'Ban nhap qua ky tu cho phep!',
-            'atb_name.min' => 'Nhap it nhat 3 ky tu tro len!',
-            'atb_type'=> 'Du lieu khong duoc de trong',
-            'atb_category_id'=> 'Du lieu khong duoc de trong',
+            'atb_name.unique' => 'Dữ liệu đã tồn tại!',
+            'atb_name.max' => 'Bạn nhập quá ký tự cho phép!',
+            'atb_name.min' => 'Nhập ít nhất 3 ký tự trở lên!',
+            'atb_type'=> 'Dữ liệu không được để trống',
+            'atb_category_id'=> 'Dữ liệu không  được để trống',
         ];
     }
 }

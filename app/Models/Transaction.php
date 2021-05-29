@@ -12,19 +12,19 @@ class Transaction extends Model
     protected $status = [
         '1' => [
             'class' => 'secondary',
-            'name' => 'Tiep nhan'
+            'name' => 'Tiếp nhận'
         ],
         '2' => [
             'class' => 'info',
-            'name' => 'Dang van chuyen'
+            'name' => 'Đang vận chuyển'
         ],
         '3' => [
             'class' => 'success',
-            'name' => 'Da ban giao'
+            'name' => 'Đã bàn giao'
         ],
         '-1' => [
             'class' => 'danger',
-            'name' => 'Da huy'
+            'name' => 'Đã hủy'
         ],
 
     ];

@@ -55,10 +55,17 @@ class ShoppingCart extends Controller
        
     }
 
-    public function deleteItem($rowId)  {
-        \Cart::remove($rowId);
-        return redirect()->back();
+    public function deleteItem(Request $request, $rowId)  {
+        if($request->ajax()) {
+            \Cart::remove($rowId);
+            return response([
+                'message' => 'Xoa san pham thanh cong!',
+                'totalMoney' => \Cart::subtotal(0),
+                ]);
+        }        
     }
+        
+    
 
     public function update(Request $request, $id) 
     {
@@ -73,10 +80,17 @@ class ShoppingCart extends Controller
                 return response(['message' => 'Khong ton tai san pham can cap nhat']);
             }
             if($product->pro_number < $qty) {
-                return response(['message' => 'So luong cap nhat khong du']);
+                return response(
+                    [
+                           'message' => 'So luong cap nhat khong du',
+                           'error' => true]);
             }
             \Cart::update($id, $qty);
-            return response(['message' => 'Cap nhat so luong thanh cong!']);
+            return response([
+                'message' => 'Cap nhat so luong thanh cong!',
+                'totalMoney' => \Cart::subtotal(0),
+                'totalItem' => number_format(number_price($product->pro_price, $product->pro_sale) * $qty, 0,',', '.')
+                ]);
         }
     } 
 

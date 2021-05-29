@@ -32,8 +32,8 @@ class RequestLogin extends FormRequest
 
     public function messages() {
         return [
-            'email.required' => 'Moi nhap email',
-            'password.required' => 'Moi nhap mat khau'
+            'email.required' => 'email không được để trống!',
+            'password.required' => 'Mật khẩu không được để trống!'
         ];
     }
 }

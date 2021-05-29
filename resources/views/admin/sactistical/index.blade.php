@@ -63,12 +63,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard v2</h1>
+            <h1 class="m-0 text-dark">Thống kê</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
+              <li class="breadcrumb-item active">Thống kê v2</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -86,7 +86,7 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Danh gia</span>
+                <span class="info-box-text">Đánh giá</span>
                 <span class="info-box-number">
                   {{ $totalRatings}}
                 
@@ -102,7 +102,7 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">So luong san pham</span>
+                <span class="info-box-text">Số lượng sản phẩm</span>
                 <span class="info-box-number"> {{ $totalProducts }}</span>
               </div>
               <!-- /.info-box-content -->
@@ -119,7 +119,7 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Don hang</span>
+                <span class="info-box-text">Tổng đơn hàng</span>
                 <span class="info-box-number">{{$totalTransactions}}</span>
               </div>
               <!-- /.info-box-content -->
@@ -132,7 +132,7 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Thanh vien</span>
+                <span class="info-box-text">Thành viên</span>
                 <span class="info-box-number">{{ $totalUsers }}</span>
               </div>
               <!-- /.info-box-content -->
@@ -190,7 +190,7 @@
             <!-- TABLE: LATEST ORDERS -->
             <div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">Latest Orders</h3>
+                <h3 class="card-title">Đơn hàng mới nhất</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -208,19 +208,19 @@
                     <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Thong tin</th>
-                        <th>Tong tien</th>
-                        <td>Description</td>
-                        <th>Status</th>
-                        <th>Created_at</th>
+                        <th>Thông tin</th>
+                        <th>Tổng tiền</th>
+                        <th>Mô tả</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
                       
                     </tr>
                     </thead>
                     <tbody>
                         @if($transactions)
-                        @foreach($transactions as $transaction)
+                        @foreach($transactions as $key => $transaction)
                       <tr>
-                        <td>{{ $transaction->id }}</td>
+                        <td>{{ ++$key }}</td>
                         <td>
                           <ul>
                             <li>Name: {{$transaction->tst_name   }}</li>
@@ -233,9 +233,9 @@
                     
                           <td>
                             @if($transaction->tst_user_id != 0)
-                             <span  class="badge badge-success"> Thanh vien</span>
+                             <span  class="badge badge-success"> Thành viên</span>
                              @else
-                             <span class="badge badge-info">Khach hang</span>
+                             <span class="badge badge-info">Khách hàng</span>
                              @endif
                           </td>
   
@@ -244,7 +244,7 @@
                                   {{ $transaction->getStatus($transaction->tst_status)['name'] }}
                               </span>
                           </td>
-                        <td>{{ $transaction->created_at }}</td>
+                        <td> {{ date('d-m-Y', strtotime($transaction->created_at)) }} </td>
                        
                       </tr>
                       @endforeach
@@ -257,11 +257,73 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <a href="{{ route('admin.transaction.index') }}" class="btn btn-sm btn-secondary float-right">Xem don hang</a>
+                <a href="{{ route('admin.transaction.index') }}" class="btn btn-sm btn-secondary float-right">Xem đơn hàng</a>
               </div>
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->
+            <div class="card">
+                <div class="card-header border-transparent">
+
+                  <h3 class="card-title">Sản phẩm sắp hết   </h3>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                      <tr>
+                          <th>STT</th>
+                          <th>Tên sản phẩm</th>
+                          <th>Đơn giá</th>
+                          <th>Số lượng</th>
+                          <th>Hình ảnh</th>
+                          <th>Ngày tạo</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          @if($sanPhamSapHet)
+                          @foreach($sanPhamSapHet as $key => $product)
+                        <tr>
+                          <td>{{ ++$key }}</td>
+                          <td>
+                              {{$product->pro_name   }}
+                          </td>
+                          <td>{{ number_format($product->pro_price,0,',', '.') }} đ</td>
+                          <td>
+                            {{$product->pro_number  }}
+                        </td>
+                            <td>
+                                <img src="{{ pare_url_file($product->pro_avatar) }}" alt="Product Image" class="img-size-50">
+                            </td>
+    
+                            
+                          <td>{{ date('d-m-Y', strtotime($product->created_at)) }}</td>
+                         
+                        </tr>
+                        @endforeach
+                        @endif
+  
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer clearfix">
+                    {{ $sanPhamSapHet->links() }}
+                </div>
+                <!-- /.card-footer -->
+              </div>
           </div>
           <!-- /.col -->
 
@@ -270,7 +332,7 @@
             <!-- /.card -->
             <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">San pham mua nhieu</h3>
+                  <h3 class="card-title">Sản phẩm mua nhiều</h3>
   
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -290,69 +352,28 @@
                         <img src="{{ pare_url_file($item->pro_avatar) }}" alt="Product Image" class="img-size-50">
                       </div>
                       <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title"> Luot mua: {{ $item->pro_pay }}
-                          <span class="badge badge-warning float-right"> {{ number_format($item->pro_price, 0, '.', ',')}} d</span></a>
+                        <a href="javascript:void(0)" class="product-title">Lượt mua: {{ $item->pro_pay }}
+                          <span class="badge badge-warning float-right"> {{ number_format($item->pro_price, 0, '.', ',')}} đ</span></a>
                         <span class="product-description">
                           {{ $item->pro_name }}
                         </span>
                       </div>
                     </li>
                     @endforeach
-                    <!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title">Bicycle
-                          <span class="badge badge-info float-right">$700</span></a>
-                        <span class="product-description">
-                          26 Mongoose Dolomite Mens 7-speed, Navy Blue.
-                        </span>
-                      </div>
-                    </li>
-                    <!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title">
-                          Xbox One <span class="badge badge-danger float-right">
-                          $350
-                        </span>
-                        </a>
-                        <span class="product-description">
-                          Xbox One Console Bundle with Halo Master Chief Collection.
-                        </span>
-                      </div>
-                    </li>
-                    <!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript:void(0)" class="product-title">PlayStation 4
-                          <span class="badge badge-success float-right">$399</span></a>
-                        <span class="product-description">
-                          PlayStation 4 500GB Console (PS4)
-                        </span>
-                      </div>
-                    </li>
+
                     <!-- /.item -->
                   </ul>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer text-center">
-                  <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                  <a href="javascript:void(0)" class="uppercase">Danh sách sản phẩm</a>
                 </div>
                 <!-- /.card-footer -->
               </div>
             <!-- PRODUCT LIST -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">San pham xem nhieu</h3>
+                <h3 class="card-title">Sản phẩm xem nhiều</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -372,62 +393,21 @@
                       <img src="{{ pare_url_file($item->pro_avatar) }}" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title"> View total: {{ $item->pro_view }}
-                        <span class="badge badge-warning float-right"> {{ number_format($item->pro_price, 0, '.', ',')}} d</span></a>
+                      <a href="javascript:void(0)" class="product-title"> Tổng lượt xem: {{ $item->pro_view }}
+                        <span class="badge badge-warning float-right"> {{ number_format($item->pro_price, 0, '.', ',')}} đ</span></a>
                       <span class="product-description">
                         {{ $item->pro_name }}
                       </span>
                     </div>
                   </li>
                   @endforeach
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Bicycle
-                        <span class="badge badge-info float-right">$700</span></a>
-                      <span class="product-description">
-                        26 Mongoose Dolomite Mens 7-speed, Navy Blue.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">
-                        Xbox One <span class="badge badge-danger float-right">
-                        $350
-                      </span>
-                      </a>
-                      <span class="product-description">
-                        Xbox One Console Bundle with Halo Master Chief Collection.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">PlayStation 4
-                        <span class="badge badge-success float-right">$399</span></a>
-                      <span class="product-description">
-                        PlayStation 4 500GB Console (PS4)
-                      </span>
-                    </div>
-                  </li>
+
                   <!-- /.item -->
                 </ul>
               </div>
               <!-- /.card-body -->
               <div class="card-footer text-center">
-                <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                <a href="javascript:void(0)" class="uppercase"> Danh sách sản phẩm</a></a>
               </div>
               <!-- /.card-footer -->
             </div>
@@ -480,7 +460,7 @@
         },
     
         title: {
-            text: 'Bieu do thong ke trang thai don hang'
+            text: 'Biểu đồ thống kê trạng thái đơn hàng'
         },
     
         xAxis: {
@@ -506,21 +486,21 @@
             type: 'spline'
         },
         title: {
-            text: 'Bieu do doanh thu cac ngay trong thang'
+            text: 'Biểu đồ doanh thu các ngày trong tháng'
         },
         subtitle: {
-            text: 'Source: WorldClimate.com'
+            text: 'Dữ liệu của cửa hàng'
         },
         xAxis: {
             categories: listDay
         },
         yAxis: {
             title: {
-                text: 'So tien'
+                text: 'Số tiền'
             },
             labels: {
                 formatter: function () {
-                    return this.value + 'VND';
+                    return this.value + 'VNĐ';
                 }
             }
         },
@@ -538,7 +518,7 @@
             }
         },
         series: [{
-            name: 'Hoan tat giao dich',
+            name: 'Hoàn tất giao dịch',
             marker: {
                 symbol: 'square'
             },
@@ -546,7 +526,7 @@
     
         },
         {
-            name: 'Tiep nhan giao dich',
+            name: 'Tiếp nhận giao dịch',
             marker: {
                 symbol: 'square'
             },

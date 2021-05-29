@@ -13,20 +13,16 @@ class Attribute extends Model
 
     protected $type = [
         1 => [
-            'name' => 'Đôi',
-            'class' => 'lable lable-info'
+            'name' => 'Đặc điểm sản phẩm',
+            'class' => 'label label-info'
         ],
         2 => [
-            'name' => 'Năng lượng',
-            'class' => 'lable lable-default'
+            'name' => 'Công nghệ',
+            'class' => 'label label-default'
         ],
         3 => [
-            'name' => 'Loại dây',
-            'class' => 'lable lable-danger'
-        ],
-        4 => [
-            'name' => 'Loại vỏ',
-            'class' => 'lable lable-success'
+            'name' => 'Thông tin chung',
+            'class' => 'label labelsuccess'
         ],
 
     ];
