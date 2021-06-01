@@ -49,7 +49,7 @@ class RegisterController extends Controller
 
     function getFormRegister() 
     {
-        $title_page = 'Dang ky';
+        $title_page = 'Đăng ký';
         return view('auth.register', compact('title_page'));
     }
     function postRegister(RequestRegister $request) 
@@ -64,7 +64,7 @@ class RegisterController extends Controller
         if($id) {
             //neu ton tai ma thi chuyen trang login
             if(\Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                toastr()->success('Dang nhap thanh cong');
+                toastr()->success('Đăng nhập thành công!');
                 return redirect()->intended('/');
 
             }

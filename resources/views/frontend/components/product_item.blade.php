@@ -5,10 +5,16 @@
          <article class="single_product">
              <figure>
                  <div class="product_thumb">
-                     <a class="primary_img" href="product-details.html"><img src="{{ pare_url_file($product->pro_avatar) }}" alt=""></a>
-                     <a class="secondary_img" href="product-details.html"><img src="{{ pare_url_file($product->pro_avatar) }}" alt=""></a>
+                     <a class="primary_img" href="{{route('product.detail', $product->pro_slug . '-' . $product->id)}}"><img src="{{ pare_url_file($product->pro_avatar) }}" alt=""></a>
+                     <a class="secondary_img" href="{{route('product.detail', $product->pro_slug . '-' . $product->id)}}"><img src="{{ pare_url_file($product->pro_avatar) }}" alt=""></a>
                      <div class="label_product">
-                         <span class="label_sale">{{$product->pro_sale}}%</span>
+                         
+                         @if($product->pro_sale == 0)
+                         <span class="label_new">new</span>
+                         @else 
+                        <span class="label_sale">{{$product->pro_sale}}%</span>
+                         @endif
+                         {{--  <span class="label_sale">{{$product->pro_sale}}%</span>  --}}
                          {{--  <span class="label_new">new</span>  --}}
                      </div>
                      {{--  <div class="quick_button">
@@ -28,25 +34,25 @@
                                 <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                             </ul>
                          </div>
-                         <div class="price_box"> 
+                         <div class="price_box">
                              @if($product->pro_sale)
-                             <span class="old_price">{{number_format($product->pro_price, 0, ',', '.') }} VNĐ</span> 
+                             <span class="old_price">{{number_format($product->pro_price, 0, ',', '.') }} VNĐ</span>
                              @php
                                 $price = ((100 - $product->pro_sale) * $product->pro_price) / 100;
                              @endphp
                              <span class="current_price">{{number_format($price, 0, ',', '.') }}VNĐ</span>
-                             @else 
-                             <span class="current_price">{{number_format($product->pro_price, 0, ',', '.') }} VNĐ</span> 
+                             @else
+                             <span class="current_price">{{number_format($product->pro_price, 0, ',', '.') }} VNĐ</span>
                              @endif
                          </div>
-                     </div> 
+                     </div>
                      <div class="action_links">
                           <ul>
-                             <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</i</a></li>
+                             <li class="add_to_cart"><a href="{{route('get.shopping.add', $product->id)}}" title="Add to cart">Add to cart</i</a></li>
                              <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                             <li class="compare"><a href="compare.html" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>  
+                             <li class="compare"><a href="compare.html" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>
                          </ul>
-                     </div>  
+                     </div>
                  </div>
              </figure>
          </article>

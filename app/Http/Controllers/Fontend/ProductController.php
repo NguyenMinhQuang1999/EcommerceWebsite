@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Fontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Attribute;
+use App\Models\Category;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -52,11 +53,13 @@ class ProductController extends Controller
         $product = $product->orderByDesc('id')
                            ->select('id', 'pro_name', 'pro_price', 'pro_slug', 'pro_sale','pro_avatar', 'pro_price')
                            ->paginate(12);
+        $categories = Category::all();
         $viewData = [
             'products' => $product,
             'attributes' => $attributes,
             'query' => $request->query(),
-            'country' => $productContry->country
+            'country' => $productContry->country,
+            'categories'=>  $categories
         ];
 
         return view('frontend.pages.product.index', $viewData);

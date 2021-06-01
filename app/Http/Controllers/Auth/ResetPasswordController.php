@@ -46,7 +46,7 @@ class ResetPasswordController extends Controller
            Mail::to($account->email)->send(new ResetPasswordEmail($link));
            return redirect()->to('/');
         }
-        toastError('Email khong ton tai!');
+        toastError('Email không tồn tại!');
         return redirect()->back();
     }
 
@@ -61,7 +61,7 @@ class ResetPasswordController extends Controller
         $time = Carbon::now();
         if($time->diffInMinutes($checkToken->created_at) > 3) {
             DB::table('password_resets')->where('email', $request->email)->delete();
-            toastError('Da het qua 3 phut de xac nhan!');
+            toastError('Đã hết hạn 3 phút để xác nhận!');
             return redirect()->to('/');
 
         }
@@ -79,7 +79,7 @@ class ResetPasswordController extends Controller
         }
         DB::table('users')->where('email', $email)->update($data);
         DB::table('password_resets')->where('email', $email)->delete();
-        toastSuccess('Thay doi mat khau thanh cong');
+        toastSuccess('Thay đổi mật khẩu thành công!');
         return redirect()->route('get.login');
     }
 

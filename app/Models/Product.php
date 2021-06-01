@@ -9,9 +9,9 @@ class Product extends Model
     //
     public $country = [
   
-        "1" => "Viet Nam",
-        "3" => 'Thuy Sy',
-        "4" => 'My'
+        "1" => "Việt Nam",
+        "3" => 'Thuỵ Sỹ',
+        "4" => 'Mỹ'
     ];
     protected $guarded = [''];
 

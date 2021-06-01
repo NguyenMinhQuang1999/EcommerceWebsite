@@ -40,7 +40,7 @@
 
                                 <li><a href="{{ route('get.shopping.list') }}">Giỏ hàng </a></li>
 
-                                <li><a href="checkout.html">Thanh toán</a></li>
+                                <li><a href="{{ route('get.checkout') }}">Thanh toán</a></li>
                             </ul>
                         </div>
                     </div>
@@ -64,16 +64,16 @@
                                 <form action="{{ route('product-list')}}">
                                    <div class="hover_category">
                                         <select class="select_option" name="select" id="categori2">
-                                            <a href="{{ route('product-list') }}"><option  value="1">Danh mục</option></a>
+                                            <a href="{{ route('product-list') }}"><option  value="">Danh mục</option></a>
                                             @if(isset($categories))
                                                @foreach($categories as $value)
-                                                <option value="1">{{$value->c_name}}</option>
+                                                <option value="{$value->id}}">{{$value->c_name}}</option>
                                                @endforeach
                                             @endif
                                         </select>
                                    </div>
                                     <div class="search_box">
-                                        <form method="GET" action="{{ route('product-list')}}">
+                                        <form method="GET">
                                         <input name="key" value="{{ Request::get('key') }}" placeholder="Tìm kiến sản phẩm..." type="text">
                                         <button type="submit">Tìm kiếm</button>
                                         </form>
@@ -83,7 +83,7 @@
                             <div class="header_configure_area">
                                 <div class="header_wishlist">
                                     <a href="wishlist.html"><i class="icon-heart"></i>
-                                        <span class="wishlist_count">3</span>
+                                        <span class="wishlist_count">2</span>
                                     </a>
                                 </div>
                                 <div class="mini_cart_wrapper">
@@ -93,7 +93,7 @@
                                         <span class="cart_count">{{ \Cart::count() }}</span>
                                     </a>
                                     <!--mini cart-->
-                                    <div class="mini_cart">
+                                    {{--  <div class="mini_cart">
                                         <div class="mini_cart_inner">
                                             <div class="cart_close">
                                                 <div class="cart_text">
@@ -125,7 +125,7 @@
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div>  --}}
                                     <!--mini cart end-->
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                 <ul>
                                     <li><a class="active"  href="/">Trang chủ</i></a>
                                     </li>
-                                    <li class="mega_items"><a href="/">Cửa hàng</a>
+                                    <li class="mega_items"><a href="{{ route('product-list') }}">Cửa hàng</a>
                                         
                                     </li>
                                     <li><a href="{{route('get.blog.index')}}">Bài viết<i class="fa fa-angle-down"></i></a>

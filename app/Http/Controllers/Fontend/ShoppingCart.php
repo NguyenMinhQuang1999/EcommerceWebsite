@@ -20,7 +20,7 @@ class ShoppingCart extends Controller
         $shopping = \Cart::content();
         $viewData = [
             'shopping' =>  $shopping,
-             'title_page' => 'Gio hang'
+             'title_page' => 'Giỏ hàng'
         ];
         return view('frontend.pages.shopping.index', $viewData);
     }
@@ -34,7 +34,7 @@ class ShoppingCart extends Controller
         // }
 
         if($product->pro_number <= 0) {
-            toastr()->error('So luong khong du');
+            toastr()->error('Số lượng không đủ!');
             return redirect()->back();
         }
 
@@ -47,10 +47,11 @@ class ShoppingCart extends Controller
             'options' => [
                 'image' => $product->pro_avatar,
                 'sale' => $product->pro_sale,
-                'price_old' => $product->pro_price
+                'price_old' => $product->pro_price,
+                'pro_number' => $product->pro_number
             ]
         ]);
-        toastr()->success('Them thanh cong');
+        toastr()->success('Thêm vào giỏ hàng thành công!');
         return redirect()->back();
        
     }
@@ -59,7 +60,7 @@ class ShoppingCart extends Controller
         if($request->ajax()) {
             \Cart::remove($rowId);
             return response([
-                'message' => 'Xoa san pham thanh cong!',
+                'message' => 'Xóa sản phẩm trong giỏ hàng thành công!',
                 'totalMoney' => \Cart::subtotal(0),
                 ]);
         }        
@@ -77,17 +78,17 @@ class ShoppingCart extends Controller
 
             //kiem tra ton tai san pham
             if(!$product) {
-                return response(['message' => 'Khong ton tai san pham can cap nhat']);
+                return response(['message' => 'Không tồn tại sản phẩm cần cập nhật']);
             }
             if($product->pro_number < $qty) {
                 return response(
                     [
-                           'message' => 'So luong cap nhat khong du',
+                           'message' => 'Số lượng sản phẩm không đủ!',
                            'error' => true]);
             }
             \Cart::update($id, $qty);
             return response([
-                'message' => 'Cap nhat so luong thanh cong!',
+                'message' => 'Cập nhật số lượng thành công!',
                 'totalMoney' => \Cart::subtotal(0),
                 'totalItem' => number_format(number_price($product->pro_price, $product->pro_sale) * $qty, 0,',', '.')
                 ]);
@@ -99,7 +100,8 @@ class ShoppingCart extends Controller
         $shopping = \Cart::content();
         $viewData = [
             'shopping' =>  $shopping,
-             'title_page' => 'Thanh toan'
+            'totalMoney' => \Cart::subtotal(0),
+             'title_page' => 'Thanh toán'
         ];
         return view('frontend.pages.shopping.checkout', $viewData);
     }

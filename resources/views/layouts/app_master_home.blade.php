@@ -214,7 +214,130 @@
     <!--footer area start-->
 
     <!--footer area end-->
-
+    
+ <!--brand area start-->
+ <div class="brand_area brand_padding">
+     <div class="container">
+         <div class="col-12">
+             <div class="brand_container owl-carousel ">
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand1.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand2.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand3.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand4.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand5.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand6.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand7.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand8.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                  <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand1.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand2.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand3.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand4.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand5.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand6.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!--brand area end-->
+ 
+ <!--newsletter area start-->
+ <div class="newsletter_area newsletter_padding">
+     <div class="container">
+         <div class="newsletter_inner">
+             <div class="row">
+                 <div class="col-lg-4 col-md-6">
+                     <div class="newsletter_container">
+                         <h3>Theo dõi chúng tôi</h3>
+                         <p>Chúng tôi giúp việc hợp nhất, tiếp thị và theo dõi trang web truyền thông xã hội của bạn trở nên dễ dàng.</p>
+                         <div class="footer_social">
+                            <ul>
+                                <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="icon-twitter2"></i></a></li>
+                                <li><a class="rss" href="#"><i class="icon-rss"></i></a></li>
+                                <li><a class="youtube" href="#"><i class="icon-youtube"></i></a></li>
+                                <li><a class="google" href="#"><i class="icon-google"></i></a></li>
+                                <li><a class="instagram2" href="#"><i class="icon-instagram2"></i></a></li>
+                            </ul>
+                        </div>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 col-md-6">
+                     <div class="newsletter_container">
+                         <h3>Bản tin</h3>
+                         <p>Tham gia cùng hơn 60.000 người đăng ký và nhận phiếu giảm giá mới vào thứ Tư hàng tuần.</p>
+                         <div class="subscribe_form">
+                             <form id="mc-form" class="mc-form footer-newsletter" >
+                                 <input id="mc-email" type="email" autocomplete="off" placeholder="Nhập địa chỉ email của bạn..." />
+                                 <button id="mc-submit">Đăng ký</button>
+                             </form>
+                             <!-- mailchimp-alerts Start -->
+                             <div class="mailchimp-alerts text-centre">
+                                 <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                 <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                 <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                             </div><!-- mailchimp-alerts end -->
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 col-md-7">
+                     <div class="newsletter_container col_3">
+                         <h3>GET THE APP</h3>
+                         <p>Ứng dụng hiện đã có trên Google Play & App Store. Tải xuống ngay..</p>
+                         <div class="app_img">
+                            <ul>
+                                <li><a href="#"><img src="{{asset('fontend/assets/img/icon/icon-app.jpg')}}" alt=""></a></li>
+                                <li><a href="#"><img src="{{asset('fontend/assets/img/icon/icon1-app.jpg')}}" alt=""></a></li>
+                            </ul>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!--newsletter area end-->
     @include("frontend.components.footer")
 
     <!-- modal area start-->
