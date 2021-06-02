@@ -11,7 +11,7 @@
             gtag('config', 'UA-52115242-14');
         </script>  --}}
         <meta charset="utf-8">
-        <title>Pipeline Project Management Bootstrap Theme</title>
+        <title>Quản lý tài khoản</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A project management Bootstrap theme by Medium Rare">
         <link href="{{asset('user/img/favicon')}}" rel="icon" type="image/x-icon">
@@ -24,8 +24,9 @@
         <div class="layout layout-nav-side">
             <div class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
                 <a class="navbar-brand" href="index.html">
-                <img alt="Pipeline" src="" />
+                {{-- <img alt="Pipeline" src="" /> --}}
                 </a>
+                <h5 style='color: #fff'>Quản lý tài khoản</h5>
                 <div class="d-flex align-items-center">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,65 +47,29 @@
                 <div class="collapse navbar-collapse flex-column" id="navbar-collapse">
                     <ul class="navbar-nav d-lg-block">
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">Home</a>
+                            <a class="nav-link" href="/account">Thông tin đơn hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('get.user.update_info')}}">Cap nhat thong tin</a>
+                            <a class="nav-link" href="{{ route('get.user.update_info')}}">Cập nhật thông tin</a>
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('get.user.transaction')}}">Quan ly don hang</a>
+                            <a class="nav-link" href="{{ route('get.user.transaction')}}">Quản lý đơn hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('get.user.favourite') }}">San pham yeu thich</a>
+                            <a class="nav-link" href="{{ route('get.user.favourite') }}">Sản phẩm yêu thích</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Quay lại cửa hàng</a>
                         </li>
                     </ul>
                     <hr>
-                    <div class="d-none d-lg-block w-100">
-                        <span class="text-small text-muted">Quick Links</span>
-                        <ul class="nav nav-small flex-column mt-2">
-                            <li class="nav-item">
-                                <a href="nav-side-team.html" class="nav-link">Team Overview</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="nav-side-project.html" class="nav-link">Project</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="nav-side-task.html" class="nav-link">Single Task</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="nav-side-kanban-board.html" class="nav-link">Kanban Board</a>
-                            </li>
-                        </ul>
-                        <hr>
-                    </div>
-                    <div>
-                        <form>
-                            <div class="input-group input-group-dark input-group-round">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                    <i class="material-icons">search</i>
-                                    </span>
-                                </div>
-                                <input type="search" class="form-control form-control-dark" placeholder="Search" aria-label="Search app">
-                            </div>
-                        </form>
-                        <div class="dropdown mt-2">
-                            <button class="btn btn-primary btn-block dropdown-toggle" type="button" id="newContentButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Add New
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Team</a>
-                                <a class="dropdown-item" href="#">Project</a>
-                                <a class="dropdown-item" href="#">Task</a>
-                            </div>
-                        </div>
-                    </div>
+                  
                 </div>
                 <div class="d-none d-lg-block">
                     <div class="dropup">
                         <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img alt="Image" src="{{asset('user/img/avatar-male-4')}}" class="avatar" />
+                        {{-- <img alt="Image" src="{{asset('user/img/avatar-male-4')}}" class="avatar" /> --}}
                         </a>
                         <div class="dropdown-menu">
                             <a href="nav-side-user.html" class="dropdown-item">Profile</a>

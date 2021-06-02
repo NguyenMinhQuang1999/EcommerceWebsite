@@ -59,11 +59,12 @@
                                                     data-number = {{ $item->options->pro_number  }}
                                                     class="update-item-cart"
                                                     value="{{ $item->qty }}" type="number">
-                                                    <span 
+                                                    <span
                                                     data-url ="{{  route('get.shopping.update', $key) }}"
-                                                    data-id-product = {{ $item->id }} data-price="{{ $item->price}}">
-                                                        <span class="js-increase">+</span>
-                                                        <span class="js-decrement">-</span>
+                                                    data-id-product = {{ $item->id }} data-price="{{ $item->price}}"
+                                                    >
+                                                        <span style="cursor: pointer;" class="js-increase">+</span>
+                                                        <span style="cursor: pointer;" class="js-decrement">-</span>
                                                     </span>
                                                 </td>
                                                 <td class="product_total">
@@ -163,7 +164,7 @@
             let $this = $(this);
             var url = $this.attr('href');
             var idProduct = $this.attr('data-id-product');
-        
+
             if(url) {
                 $.ajax({
                     url: url,
@@ -193,17 +194,17 @@
             number = number + 1;
             console.log(number);
             console.log(price);
-            
+
             let url = $this.parent().attr('data-url');
             let idProduct = $this.parent().attr('data-id-product');
-          
+
             if(url) {
                 $.ajax({
                     url: url,
                     data: {
                         idProduct: idProduct,
                         qty: number
-                    }, 
+                    },
                     success: function(result) {
                         if(result.totalMoney !== 'undefined'  && result.error != 'true'){
                             console.log(result);
@@ -216,9 +217,9 @@
                             toastr.success(result.message, 'Thông báo');
 
                         }
-                    
+
                     }
-                   
+
                 })
             }
         })
@@ -230,7 +231,7 @@
             if(number <= 1) {
                 toastr.warning('Số lượng sản phẩm phải lớn hơn 1!');
                 return false;
-            } 
+            }
              number = number - 1;
             let url = $this.parent().attr('data-url');
             let idProduct = $this.parent().attr('data-id-product');
@@ -241,7 +242,7 @@
                     data: {
                         idProduct: idProduct,
                         qty: number
-                    }, 
+                    },
                     success: function(result) {
                         if(result.totalMoney !== 'undefined'){
                             $input.val(number);

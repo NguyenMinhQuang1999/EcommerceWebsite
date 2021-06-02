@@ -7,8 +7,8 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li>Lay lai mat khau</li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li>Lấy lại mật khẩu</li>
                     </ul>
                 </div>
             </div>
@@ -25,18 +25,18 @@
                <!--login area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form login">
-                        <h2>Nhap mat khau </h2>
+                        <h2>Nhập mật khẩu </h2>
                         <form action="" method="post">
                             @csrf
                             <p>
-                                <label>Passowrd<span>*</span></label>
+                                <label>Mật khẩu<span>*</span></label>
                                 <input name="password" type="password">
                                 @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                              </p>
                              <p>
-                                <label>Passowrd Confirm<span>*</span></label>
+                                <label>Nhập lại mật khẩu<span>*</span></label>
                                 <input name="password_confirm" type="password">
                                 @error('password_confirm')
                                     <span class="text-danger">{{ $message }}</span>
@@ -44,7 +44,7 @@
                              </p>
                        
                        
-                                <button type="submit">Send</button>
+                                <button type="submit">Gửi</button>
 
                             </div>
 

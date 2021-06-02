@@ -7,7 +7,7 @@
         <th scope="col">Giá</th>
         <th scope="col">Số lượng</th>
         <th scope="col">Tổng tiền</th>
-        <th scope="col">Thao tác</th>
+        {{-- <th scope="col">Thao tác</th> --}}
       </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
             <td>{{ number_format($item->od_price,0,',','.') }} VNĐ</td>
             <td>{{ $item->od_qty }}</td>
             <td>{{ number_format($item->od_price * $item->od_qty,0,',','.') }} VNĐ</td>
-            <td><a href="{{route('ajax_admin.transaction.delete_item', $item->id)}}" class="btn btn-xs btn-danger delete-item"> Xóa</a> </td>
+            {{-- <td><a href="{{route('ajax_admin.transaction.delete_item', $item->id)}}" class="btn btn-xs btn-danger delete-item"> Xóa</a> </td> --}}
           </tr>
         @endforeach
      

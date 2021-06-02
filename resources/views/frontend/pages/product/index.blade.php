@@ -96,12 +96,14 @@
                 </div>
 
                 <div class="shop_toolbar t_bottom">
-                    <div style="display:block">
+                    {{-- <div style="display:block">
                         {!! $products->appends($query ?? [])->links() !!}
-                    </div>
+                        {{ $products->links()}} 
+
+                    </div> --}}
 
                     <div class="pagination">
-                        {{--  {{ $products->links()}}  --}}
+                        {!! $products->appends($query ?? [])->links() !!}
                     </div>
                 </div>
                 <!--shop toolbar end-->
@@ -114,7 +116,7 @@
                         <h3>Danh mục sản phẩm</h3>
                         <ul>
                            @foreach($categories as $value)
-                            <li><a href="#">{{  $value->c_name }}</a></li>
+                            <li><a href="{{route('category.list', $value->c_slug . '-' . $value->id)}}">{{  $value->c_name }}</a></li>
                            @endforeach
                         </ul>
                     </div>

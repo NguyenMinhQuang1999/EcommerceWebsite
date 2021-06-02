@@ -29,7 +29,8 @@ class ProductController extends Controller
 
         //Tim kiem theo ten
         if($request->key) {
-            $product->where('pro_name', 'like', '%' . $request->key . '%');
+            $product->where('pro_name', 'like', '%' . $request->key . '%')
+                    ->orWhere('pro_price' ,'>=', $request->key);
         }
 
         //Loc theo xuat xu

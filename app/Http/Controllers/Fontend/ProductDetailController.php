@@ -54,7 +54,7 @@ class ProductDetailController extends Controller
                 'ratingDefault' => $ratingDefault,
                 'product' => $product,
                 'ratings' => $ratings,
-                'productSuggests' => $this->getProductSuggests($product->pro_category_id),
+                'productSuggests' => $this->getProductSuggests($product->pro_category_id, $id),
                 'title_page' => $product->pro_name
             ];
             return view('frontend.pages.product_detail.index', $viewData);
@@ -77,12 +77,13 @@ class ProductDetailController extends Controller
      }
 
 
-    public function getProductSuggests($categoryId)
+    public function getProductSuggests($categoryId, $id)
     {
         $products = Product::where([
             'pro_active' => 1,
             'pro_category_id' => $categoryId
         ])
+          ->whereNotIn('id', [$id])
           ->orderByDesc('id')
           ->select('id', 'pro_name', 'pro_sale', 'pro_avatar', 'pro_price')
           ->limit(12)

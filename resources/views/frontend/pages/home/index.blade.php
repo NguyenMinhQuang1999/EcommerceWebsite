@@ -52,17 +52,7 @@
                           
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="product_carousel product_column5 owl-carousel">
-                         @if(isset($productsNew))
-                           @foreach($productsNew as $product)
-                            @include('frontend.components.product_item', ['product' => $product])
-                           @endforeach
-                          @endif
-                          
-                        </div>
-                    </div>
+                
                 </div>
                 <div class="tab-pane fade" id="Featured" role="tabpanel">
                     <div class="row">

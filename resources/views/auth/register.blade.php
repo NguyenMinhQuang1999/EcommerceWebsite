@@ -26,7 +26,7 @@
                <div class="col-lg-6 col-md-6">
                 <div class="account_form login">
                     <h2>Đăng nhập</h2>
-                    <form action="" method="post">
+                    <form action="{{route('get.login')}} " method="post">
                         @csrf
                         <p>
                             <label>Nhập username hoặc email <span>*</span></label>
@@ -62,7 +62,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form register">
                         <h2>Đăng ký</h2>
-                        <form method="post" action="">
+                        <form method="post" action="{{route('get.register') }}">
                             @csrf
                             <p>   
                                 <label> Họ và tên <span>*</span></label>

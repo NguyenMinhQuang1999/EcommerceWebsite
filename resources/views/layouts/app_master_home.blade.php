@@ -216,7 +216,7 @@
     <!--footer area end-->
     
  <!--brand area start-->
- <div class="brand_area brand_padding">
+ {{-- <div class="brand_area brand_padding">
      <div class="container">
          <div class="col-12">
              <div class="brand_container owl-carousel ">
@@ -279,7 +279,7 @@
              </div>
          </div>
      </div>
- </div>
+ </div> --}}
  <!--brand area end-->
  
  <!--newsletter area start-->

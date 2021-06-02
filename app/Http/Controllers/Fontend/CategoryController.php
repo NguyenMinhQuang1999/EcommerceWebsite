@@ -18,9 +18,11 @@ class CategoryController extends Controller
                     ->orderByDesc('id')
                     ->select('id', 'pro_name', 'pro_price', 'pro_slug', 'pro_sale','pro_avatar', 'pro_price')
                     ->paginate(12);
+     $productContry = new Product();
         $viewData = [
             'products' => $product,
-            'attributes' => $attributes
+            'attributes' => $attributes,
+            'country' => $productContry->country,
         ];
    
     

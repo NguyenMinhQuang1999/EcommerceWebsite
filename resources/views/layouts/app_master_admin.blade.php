@@ -196,7 +196,7 @@
         </li>  --}}
         <li class="nav-item">
             <a href="{{ route('admin.attribute.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon far fa-circle"></i>
               <p>
                 Thuộc tính sản phẩm
               </p>
@@ -204,7 +204,7 @@
         </li>
         <li class="nav-item">
             <a href="{{ route('admin.product.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-circle"></i>
               <p>
               Sản phẩm
 
@@ -221,7 +221,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.transaction.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i></i>
+            <i class="nav-icon far fa-file"></i></i>
             <p>
                 Đơn hàng
             </p>
@@ -258,7 +258,7 @@
       </li>  --}}
       <li class="nav-item">
         <a href="{{ route('admin.rating.index') }}" class="nav-link">
-          <i class="nav-icon fas fa-th"></i></i>
+          <i class="nav-icon far fa-circle"></i></i>
           <p>
             Đánh giá
           </p>
@@ -267,7 +267,7 @@
 
       <li class="nav-item">
         <a href="{{ route('get.sactistical') }}" class="nav-link">
-          <i class="nav-icon fas fa-th"></i></i>
+          <i class="nav-icon fas fa-chart-pie"></i></i>
           <p>
           Thống kê
           </p>

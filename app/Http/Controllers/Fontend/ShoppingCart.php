@@ -133,6 +133,7 @@ class ShoppingCart extends Controller
             }
         }
         \Cart::destroy();
+        toastr()->success('Đặt hàng thành công!');
         return redirect()->to('/');
     }
 }

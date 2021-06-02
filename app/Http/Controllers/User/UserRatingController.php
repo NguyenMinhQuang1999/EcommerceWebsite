@@ -27,7 +27,7 @@ class UserRatingController extends Controller
                 $this->ratingProduct($request->product_id,$request->review );
             }
 
-            return response(['message' => "Danh gia san pham thanh cong!"]);
+            return response(['message' => "Đánh giá sản phẩm thành công!"]);
 
         }
     }

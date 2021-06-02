@@ -24,10 +24,10 @@ class UserFavouriteController extends Controller
         if($request->ajax()) {
             $product = Product::find($id);
             if(!$product) {
-                return response(['messages' => "Khong ton tai san pham"]);
+                return response(['messages' => "Không tồn tại sản phẩm!"]);
             }
             //dump($product);
-            $messages = 'Them yeu thich thanh cong';
+            $messages = 'Thêm sản phẩm yêu thích thành công!';
             try{
                 \DB::table('user_favourites')->insert([
                     'uf_product_id' => $id,
@@ -35,7 +35,7 @@ class UserFavouriteController extends Controller
                 ]);
             }
             catch(\Exception $e) {
-                $messages = 'San pham nay da duoc yeu thich';
+                $messages = 'Sản phẩm này đã được yêu thích!';
             }
             return response(['messages' => $messages]);
         }

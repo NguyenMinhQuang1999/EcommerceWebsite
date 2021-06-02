@@ -44,7 +44,7 @@ class ResetPasswordController extends Controller
             ]);
            $link = route('get.new_password', ['email' => $account->email, '_token' => $token]);
            Mail::to($account->email)->send(new ResetPasswordEmail($link));
-           return redirect()->to('/');
+           toastSuccess('Gửi yêu cầu đổi mật khẩu thành công!', 'Mở email');
         }
         toastError('Email không tồn tại!');
         return redirect()->back();

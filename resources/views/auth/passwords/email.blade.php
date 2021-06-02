@@ -7,8 +7,8 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li>Lay lai mat khau</li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li>Lấy lại mật khẩu</li>
                     </ul>
                 </div>
             </div>
@@ -25,11 +25,11 @@
                <!--login area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form login">
-                        <h2>Nhap email da dang ky </h2>
+                        <h2>Nhập email đã đăng ký </h2>
                         <form action="" method="post">
                             @csrf
                             <p>
-                                <label>Username or email <span>*</span></label>
+                                <label>Nhập username hoặc email <span>*</span></label>
                                 <input name="email" type="text">
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
@@ -37,7 +37,7 @@
                              </p>
                        
                        
-                                <button type="submit">Send</button>
+                                <button type="submit">Gửi</button>
 
                             </div>
 

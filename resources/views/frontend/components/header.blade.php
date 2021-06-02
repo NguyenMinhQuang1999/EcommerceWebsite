@@ -31,7 +31,7 @@
                                 @if(Auth::check())
                                 {{--  //lay ra thong tin nguoi dung auth::user()  --}}
                                     <li><a href="#">Hi {{ Auth::user()->name }}</a></li>
-                                    <li><a href="{{ route('get.user.dashboard') }}}">Quản lý tài khoản</a></li>
+                                    <li><a href="{{ route('get.user.dashboard') }}">Quản lý tài khoản</a></li>
                                     <li><a href="{{ route('get.logout') }}">Đăng xuất</a></li>
                                 @else
                                     <li><a href="{{ route('get.register') }}">Đăng kí</a></li>
@@ -63,7 +63,7 @@
                             <div class="search_container">
                                 <form action="{{ route('product-list')}}">
                                    <div class="hover_category">
-                                        <select class="select_option" name="select" id="categori2">
+                                        <select class="select_option"  id="categori2">
                                             <a href="{{ route('product-list') }}"><option  value="">Danh mục</option></a>
                                             @if(isset($categories))
                                                @foreach($categories as $value)
@@ -83,7 +83,7 @@
                             <div class="header_configure_area">
                                 <div class="header_wishlist">
                                     <a href="wishlist.html"><i class="icon-heart"></i>
-                                        <span class="wishlist_count">2</span>
+                                        <span class="wishlist_count">0</span>
                                     </a>
                                 </div>
                                 <div class="mini_cart_wrapper">
@@ -147,26 +147,26 @@
                                     <li><a class="active"  href="/">Trang chủ</i></a>
                                     </li>
                                     <li class="mega_items"><a href="{{ route('product-list') }}">Cửa hàng</a>
-                                        
+
                                     </li>
                                     <li><a href="{{route('get.blog.index')}}">Bài viết<i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
-                                            <li><a href="blog-details.html">blog details</a></li>
+                                            {{-- <li><a href="blog-details.html">blog details</a></li>
                                             <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                            <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
+                                            <li><a href="blog-no-sidebar.html">blog no sidebar</a></li> --}}
                                         </ul>
                                     </li>
                                     <li><a href="#">Về Chúng Tôi <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
-                                            <li><a href="about.html">About Us</a></li>
+                                            {{-- <li><a href="about.html">About Us</a></li>
                                             <li><a href="faq.html">Frequently Questions</a></li>
                                             <li><a href="contact.html">contact</a></li>
                                             <li><a href="login.html">login</a></li>
                                             <li><a href="404.html">Error 404</a></li>
                                             <li><a href="compare.html">compare</a></li>
                                             <li><a href="privacy-policy.html">privacy policy</a></li>
-                                            <li><a href="coming-soon.html">coming soon</a></li>
+                                            <li><a href="coming-soon.html">coming soon</a></li> --}}
                                         </ul>
                                     </li>
 

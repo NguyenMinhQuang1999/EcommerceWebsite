@@ -82,18 +82,18 @@
                             </div>
                             <div class="price_box">
                                 @if($product->pro_sale)
-                                <span class="old_price">{{number_format($product->pro_price, 0, ',', '.')}}d</span>
+                                <span class="old_price">{{number_format($product->pro_price, 0, ',', '.')}}đ</span>
                                 @php
                                   $price = ((100 - $product->pro_sale) * $product->pro_price) / 100;
                                 @endphp
-                                <span class="current_price"> {{number_format($price, 0, ',', '.')}}d</span>
+                                <span class="current_price"> {{number_format($price, 0, ',', '.')}}đ</span>
                                 @else
-                                <span class="current_price"> {{number_format($product->pro_price, 0, ',', '.')}}d</span>
+                                <span class="current_price"> {{number_format($product->pro_price, 0, ',', '.')}} đ</span>
                                 @endif
 
                             </div>
                             <div class="product_desc">
-                                {!! $product->description !!} 
+                                {!! $product->pro_description !!} 
                             </div>
                             {{--  <div class="product_variant color">
                                 <h3>Available Options</h3>

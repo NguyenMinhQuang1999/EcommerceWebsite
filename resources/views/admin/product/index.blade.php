@@ -71,7 +71,7 @@
                       @foreach($products as $product)
                     <tr>
                       <td>{{ $i++ }}</td>
-                      <td>{{ $product->pro_name }}</td>
+                      <td>{{  \Str::limit($product->pro_name, 32)  }}</td>
                       <td>
                          <img src="{{ pare_url_file($product->pro_avatar) }}" width="80px" height="80px" alt="Image"> 
                       </td>
@@ -83,10 +83,10 @@
                               $price = ((100 - $product->pro_sale) * $product->pro_price) /100;
                           @endphp
                           <span >
-                              {{ number_format($price, 0, ',', '.') }} vnd
+                              {{ number_format($price, 0, ',', '.') }} vnđ
                           </span>
                           @else
-                              {{ number_format($product->pro_price, 0, ',', '.')  }} vnd
+                              {{ number_format($product->pro_price, 0, ',', '.')  }} vnđ
                           @endif
                       </td>
                       <td>
