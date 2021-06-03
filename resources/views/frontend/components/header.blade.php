@@ -89,7 +89,7 @@
                                 <div class="mini_cart_wrapper">
                                     <a href="{{  route('get.shopping.list') }}">
                                         <i class="icon-shopping-bag2"></i>
-                                        <span class="cart_price">{{ \Cart::total() }} đ <i class="ion-ios-arrow-down"></i></span>
+                                        <span class="cart_price">{{ \Cart::subtotal() }} đ <i class="ion-ios-arrow-down"></i></span>
                                         <span class="cart_count">{{ \Cart::count() }}</span>
                                     </a>
                                     <!--mini cart-->

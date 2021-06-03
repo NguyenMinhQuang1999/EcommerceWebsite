@@ -20,8 +20,8 @@ class AdminLoginController extends Controller
     {
       //  dd($request);
         if(\Auth::guard('admins')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/api-admin');
-          
+            return redirect()->intended('/api-admin/sactistical');
+
         }
         return redirect()->back();
     }

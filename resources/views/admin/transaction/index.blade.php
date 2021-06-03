@@ -84,12 +84,12 @@
                           <li>Tên khách hàng: {{$transaction->tst_name   }}</li>
                           <li>Email: {{$transaction->tst_email   }}</li>
                           <li>Điện thoại: {{$transaction->tst_phone   }}</li>
-                          <li>Địa chỉ: {{$transaction->tst_od_address   }}</li>
+                          <li>Địa chỉ: {{$transaction->tst_address   }}</li>
                         </ul>
 
                       </td>
                       <td>{{ number_format($transaction->tst_total_money,0,',', '.') }} đ</td>
-                  
+
                         <td>
                           @if($transaction->tst_user_id != 0)
                            <span  class="badge badge-success">Thành viên</span>
@@ -161,6 +161,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <a href="#" class="btn btn-primary print-order"> In đơn hàng</a>
       </div>
     </div>
   </div>
@@ -183,9 +184,11 @@
                 ).done(function(result) {
                     $('#modal-preview-transaction .content').html(result.html)
                     $('#title').html('#'+ id);
+                    $('.print-order').attr('href', `transaction/print_order/${id}`)
                     $("#modal-preview-transaction").modal({
                         show: true
                     });
+
                 });
 
             });

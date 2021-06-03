@@ -53,7 +53,7 @@ class ShoppingCart extends Controller
         ]);
         toastr()->success('Thêm vào giỏ hàng thành công!');
         return redirect()->back();
-       
+
     }
 
     public function deleteItem(Request $request, $rowId)  {
@@ -63,12 +63,12 @@ class ShoppingCart extends Controller
                 'message' => 'Xóa sản phẩm trong giỏ hàng thành công!',
                 'totalMoney' => \Cart::subtotal(0),
                 ]);
-        }        
+        }
     }
-        
-    
 
-    public function update(Request $request, $id) 
+
+
+    public function update(Request $request, $id)
     {
         if($request->ajax()) {
             //lay tham so
@@ -93,9 +93,9 @@ class ShoppingCart extends Controller
                 'totalItem' => number_format(number_price($product->pro_price, $product->pro_sale) * $qty, 0,',', '.')
                 ]);
         }
-    } 
+    }
 
-    public function checkout() 
+    public function checkout()
     {
         $shopping = \Cart::content();
         $viewData = [
@@ -106,7 +106,7 @@ class ShoppingCart extends Controller
         return view('frontend.pages.shopping.checkout', $viewData);
     }
 
-    public function postPay(Request $request) 
+    public function postPay(Request $request)
     {
         $data = $request->except('_token');
         if(isset(Auth::user()->id)) {
@@ -117,7 +117,9 @@ class ShoppingCart extends Controller
         $transitionId = Transaction::insertGetId($data);
         if($transitionId) {
             $shopping =\Cart::content();
-            Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+            if($request->tst_temail) {
+                Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+            }
             foreach($shopping as $key => $item) {
                 Order::insert([
                     'od_transaction_id' => $transitionId,

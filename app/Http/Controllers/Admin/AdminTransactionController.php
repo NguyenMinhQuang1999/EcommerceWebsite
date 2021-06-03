@@ -61,10 +61,12 @@ class AdminTransactionController extends Controller
 
     public function getTransactionDetail(Request $request, $id) {
         if($request->ajax()) {
+            // $this->printOrder($id);
             $orders = Order::with('product:id,pro_name,pro_avatar')->where('od_transaction_id', $id)->get();
             $html = view('components.order',  compact('orders'))->render();
             return \response([
                 'html' => $html
+                
             ]);
         }
     }
@@ -112,5 +114,17 @@ class AdminTransactionController extends Controller
 
         return redirect()->back();
 
+    }
+
+
+    public function printOrder($id) {
+        $transaction = Transaction::find($id);
+
+        $orders = Order::with('product:id,pro_name,pro_avatar')->where('od_transaction_id', $id)->get();
+        $viewData = [
+            'transaction' => $transaction,
+            'orders'  => $orders
+        ];
+        return view('admin.transaction.order_print', $viewData);
     }
 }
