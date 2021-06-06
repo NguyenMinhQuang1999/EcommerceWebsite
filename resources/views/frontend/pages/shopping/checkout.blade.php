@@ -85,7 +85,7 @@
 
                                     <div class="col-lg-12 mb-20">
                                         <label>Họ và tên <span>*</span></label>
-                                        <input name='tst_name' placeholder="Nhập họ và tên" value="{{ get_user_data('web','name') }}" type="text">
+                                        <input id='tst_name' name='tst_name' placeholder="Nhập họ và tên" value="{{ get_user_data('web','name') }}" type="text">
                                     </div>
 
                                     <div class="col-12 mb-20">
@@ -114,6 +114,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" id="payment_option" name="payment" value='1' />
                                     
                                     <div class="col-12">
                                         <div class="order-notes">
@@ -122,6 +123,9 @@
                                         </div>
                                         <div class="order_button">
                                             <button id="order_submit"  type="submit">Thanh toán</button>
+                                        </div>
+                                        <div class="order_button">
+                                            <button id="payment_online"  type="button">Thanh toán Online</button>
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +194,7 @@
                                         </div>
                                     </div>
                                     <div class="order_button">
-                                        <button id="order_submit"  type="button">Thanh toán bằng PayPal</button>
+                                        <button id="order_submits"  type="button">Thanh toán bằng PayPal</button>
                                     </div>
                                 </div>
                             </form>
@@ -209,15 +213,36 @@
 
 @section('script')
     <script>
-        submitForm = function() {
-            document.getElementById('form_customer').submit();
-        }
-        var btnSubmit = document.getElementById('order_submit');
-        console.log(btnSubmit);
-        btnSubmit.addEventListener('click', function() {
-            console.log('sds');
-            document.getElementById('form_customer').submit();
-        });
-    <script>
+
+      
+            
+          $(function() {
+            $("#payment_online").click(function(){
+                $('#payment_option').val(2);
+                name = $('#tst_name').val();
+                alert('data');
+                if(name != '') {
+                    $('#form_customer').submit();
+                }
+
+              });
+        
+          })
+
+            
+
+         /*   {{--  submitForm = function() {
+                document.getElementById('form_customer').submit();
+            }
+            var btnSubmit = document.getElementById('order_submit');
+            console.log(btnSubmit);
+            btnSubmit.addEventListener('click', function() {
+                console.log('sds');
+                document.getElementById('form_customer').submit();
+            });  
+        })
+        */
+        
+    </script>
 
 @endsection

@@ -13,13 +13,12 @@ class SocialAccountService
         $account = SocialAccount::whereProvider($social)
             ->whereProviderUserId($providerUser->getId())
             ->first();
-
         if ($account) {
-            return $account->user;
+           return $account->user;
         } else {
-            $email = $providerUser->getEmail() ?? $providerUser->getNickname();
+            $email = $providerUser->email ?? $providerUser->getNickname();
             $account = new SocialAccount([
-                'provider_user_id' => $providerUser->getId(),
+                'provider_user_id' => $providerUser->id,
                 'provider' => $social
             ]);
             $user = User::whereEmail($email)->first();
@@ -28,15 +27,14 @@ class SocialAccountService
 
                 $user = User::create([
                     'email' => $email,
-                    'phone' => $providerUser->getId(),
-                    'name' => $providerUser->getName(),
-                    'password' =>Hash::make($providerUser->getName()),
+                    // 'phone' => $providerUser->id,
+                    'name' => $providerUser->name,
+                    'password' =>Hash::make($providerUser->name),
                 ]);
             }
 
             $account->user()->associate($user);
             $account->save();
-
             return $user;
         }
     }

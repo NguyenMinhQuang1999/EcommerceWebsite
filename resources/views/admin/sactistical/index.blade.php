@@ -1,4 +1,4 @@
-@extends('layouts.app_master_admin');
+@extends('layouts.app_master_admin')
 @section('css')
   <style>
     @import 'https://code.highcharts.com/css/highcharts.css';

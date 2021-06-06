@@ -59,12 +59,13 @@ Route::group(['namespace' => 'fontend'], function() {
         Route::get('delete/{id}', 'ShoppingCart@deleteItem')->name('get.shopping.delete');
         Route::get('update/{id}', 'ShoppingCart@update')->name('get.shopping.update');
         Route::get('checkout', 'ShoppingCart@checkout')->name('get.checkout');
+        Route::post('payment/online', 'ShoppingCart@createPayment')->name('payment.online');
 
 
 
 
     });
-    Route::post('pay', 'ShoppingCart@postPay')->name('post.shopping.pay');
+    Route::post('payment', 'ShoppingCart@postPay')->name('post.shopping.pay');
 
 });
 

@@ -1,4 +1,4 @@
-@extends('layouts.app_master_admin');
+@extends('layouts.app_master_admin')
 @section('content')
  <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -71,7 +71,7 @@
                       @foreach($products as $product)
                     <tr>
                       <td>{{ $i++ }}</td>
-                      <td>{{  \Str::limit($product->pro_name, 32)  }}</td>
+                      <td>{{  \Str::limit($product->pro_name, 20)  }}</td>
                       <td>
                          <img src="{{ pare_url_file($product->pro_avatar) }}" width="80px" height="80px" alt="Image"> 
                       </td>

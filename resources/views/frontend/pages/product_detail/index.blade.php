@@ -23,12 +23,17 @@
         <div class="product_details">
             <div class="row">
                 <div class="col-lg-5 col-md-6">
-                    <div class="product-details-tab">
-                        <div id="img-1" class="zoomWrapper single-zoom">
+                    <div class="product-details-tab ">
+                        <div class="d-flex justify-content-center zoomWrapper single-zoom">
                             <a href="#">
                                 <img id="zoom1" src="{{ pare_url_file($product->pro_avatar) }}" alt="big-1">
                             </a>
                         </div>
+                        {{--  <div id="img-1" class="zoomWrapper single-zoom">
+                            <a href="#">
+                                <img id="zoom1" src="{{ pare_url_file($product->pro_avatar) }}" alt="big-1">
+                            </a>
+                        </div>  --}}
                         {{--  <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
@@ -93,7 +98,7 @@
 
                             </div>
                             <div class="product_desc">
-                                {!! $product->pro_description !!} 
+                                {!! $product->pro_description !!}
                             </div>
                             {{--  <div class="product_variant color">
                                 <h3>Available Options</h3>
@@ -174,7 +179,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="info" role="tabpanel" >
                                     <div class="product_info_content">
-                                        {!! $product->pro_content !!} 
+                                        {!! $product->pro_content !!}
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="sheet" role="tabpanel" >
@@ -219,7 +224,7 @@
                                         @endphp đánh giá cho {{$product->pro_name}}</h2>
                                         @foreach($ratings as $rating)
                                         <div class="reviews_comment_box">
-                                          
+
                                             <div class="comment_thmb">
                                                 <img src="{{asset('fontend/assets/img/blog/comment2.jpg')}}" alt="">
                                             </div>
@@ -230,8 +235,8 @@
                                                            @for ($i = 1; $i <=5; $i++ )
                                                            <li><a href="#" class="{{ $i <= $rating->r_number ? 'active_star' : '' }}"><i class="ion-android-star-outline"></i></a></li>
                                                            @endfor
-                                                      
-                                                      
+
+
                                                        </ul>
                                                     </div>
                                                     <p><strong>{{ $rating->user->name }} </strong> / {{  date_format($rating->created_at, 'd-m-Y') }}</p>
@@ -239,7 +244,7 @@
                                                 </div>
                                             </div>
 
-                                        
+
 
                                         </div>
                                         @endforeach
@@ -254,9 +259,9 @@
                                             <ul>
                                                 @for($i = 1; $i <= 5; $i++)
                                                 <li class="ratings"><a href="#"><i data-i="{{ $i }}" class="active_star ion-android-star-outline"></i></a></li>
-                                             
+
                                                 @endfor
-                                               
+
                                            </ul>
                                         </div>
                                         <div class="product_review_form">
@@ -369,7 +374,7 @@
                if(key + 1  <= $i) {
                   // $(this).addClass('active_star')
                   $(this).addClass('active_star')
-                 
+
                }
                $(".review_text").text(arrTextRating[$i]);
            })

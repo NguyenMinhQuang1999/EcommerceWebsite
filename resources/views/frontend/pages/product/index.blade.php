@@ -2,7 +2,7 @@
 @extends('layouts.app_master_home')
 @section('css')
 <style type="text/css">
-    .pagination {
+    {{-- .pagination {
         margin: 10px auto;
         display:flex;
         margin-left: 9px;
@@ -24,7 +24,7 @@
     }
     .active {
         color: #C70909
-    }
+    } --}}
 </style>
 @endsection
 @section('content')
@@ -92,13 +92,13 @@
                  @foreach($products as $product)
                      @include('frontend.components.product_item',['product' => $product] )
                  @endforeach
-                   
+
                 </div>
 
                 <div class="shop_toolbar t_bottom">
                     {{-- <div style="display:block">
                         {!! $products->appends($query ?? [])->links() !!}
-                        {{ $products->links()}} 
+                        {{ $products->links()}}
 
                     </div> --}}
 
@@ -127,7 +127,7 @@
                             <button type="submit">Lọc</button>
                             <input type="text" name="text" id="amount" />
 
-                        </form>  
+                        </form>
                     </div>--}}
                     @foreach($attributes as $key => $attribute)
                     <div class="widget_list widget_categories">

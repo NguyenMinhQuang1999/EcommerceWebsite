@@ -66,7 +66,7 @@ class AdminTransactionController extends Controller
             $html = view('components.order',  compact('orders'))->render();
             return \response([
                 'html' => $html
-                
+
             ]);
         }
     }
@@ -92,6 +92,7 @@ class AdminTransactionController extends Controller
 
     public function action($action, $id) {
         $transaction = Transaction::find($id);
+        $orders = Order::where('od_transaction_id', $id)->get();
 
         if($transaction) {
             switch($action) {
@@ -101,6 +102,10 @@ class AdminTransactionController extends Controller
                 }
                 case 'success': {
                     $transaction->tst_status = 3;
+                    foreach($orders as $item) {
+                        \DB::table('products')->where('id', $item->od_product_id)
+                                              ->decrement('pro_number', $item->od_qty);
+                    }
                     break;
                 }
                 case 'cancel': {

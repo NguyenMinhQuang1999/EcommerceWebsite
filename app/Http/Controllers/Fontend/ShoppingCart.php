@@ -108,17 +108,24 @@ class ShoppingCart extends Controller
 
     public function postPay(Request $request)
     {
-        $data = $request->except('_token');
+        $data = $request->except('_token', 'payment');
         if(isset(Auth::user()->id)) {
             $data['tst_user_id'] = Auth::user()->id;
         }
-        $data['tst_total_money'] = str_replace(',', '', \Cart::subtotal());
+        $data['tst_total_money'] = str_replace(',', '', \Cart::subtotal(0));
         $data['created_at'] = Carbon::now();
-        $transitionId = Transaction::insertGetId($data);
+
+        if($request->payment == 2) {
+            $totalMoney = str_replace(',', '', \Cart::subtotal(0));
+            session(['info_customer' => $data]);
+            return view('frontend/pages/vnpay/index', compact('totalMoney'));
+        }
+        else {
+            $transitionId = Transaction::insertGetId($data);
         if($transitionId) {
             $shopping =\Cart::content();
             if($request->tst_temail) {
-                Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+                // Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
             }
             foreach($shopping as $key => $item) {
                 Order::insert([
@@ -137,5 +144,7 @@ class ShoppingCart extends Controller
         \Cart::destroy();
         toastr()->success('Đặt hàng thành công!');
         return redirect()->to('/');
+        }
+        
     }
 }

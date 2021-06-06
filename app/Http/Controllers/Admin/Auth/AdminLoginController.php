@@ -28,7 +28,7 @@ class AdminLoginController extends Controller
 
     public function getLogout() {
         \Auth::guard('admins')->logout();
-        return redirect()->to('/');
+        return redirect()->to('/admin-auth/login');
     }
 
 }

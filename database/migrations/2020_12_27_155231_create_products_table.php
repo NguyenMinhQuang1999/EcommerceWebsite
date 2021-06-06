@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('pro_slug')->index()->unique();
             $table->integer('pro_price')->default(0);
             $table->integer('pro_price_entry')->default(0)->comment('giá nhập');
-            $table->integer('pro_category_id')->default(0);
+            $table->bigInteger('pro_category_id')->unsigned()->default(0);
             $table->integer('pro_admin_id')->default(0);
             $table->tinyInteger('pro_sale')->default(0);
             $table->string('pro_avatar')->nullable();
@@ -31,6 +31,11 @@ class CreateProductsTable extends Migration
             $table->text('pro_content')->nullable();
             $table->integer('pro_review_total')->default(0);
             $table->integer('pro_review_star')->default(0);
+            $table->foreign('pro_category_id')
+                                            ->references('id')
+                                            ->on('categories')
+                                            ->onUpdate('cascade')
+                                            ->onDelete('cascade');
             $table->timestamps();
         });
     }
