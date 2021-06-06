@@ -37,6 +37,7 @@ class AdminRequestProduct extends FormRequest
     {
         return [
             'pro_name.required' => 'Mời nhập tên sản phẩm!',
+            'pro_name.unique' => 'Sản phẩm đã tồn tại!',
             'pro_price.required' => 'Mời nhập giá sản phẩm!',
             'pro_description.required' => 'Mời nhập mô tả!',
             'pro_content.required' => 'Mời nhập nội dung!',

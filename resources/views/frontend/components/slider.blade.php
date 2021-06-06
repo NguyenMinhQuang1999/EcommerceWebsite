@@ -1,19 +1,19 @@
 <section class="slider_section s_section_two mb-75">
     <div class="slider_area slider_carousel owl-carousel">
-        <div class="single_slider d-flex align-items-center" data-bgimg="{{asset('fontend/assets/img/slider/slider4.jpg')}}">
+        <div class="single_slider d-flex align-items-center w-100" data-bgimg="{{asset('fontend/assets/img/slider/banner_2.png')}}">
            <div class="container">
                <div class="row">
                    <div class="col-12">
                        <div class="slider_content">
-                            <h1>Mazlay <span>EDGE SuperCar</span></h1>
-                            <p>Exclusive Offer -30% Off This Week</p>  
-                            <a class="button" href="shop.html">shopping now <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                            {{--  <h1>Mazlay <span>EDGE SuperCar</span></h1>
+                            <p>Exclusive Offer -30% Off This Week</p>    --}}
+                            {{--  <a class="button" href="/">Mua ngay <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>  --}}
                         </div>
                    </div>
                </div>
            </div> 
         </div>
-        <div class="single_slider d-flex align-items-center" data-bgimg="{{asset('fontend/assets/img/slider/slider4.jpg')}}">
+        {{--  <div class="single_slider d-flex align-items-center" data-bgimg="{{asset('fontend/assets/img/slider/banner_2.png')}}">
             <div class="container">
                <div class="row">
                    <div class="col-12">
@@ -38,6 +38,6 @@
                    </div>
                </div>
            </div>
-        </div>
+        </div>  --}}
     </div>
 </section>

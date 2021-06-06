@@ -10,7 +10,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin.product.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">product</li>
+              <li class="breadcrumb-item active">Sản phẩm</li>
             </ol>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <div class="col-10">
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Thêm product</h3>
+                <h3 class="card-title">Cập nhật sản phẩm</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -37,3 +37,4 @@
     <!-- /.content -->
 
 @endsection
+

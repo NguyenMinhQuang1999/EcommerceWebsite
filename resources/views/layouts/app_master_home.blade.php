@@ -5,30 +5,33 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Mazlay - Car Accessories Shop HTML Template </title>
+    <title> {{ $title_page ?? 'Cửa hàng' }} </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('fontend/assets/img/favicon.ico')}}">
-    
-    <!-- CSS 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+    <!-- CSS
     ========================= -->
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{asset('fontend/assets/css/plugins.css')}}">
-    
+
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{asset('fontend/assets/css/style.css')}}">
     @yield('css')
+    @toastr_css
 </head>
 
 <body>
-   
+
     <!--header area start-->
-    
+
     <!--offcanvas menu area start-->
     <div class="off_canvars_overlay">
-                
+
     </div>
     <div class="offcanvas_menu offcanvas_two">
         <div class="container">
@@ -39,7 +42,7 @@
                     </div>
                     <div class="offcanvas_menu_wrapper">
                         <div class="canvas_close">
-                              <a href="javascript:void(0)"><i class="ion-android-close"></i></a>  
+                              <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
                         </div>
                         <div class="call_support">
                             <p><i class="icon-phone-call" aria-hidden="true"></i> <span>Call us: <a href="tel:+(+800)456789">(+800) 456 789</a></span></p>
@@ -65,12 +68,12 @@
                         </div>
                         <div class="header_top_links">
                             <ul>
-                                <li><a href="login.html">Register</a></li>
-                                <li><a href="login.html">login</a></li>
+                                <li><a href="{{ route('get.register') }}">Register</a></li>
+                                <li><a href="{{ route('get.login') }}">Login</a></li>
                                 <li><a href="cart.html">Shopping Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                             </ul>
-                        </div> 
+                        </div>
                         <div class="search_container">
                             <form action="#">
                                <div class="hover_category">
@@ -91,14 +94,16 @@
                                         <option value="14">Laptops & Desktops</option>
                                         <option value="15">Watchs</option>
                                         <option value="16">Electronic</option>
-                                    </select>                        
+                                    </select>
                                </div>
                                 <div class="search_box">
-                                    <input placeholder="Search product..." type="text">
-                                    <button type="submit">Search</button> 
+                                    <form method="GET" action=" {{ route('product-list') }}}}">
+                                        <input name="key" value="{{ Request::get('key') }}" placeholder="Search product..." type="text">
+                                        <button type="submit">Search</button>
+                                     </form>
                                 </div>
                             </form>
-                        </div> 
+                        </div>
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
                                 <li class="menu-item-has-children active">
@@ -147,7 +152,7 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">blog</a>
+                                    <a href="{{route('get.blog.index')}}">blog</a>
                                     <ul class="sub-menu">
                                         <li><a href="blog.html">blog</a></li>
                                         <li><a href="blog-details.html">blog details</a></li>
@@ -177,7 +182,7 @@
                                     <a href="about.html">About Us</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="contact.html"> Contact Us</a> 
+                                    <a href="contact.html"> Contact Us</a>
                                 </li>
                             </ul>
                         </div>
@@ -197,21 +202,144 @@
         </div>
     </div>
     <!--offcanvas menu area end-->
-    
+
 
     @include("frontend.components.header")
     <!--header area end-->
     @yield('content')
 
-  
-    
-    
+
+
+
     <!--footer area start-->
 
     <!--footer area end-->
-
+    
+ <!--brand area start-->
+ {{-- <div class="brand_area brand_padding">
+     <div class="container">
+         <div class="col-12">
+             <div class="brand_container owl-carousel ">
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand1.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand2.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand3.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand4.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand5.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand6.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand7.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand8.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                  <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand1.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand2.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand3.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand4.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+                 <div class="brand_list">
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand5.jpg')}}" alt=""></a>
+                     </div>
+                     <div class="single_brand">
+                         <a href="#"><img src="{{asset('fontend/assets/img/brand/brand6.jpg')}}" alt=""></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div> --}}
+ <!--brand area end-->
+ 
+ <!--newsletter area start-->
+ <div class="newsletter_area newsletter_padding">
+     <div class="container">
+         <div class="newsletter_inner">
+             <div class="row">
+                 <div class="col-lg-4 col-md-6">
+                     <div class="newsletter_container">
+                         <h3>Theo dõi chúng tôi</h3>
+                         <p>Chúng tôi giúp việc hợp nhất, tiếp thị và theo dõi trang web truyền thông xã hội của bạn trở nên dễ dàng.</p>
+                         <div class="footer_social">
+                            <ul>
+                                <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="icon-twitter2"></i></a></li>
+                                <li><a class="rss" href="#"><i class="icon-rss"></i></a></li>
+                                <li><a class="youtube" href="#"><i class="icon-youtube"></i></a></li>
+                                <li><a class="google" href="#"><i class="icon-google"></i></a></li>
+                                <li><a class="instagram2" href="#"><i class="icon-instagram2"></i></a></li>
+                            </ul>
+                        </div>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 col-md-6">
+                     <div class="newsletter_container">
+                         <h3>Bản tin</h3>
+                         <p>Tham gia cùng hơn 60.000 người đăng ký và nhận phiếu giảm giá mới vào thứ Tư hàng tuần.</p>
+                         <div class="subscribe_form">
+                             <form id="mc-form" class="mc-form footer-newsletter" >
+                                 <input id="mc-email" type="email" autocomplete="off" placeholder="Nhập địa chỉ email của bạn..." />
+                                 <button id="mc-submit">Đăng ký</button>
+                             </form>
+                             <!-- mailchimp-alerts Start -->
+                             <div class="mailchimp-alerts text-centre">
+                                 <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                 <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                 <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                             </div><!-- mailchimp-alerts end -->
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 col-md-7">
+                     <div class="newsletter_container col_3">
+                         <h3>GET THE APP</h3>
+                         <p>Ứng dụng hiện đã có trên Google Play & App Store. Tải xuống ngay..</p>
+                         <div class="app_img">
+                            <ul>
+                                <li><a href="#"><img src="{{asset('fontend/assets/img/icon/icon-app.jpg')}}" alt=""></a></li>
+                                <li><a href="#"><img src="{{asset('fontend/assets/img/icon/icon1-app.jpg')}}" alt=""></a></li>
+                            </ul>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!--newsletter area end-->
     @include("frontend.components.footer")
-   
+
     <!-- modal area start-->
     <div class="modal fade" id="modal_box" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -223,30 +351,30 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-12">
-                                <div class="modal_tab">  
+                                <div class="modal_tab">
                                     <div class="tab-content product-details-large">
                                         <div class="tab-pane fade show active" id="tab1" role="tabpanel" >
                                             <div class="modal_tab_img">
-                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig1.jpg')}}" alt=""></a>    
+                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig1.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab2" role="tabpanel">
                                             <div class="modal_tab_img">
-                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig2.jpg')}}" alt=""></a>    
+                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig2.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab3" role="tabpanel">
                                             <div class="modal_tab_img">
-                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig3.jpg')}}" alt=""></a>    
+                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig3.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab4" role="tabpanel">
                                             <div class="modal_tab_img">
-                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig4.jpg')}}" alt=""></a>    
+                                                <a href="#"><img src="{{asset('fontend/assets/img/product/productbig4.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal_tab_button">    
+                                    <div class="modal_tab_button">
                                         <ul class="nav product_navactive owl-carousel" role="tablist">
                                             <li >
                                                 <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false"><img src="{{asset('fontend/assets/img/product/product2.jpg')}}" alt=""></a>
@@ -262,21 +390,21 @@
                                             </li>
 
                                         </ul>
-                                    </div>    
-                                </div>  
-                            </div> 
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-lg-7 col-md-7 col-sm-12">
                                 <div class="modal_right">
                                     <div class="modal_title mb-10">
-                                        <h2>Sit voluptatem rhoncus sem lectus</h2> 
+                                        <h2>Sit voluptatem rhoncus sem lectus</h2>
                                     </div>
                                     <div class="modal_price mb-10">
-                                        <span class="new_price">$64.99</span>    
-                                        <span class="old_price" >$78.99</span>    
+                                        <span class="new_price">$64.99</span>
+                                        <span class="old_price" >$78.99</span>
                                     </div>
                                     <div class="modal_description mb-15">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam, reiciendis maiores quidem aperiam, rerum vel recusandae </p>    
-                                    </div> 
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam, reiciendis maiores quidem aperiam, rerum vel recusandae </p>
+                                    </div>
                                     <div class="variants_selects">
                                         <div class="variants_size">
                                            <h2>size</h2>
@@ -303,7 +431,7 @@
                                                 <input min="1" max="100" step="2" value="1" type="number">
                                                 <button type="submit">add to cart</button>
                                             </form>
-                                        </div>   
+                                        </div>
                                     </div>
                                     <div class="modal_social">
                                         <h2>Share this product</h2>
@@ -313,13 +441,13 @@
                                             <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
                                             <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                             <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        </ul>    
-                                    </div>      
-                                </div>    
-                            </div>    
-                        </div>     
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
@@ -336,6 +464,19 @@
 <script src="{{asset('fontend/assets/js/main.js')}}"></script>
 
  @yield('script')
+ <script>
+     $(function() {
+         $('.js-show-login').click(function(event) {
+            event.preventDefault();
+            toastr.warning('Bạn phải đăng nhập để thực hiện tính năng này!');
+            return false;
+         })
+     })
+ </script>
+
+@jquery
+@toastr_js
+@toastr_render
 
 </body>
 

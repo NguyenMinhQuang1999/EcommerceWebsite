@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Category</h1>
+            <h1>Quản lý danh mục</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.category.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Category</li>
+              <li class="breadcrumb-item"><a href="{{route('admin.category.index')}}">Trang chủ</a></li>
+              <li class="breadcrumb-item active">Danh mục sản phẩm</li>
             </ol>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <div class="col-8">
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Cap nhat danh mục phẩm</h3>
+                <h3 class="card-title">Cập nhật danh mục phẩm</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -32,7 +32,7 @@
               @csrf
                 <div class="card-body">
                   <div class="form-group {{ $errors->first('c_name') ? 'is-invalid': '' }} ">
-                    <label for="exampleInputEmail1">Name <span class="text-danger">(*)</span></label>
+                    <label for="exampleInputEmail1">Tên danh mục <span class="text-danger">(*)</span></label>
                     <input type="text" class="form-control {{ $errors->first('c_name') ? 'is-invalid': '' }}" value="{{ $category->c_name }}" id="c_name" name="c_name" placeholder="Name...">
                      @error('c_name')
                          <span class="text-danger">{{$message}}</span>

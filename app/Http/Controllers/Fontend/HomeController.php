@@ -14,7 +14,10 @@ class HomeController extends Controller
             ->limit(4)
             ->select('id', 'pro_name', 'pro_price', 'pro_slug', 'pro_sale','pro_avatar', 'pro_price')
             ->get();
-        
+        $productsView  = Product::orderByDesc('pro_view')
+                             ->limit(10)
+                             ->get();
+
 
         $productsHot = Product::where(['pro_active' => 1 , 'pro_hot' => 1])
             ->orderByDesc('id')
@@ -24,8 +27,11 @@ class HomeController extends Controller
 
             $viewData = [
                 'productsNew' => $productsNew,
-                'productsHot' => $productsHot
+                'productsHot' => $productsHot,
+                'productsView' => $productsView,
+                'title_page' => 'Cửa hàng'
             ];
-        return view('frontend.pages.home.index', $viewData);
+
+       return view('frontend.pages.home.index', $viewData);
     }
 }

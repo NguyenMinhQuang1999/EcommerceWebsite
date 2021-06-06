@@ -32,9 +32,9 @@ class AdminRequestCategory extends FormRequest
     public function messages() {
         return[
             'c_name.required' => 'Mời nhập tên danh mục sản phẩm!',
-            'c_name.unique' => 'Du lieu da ton tai!',
-            'c_name.max' => 'Ban nhap qua ky tu cho phep!',
-            'c_name.min' => 'Nhap it nhat 3 ky tu tro len!',
+            'c_name.unique' => 'Danh mục đã tồn tại!',
+            'c_name.max' => 'Bạn nhập quá ký tự cho phép!',
+            'c_name.min' => 'Nhập ít nhất 3 ký tự!',
         ];
     }
 }
