@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\SocialAccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Laravel\Socialite\Facades\Socialite;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
@@ -25,7 +24,7 @@ class SocialAuthController extends Controller
         if (Auth::attempt([
             'email' => $user->email,
             'password' => $user->name
-        ])) 
+        ]))
         {
             // Authentication passed...a
 
