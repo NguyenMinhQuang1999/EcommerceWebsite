@@ -60,6 +60,7 @@ Route::group(['namespace' => 'fontend'], function() {
         Route::get('update/{id}', 'ShoppingCart@update')->name('get.shopping.update');
         Route::get('checkout', 'ShoppingCart@checkout')->name('get.checkout');
         Route::post('payment/online', 'ShoppingCart@createPayment')->name('payment.online');
+        Route::get('vnpay/return', 'ShoppingCart@vnpayReturn')->name('vnpay.return');
 
 
 

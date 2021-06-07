@@ -34,4 +34,8 @@ class Transaction extends Model
     public function getStatus() {
         return Arr::get($this->status, $this->tst_status, '[N/A]');
     }
+
+    public function payment() {
+        return $this->belongsTo( Payment::class, 'id', 'p_transaction_id');
+    }
 }

@@ -69,6 +69,7 @@
                       <th>Thông tin</th>
                       <th>Tổng tiền</th>
                       <th>Loại khách hàng</th>
+                      <th>Phương thức thanh toán</th>
                       <th>Trạng thái</th>
                       <th>Ngày tạo</th>
                       <th>Thao tác</th>
@@ -96,6 +97,21 @@
                            @else
                            <span class="badge badge-info">Khách hàng</span>
                            @endif
+                        </td>
+
+                        <td>
+                            @if($transaction->payment) 
+                            <ul>
+                                 <li>Ngân hàng: {{ $transaction->payment->p_code_bank }}</li>
+                                 <li> Mã giao dịch: {{ $transaction->payment->p_code_vnpay }}</li:>
+                                 <li>Tổng tiền: {{ number_format($transaction->payment->p_money, 0, ',', '.') }} VNĐ</li>
+                                 <li>Nội dung: {{ $transaction->payment->p_note }}</li>
+                                 <li>Thời gian: {{ $transaction->payment->p_time }}</li>
+                            </ul>   
+                            </ul>
+                            @else
+                            <span>Thanh toán khi nhận hàng</span>
+                            @endif
                         </td>
 
                         <td>

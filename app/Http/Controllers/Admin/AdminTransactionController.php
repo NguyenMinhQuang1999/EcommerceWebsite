@@ -12,7 +12,7 @@ class AdminTransactionController extends Controller
     //
     public function index(Request $request)
     {
-        $transactions = Transaction::whereRaw(1);
+        $transactions = Transaction::with('payment')->whereRaw(1);
 
         if($request->id) $transactions->where('id', $request->id);
         if($email = $request->email){

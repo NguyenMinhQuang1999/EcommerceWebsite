@@ -1,6 +1,6 @@
  <?php
  use Illuminate\Support\Facades\Auth;
-
+use PhpParser\Node\Expr\FuncCall;
 
 if (!function_exists('pare_url_file')) {
     function pare_url_file($image,$folder = '')
@@ -114,6 +114,17 @@ if (!function_exists('upload_image'))
         else
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
+    }
+
+
+    function randString($length) {
+        $chars = 'ABCDEFJHIJKLMNOPQRWUYTZ0123456789';
+        $str = '';
+        $size = strlen($chars);
+        for($i = 0; $i < $length; $i++) {
+            $str .= $chars[rand(0, $size - 1)];
+        }
+        return $str;
     }
 
 

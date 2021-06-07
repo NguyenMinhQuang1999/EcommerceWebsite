@@ -9,22 +9,24 @@
         <meta name="author" content="">
         <title>Tạo mới đơn hàng</title>
         <!-- Bootstrap core CSS -->
-        <link href="{{assets('vnpay/bootstrap.min.css')}}" rel="stylesheet"/>
+        <link href="{{asset('vnpay/bootstrap.min.css')}}" rel="stylesheet"/>
         <!-- Custom styles for this template -->
-        <link href="{{assets('vnpay/jumbotron-narrow.css')}}" rel="stylesheet">  
-        <script src="{{assets('vnpay/jquery-1.11.3.min.js')}}"></script>
+        <link href="{{asset('vnpay/jumbotron-narrow.css')}}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        {{--  <script src="{{asset('vnpay/jquery-1.11.3.min.js')}}"></script>  --}}
     </head>
 
     <body>
 
         <div class="container">
             <div class="header clearfix">
-                <h3 class="text-muted">VNPAY DEMO</h3>
+                <h3 class="text-muted">VNPAY</h3>
             </div>
             <h3>Tạo mới đơn hàng</h3>
             <div class="table-responsive">
-                <form action="{{ route('payment.online') }}" id="create_form" method="post">       
-                            @csrf
+                <form action="{{ route('payment.online') }}" id="create_form" method="post">
+                    @csrf
                     <div class="form-group">
                         <label for="language">Loại hàng hóa </label>
                         <select name="order_type" id="order_type" class="form-control">
@@ -34,15 +36,14 @@
                             <option value="other">Khác - Xem thêm tại VNPAY</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    {{--  <div class="form-group">
                         <label for="order_id">Mã hóa đơn</label>
                         <input class="form-control" id="order_id" name="order_id" type="text" value="<?php echo date("YmdHis") ?>"/>
-                    </div>
+                    </div>  --}}
                     <div class="form-group">
                         <label for="amount">Số tiền</label>
                         <input class="form-control" id="amount"
-                               name="amount" type="number" value="10000"/>
-                    </div>
+                               name="amount" type="number" value="{{ $totalMoney}}" readonly />
                     <div class="form-group">
                         <label for="order_desc">Nội dung thanh toán</label>
                         <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Noi dung thanh toan</textarea>
@@ -94,7 +95,7 @@
             <footer class="footer">
                 <p>&copy; VNPAY 2015</p>
             </footer>
-        </div>  
+        </div>
         <link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>
         <script src="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.js"></script>
         <script type="text/javascript">
@@ -105,6 +106,10 @@
                     type: "POST",
                     url: submitUrl,
                     data: postData,
+                    crossDomain : true,
+                    xhrFields: {
+                        withCredentials: true
+                    }
                     dataType: 'JSON',
                     success: function (x) {
                         if (x.code === '00') {
