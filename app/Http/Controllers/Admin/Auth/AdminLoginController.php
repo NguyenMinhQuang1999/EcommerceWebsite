@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminLoginController extends Controller
 {
@@ -19,15 +21,20 @@ class AdminLoginController extends Controller
     public function postLogin(Request $request)
     {
       //  dd($request);
-        if(\Auth::guard('admins')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        // if(Auth::guard('admins')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        //     return redirect()->intended('/api-admin/sactistical');
+
+        // }
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->intended('/api-admin/sactistical');
 
-        }
+       }
         return redirect()->back();
     }
 
     public function getLogout() {
-        \Auth::guard('admins')->logout();
+        //Auth::guard('admins')->logout();
+        Auth::logout();
         return redirect()->to('/admin-auth/login');
     }
 

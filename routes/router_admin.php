@@ -13,7 +13,41 @@ Route::group(['prefix' => 'admin-auth', 'namespace' => 'Admin\Auth'], function()
 Route::get('tk', function() {
     return view('admin.sactistical.index');
 });
+Route::group(['prefix' => 'api-admin', 'namespace' => 'Permission', 'middleware' => 'check_login_admin'],  function() {
+    Route::group(['prefix' => 'group-permistion'], function() {
+        Route::get('', 'AdminGroupPermissionController@index')->name('admin.group_permission.index');
+        Route::get('create', 'AdminGroupPermissionController@create')->name('admin.group_permission.create');
+        Route::post('create', 'AdminGroupPermissionController@store');
 
+        Route::get('update/{id}', 'AdminGroupPermissionController@edit')->name('admin.group_permission.update');
+        Route::post('update/{id}', 'AdminGroupPermissionController@update');
+
+
+        Route::get('delete/{id}', 'AdminGroupPermissionController@delete')->name('admin.group_permission.delete');
+        });
+
+        Route::group(['prefix' => 'permission'], function() {
+            Route::get('', 'PermissionController@index')->name('admin.permission.index');
+            Route::get('create', 'PermissionController@create')->name('admin.permission.create');
+            Route::post('create', 'PermissionController@store');
+
+            Route::get('update/{id}', 'PermissionController@edit')->name('admin.permission.update');
+            Route::post('update/{id}', 'PermissionController@update');
+
+            Route::get('delete/{id}', 'PermissionController@delete')->name('admin.permission.delete');
+            });
+
+        Route::group(['prefix' => 'role'], function() {
+                Route::get('', 'RoleController@index')->name('admin.role.index');
+                Route::get('create', 'RoleController@create')->name('admin.role.create');
+                Route::post('create', 'RoleController@store');
+
+                Route::get('update/{id}', 'RoleController@edit')->name('admin.role.update');
+                Route::post('update/{id}', 'RoleController@update');
+
+                Route::get('delete/{id}', 'RoleController@delete')->name('admin.role.delete');
+         });
+});
 
 Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => 'check_login_admin'],  function() {
     Route::get('/', function() {
@@ -26,11 +60,14 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
 
     });
 
+
+
+
     //Route danh muc san pham
 
 
     Route::group(['prefix' => 'category'], function() {
-    Route::get('', 'AdminCategoryController@index')->name('admin.category.index');
+    Route::get('', 'AdminCategoryController@index')->name('admin.category.index')->middleware('permission:xem-danh-muc');
     Route::get('create', 'AdminCategoryController@create')->name('admin.category.create');
     Route::post('create', 'AdminCategoryController@store');
 
@@ -45,6 +82,13 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
      //Route danh muc san pham
     Route::group(['prefix' => 'user'], function() {
         Route::get('', 'AdminUserController@index')->name('admin.user.index');
+        Route::get('create', 'AdminUserController@create')->name('admin.user.create');
+        Route::post('create', 'AdminUserController@store');
+    
+        Route::get('update/{id}', 'AdminUserController@edit')->name('admin.user.update');
+        Route::post('update/{id}', 'AdminUserController@update');
+    
+        Route::get('active/{id}', 'AdminUserController@active')->name('admin.user.active');
 
         Route::get('delete/{id}', 'AdminUserController@delete')->name('admin.user.delete');
     });
@@ -112,7 +156,7 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
 
 
     Route::group(['prefix' => 'product'], function() {
-        Route::get('', 'AdminProductController@index')->name('admin.product.index');
+        Route::get('', 'AdminProductController@index')->name('admin.product.index')->middleware('permission:xem-san-pham');
         Route::get('create', 'AdminProductController@create')->name('admin.product.create');
         Route::post('create', 'AdminProductController@store');
 
@@ -144,6 +188,7 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::get('', 'AdminMenuController@index')->name('admin.menu.index');
         Route::get('create', 'AdminMenuController@create')->name('admin.menu.create');
         Route::post('create', 'AdminMenuController@store');
+
 
         Route::get('update/{id}', 'AdminMenuController@edit')->name('admin.menu.update');
         Route::post('update/{id}', 'AdminMenuController@update');

@@ -25,7 +25,7 @@
             <div class="card">
               <div class="card-header">
                 {{-- <h3 class="card-title">Responsive Hover Table</h3> --}}
-                {{--  <a class="btn btn-primary" href="{{route('admin.user.create')}}">Thêm mới <i class="fa fa-plus"></i></a>  --}}
+                <a class="btn btn-primary" href="{{route('admin.user.create')}}">Thêm mới <i class="fa fa-plus"></i></a>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -46,6 +46,7 @@
                       <th>Tên người dùng</th>
                       <th>Email</th>
                       <th>Điện thoại</th>
+                      <th>Trạng thái</th>
                       <th>Ngày tạo</th>
                       <th>Thao tác</th>
                       
@@ -58,9 +59,16 @@
                       <td>{{ $user->name }}</td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->phone }}</td>
+                      <td>
+                        @if($user->status == 1)
+                        <span class="badge badge-success">Hoạt động</span>
+                        @else
+                        <span class="badge badge-danger">Đã khóa</span>                       
+                         @endif
+                        </td>
                       <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
                       <td>
-                          {{--  <a href="{{ route('admin.user.update', $user->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pen"></i>Edit</a>  --}}
+                          <a href="{{ route('admin.user.update', $user->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pen"></i>Edit</a>
                           <a href="{{ route('admin.user.delete', $user->id) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Xóa</a>
                       </td>
                     </tr>

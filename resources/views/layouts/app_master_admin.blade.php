@@ -157,7 +157,7 @@
           <img src="{{asset('backend/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"> Xin chào {{ get_user_data('admins','name')  }} 
+          <a href="#" class="d-block"> Xin chào {{ get_user_data('admins','name')  }}
             </a>
         </div>
       </div>
@@ -256,6 +256,34 @@
           </p>
         </a>
       </li>  --}}
+
+       <li class="nav-item">
+        <a href="{{ route('admin.group_permission.index') }}" class="nav-link">
+          <i class="nav-icon far fa-circle"></i></i>
+          <p>
+          Nhóm quyền
+          </p>
+        </a>
+      </li>
+
+       <li class="nav-item">
+        <a href="{{ route('admin.permission.index') }}" class="nav-link">
+          <i class="nav-icon far fa-circle"></i></i>
+          <p>
+          Quyền
+          </p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ route('admin.role.index') }}" class="nav-link">
+          <i class="nav-icon far fa-circle"></i></i>
+          <p>
+          Vai trò
+          </p>
+        </a>
+      </li>
+
       <li class="nav-item">
         <a href="{{ route('admin.rating.index') }}" class="nav-link">
           <i class="nav-icon far fa-circle"></i></i>
@@ -298,7 +326,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.4
     </div>
-    <strong>Copyright &copy; 2021<a href="http://adminlte.io">Quản trị website</a>.</strong> 
+    <strong>Copyright &copy; 2021<a href="http://adminlte.io">Quản trị website</a>.</strong>
 
   </footer>
 

@@ -45,6 +45,8 @@
                             <div class="login_submit">
                                <a href="{{  route('get_reset_password')}}">Quên mật khẩu?</a>
                                <a style="margin-left: 10px" href="{{  route('get.login.google', ['social' => 'google'])}}">  <i class="fa fa-google"></i> Đăng nhập Googgle</a>
+                               <a style="margin-left: 10px" href="{{  route('get.login.google', ['social' => 'facebook'])}}">  <i class="fa fa-facebook"></i> Đăng nhập Facebook</a>
+
                                 <label for="remember">
                                     <input id="remember" type="checkbox">
                                     Remember me

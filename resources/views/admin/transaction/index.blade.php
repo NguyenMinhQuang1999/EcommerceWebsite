@@ -134,10 +134,10 @@
                                         Xóa đơn hàng
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="{{ route('admin.transaction.action', ['process', $transaction->id]) }}" class="dropdown-item" >
+                                    <a href="{{ route('admin.transaction.action', ['process', $transaction->id]) }}" class="dropdown-item status-transaction" >
                                        <i class="fas fa-ban"> </i>  Đã xác thực</a>
-                                    <a  href="{{ route('admin.transaction.action', ['success', $transaction->id]) }}" class="dropdown-item"> <i class="fas fa-ban"> </i>  Đã chuyển giao</a>
-                                    <a  href="{{ route('admin.transaction.action', ['cancel', $transaction->id]) }}" class="dropdown-item"> <i class="fas fa-ban"> </i>   Đã hủy</a>
+                                    <a  href="{{ route('admin.transaction.action', ['success', $transaction->id]) }}" class="dropdown-item completed"> <i class="fas fa-ban"> </i>  Đã chuyển giao</a>
+                                    <a  href="{{ route('admin.transaction.action', ['cancel', $transaction->id]) }}" class="dropdown-item status-transaction"> <i class="fas fa-ban"> </i>   Đã hủy</a>
 
                                   </div>
                            </div>
