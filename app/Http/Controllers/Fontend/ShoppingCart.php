@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fontend;
 // use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShoppingRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Carbon\Carbon;
@@ -107,7 +108,7 @@ class ShoppingCart extends Controller
         return view('frontend.pages.shopping.checkout', $viewData);
     }
 
-    public function postPay(Request $request)
+    public function postPay(ShoppingRequest $request)
     {
         $data = $request->except('_token', 'payment');
         if(isset(Auth::user()->id)) {
@@ -125,8 +126,10 @@ class ShoppingCart extends Controller
             $transitionId = Transaction::insertGetId($data);
         if($transitionId) {
             $shopping =\Cart::content();
-            if($request->tst_temail) {
-                 Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+            $user = Auth::user();
+            $total=  str_replace(',', '', \Cart::subtotal(0));
+            if($request->tst_email) {
+                 Mail::to($request->tst_email)->send(new TransactionSuccess($shopping, $user, $total));
             }
             foreach($shopping as $key => $item) {
                 Order::insert([
@@ -142,9 +145,13 @@ class ShoppingCart extends Controller
                                       ->increment('pro_pay');//tang cot pro_pay len 1
             }
         }
-        \Cart::destroy();
+    //     if($request->tst_email) {
+    //         Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+    //    }
+        // \Cart::destroy();
         toastr()->success('Đặt hàng thành công!');
-        return redirect()->to('/');
+       // return redirect()->to('/');
+        return redirect()->back();
         }
 
     }

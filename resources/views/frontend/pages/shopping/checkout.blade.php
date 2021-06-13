@@ -38,23 +38,33 @@
 
                                     <div class="col-lg-12 mb-20">
                                         <label>Họ và tên <span>*</span></label>
-                                        <input id='tst_name' name='tst_name' placeholder="Nhập họ và tên" value="{{ get_user_data('web','name') }}" type="text">
+                                        <input id='tst_name' name='tst_name' class="{{ $errors->first('tst_name') ? 'is-invalid': '' }}" placeholder="Nhập họ và tên" value="{{ get_user_data('web','name') }}" type="text">
+                                        @error('tst_name')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="col-12 mb-20">
                                         <label>Địa chỉ  <span>*</span></label>
-                                        <input name="tst_address"  value="{{ get_user_data('web','address') }}" placeholder="Địa chỉ hoặc số nhà" type="text">
+                                        <input name="tst_address" class="{{ $errors->first('tst_address') ? 'is-invalid': '' }}"   value="{{ get_user_data('web','address') }}" placeholder="Địa chỉ hoặc số nhà" type="text">
+                                        @error('tst_address')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="col-lg-6 mb-20">
                                         <label>Điện thoại<span>*</span></label>
-                                        <input name='tst_phone'  value="{{ get_user_data('web','phone') }}" type="text">
-
+                                        <input name='tst_phone' class="{{ $errors->first('tst_phone') ? 'is-invalid': '' }}"  value="{{ get_user_data('web','phone') }}" type="text">
+                                        @error('tst_phone')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
                                      <div class="col-lg-6 mb-20">
                                         <label> Địa chỉ email <span>*</span></label>
                                           <input name="tst_email"  value="{{ get_user_data('web','email') }}" type="text">
-
+                                          @error('tst_email')
+                                          <span class="text-danger">{{$message}}</span>
+                                          @enderror
                                     </div>
                                     <div class="col-12 mb-20">
                                         <input id="account" type="checkbox" data-target="createp_account" />

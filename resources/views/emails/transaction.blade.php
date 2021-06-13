@@ -9,7 +9,7 @@
                                 <tr>
                                     <td align="left" valign="middle" style="width:500px;height:60px">
                                         <a href="#" style="border:0" target="_blank" width="130" height="35" style="display:block;border:0px">
-                                            <img src="https://i.imgur.com/SJMpt6k.png" height="100" width="115" style="display:block;border:0px;float: left;"> <b style="float: left;line-height: 100px;color: red;font-size: 20px;">Shopping Store</b>
+                                            <img src="https://i.imgur.com/SJMpt6k.png" height="100" width="115" style="display:block;border:0px;float: left;"> <b style="float: left;line-height: 100px;color: red;font-size: 20px;">Thông tin đơn hàng</b>
                                         </a>
                                     </td>
                                     <td align="right" valign="middle" style="padding-right:15px">
@@ -33,14 +33,14 @@
                                 </tr>
                                 <tr>
                                     <td align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
-                                        Chào  Quang
-                                        <br> Cám ơn bạn đã mua sắm tại Siêu thị Của chúng ôi
+                                        Chào  {{ $user->name }}
+                                        <br> Cám ơn bạn đã mua sắm tại Siêu thị Của chúng tôi
                                         <br>
-                                        <br> Đơn hàng của bạn đang
-                                        <b>chờ shop</b>
+                                        <br> Vui lòng phản hồi lại mail để xác nhận đơn hàng
+                                        {{--  <b>chờ shop</b>
                                         <b>xác nhận</b> (trong vòng 24h)
                                         <br> Chúng tôi sẽ thông tin <b>trạng thái đơn hàng</b> trong email tiếp theo.
-                                        <br> Bạn vui lòng kiểm tra email thường xuyên nhé.
+                                        <br> Bạn vui lòng kiểm tra email thường xuyên nhé.  --}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -66,20 +66,20 @@
                                 <tr>
                                     <td align="left" valign="top" style="width:120px;padding-left:15px">
                                         <a href="#_" style="border:0"> 
-                                            <img src="img/hang.jpg" height="120" width="120" style="display:block;border:0px"> 
-                                        </a>
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQI1bItsObNdc2j_T937GcIwrZ73vcIRF8Q&usqp=CAU" height="120" width="120" style="display:block;border:0px"> 
+                                        </a
                                     </td>
                                     <td align="left" valign="top">
                                         <table style="width:100%" cellpadding="0" cellspacing="0" border="0">
                                             <tbody>
                                                 <tr>
                                                     <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> 
-                                                        <b>Sản phẩm</b>
+                                                        <b>Ngày đặt </b>
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
                                                          <a href="#" style="color:#115fff;text-decoration:none" target="_blank">
-                                                           {{-- {{print_r($val)}} --}}
+                                                           {{ date("h:m d-m-Y")}}
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -90,9 +90,9 @@
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> 
                                                         <a href="#" style="color:#115fff;text-decoration:none" target="_blank">
-                                                            ALOBUY VIETNAM STORE
+                                                          Media Mart
                                                         </a>
-                                                        - 0943500190
+                                                        - 0398882228
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -101,7 +101,7 @@
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
-                                                       {{--  {{number_format($val->produt_price * $product_quantity)}} --}}
+                                                        {{ number_format($total, 0, ',', '.')}} VNĐ
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -110,9 +110,20 @@
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> 
-                                                        <b>{{$val->tst_name }}</b> - {{ $val->tst_phone}}
+                                                        <b>{{ $user->name  }}</b> - {{ $user->phone}}</b>
                                                         <br>
-                                                      {{$val->tst_note}}
+                                                    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px"> 
+                                                        <b>Địa chỉ giao</b>
+                                                    </td>
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> 
+                                                        <b>{{ $user->address  }}</b>
+                                                        <br>
+                                                    
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -123,7 +134,7 @@
                                 <tr>
                                     <td colspan="2" align="center" valign="top" style="padding-top:20px;padding-bottom:20px;border-bottom:1px solid #ebebeb">
                                         <a href="#" style="border:0px" target="_blank"> 
-                                            <img src="https://i.imgur.com/f92hL68.jpg" height="29" width="191" alt="Chi tiết đơn hàng" style="border:0px"> 
+                                            {{--  <img src="https://i.imgur.com/f92hL68.jpg" height="29" width="191" alt="Chi tiết đơn hàng" style="border:0px">   --}}
                                         </a>
                                     </td>
                                 </tr>
@@ -137,7 +148,7 @@
                             <tbody>
                                 <tr>
                                     <td align="center" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px"> 
-                                        Đây là thư tự động từ hệ thống. Vui lòng không trả lời email này.
+                                    
                                         <br> Nếu có bất kỳ thắc mắc hay cần giúp đỡ, Bạn vui lòng ghé thăm 
                                         <b style="font-family:Arial,Helvetica,sans-serif;font-size:13px;text-decoration:none;font-weight:bold">Trung tâm trợ giúp</b> của chúng tôi tại địa chỉ: 
                                         <a href="#" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0066cc;text-decoration:none;font-weight:bold" target="_blank">

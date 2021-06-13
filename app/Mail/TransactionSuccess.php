@@ -17,10 +17,14 @@ class TransactionSuccess extends Mailable
      * @return void
      */
     private $transaction;
-    public function __construct($transaction)
+    private $user;
+    private $total;
+    public function __construct($transaction, $user, $total)
     {
         //
         $this->transaction = $transaction;
+        $this->user = $user;
+        $this->total = $total;
     }
 
     /**
@@ -30,6 +34,6 @@ class TransactionSuccess extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.transaction')->with(['transaction' => $this->transaction]);
+        return $this->view('emails.transaction')->with(['transaction' => $this->transaction, 'user' => $this->user, 'total' => $this->total]);
     }
 }
