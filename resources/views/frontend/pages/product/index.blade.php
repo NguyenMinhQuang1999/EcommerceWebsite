@@ -153,9 +153,9 @@
                     <div class="widget_list widget_categories">
                         <h3>Lọc theo giá</h3>
                         <ul>
-                            @for($i = 1; $i <= 6; $i++)
+                            @for($i = 2; $i <= 10; $i+=2)
                            <li class= {{  Request::get('price') == $i ? 'active' : ''}}>
-                               <a href="{{  request()->fullUrlWithQuery(['price' => $i]) }}" >{{  $i == 6  ? 'Lớn hơn 10 triệu' : "Giá < ".  $i * 1 ."  triệu"}}</a>
+                               <a href="{{  request()->fullUrlWithQuery(['price' => $i]) }}" >{{  $i == 10  ? 'Lớn hơn 10 triệu' : "Giá < ".  $i * 1 ."  triệu"}}</a>
                             </li>
                             @endfor
 
@@ -167,7 +167,7 @@
                         <ul>
                             <li class ={{ Request::get('country') == $item ? 'active' : '' }}>
 
-                                 <a href="{{  request()->fullUrlWithQuery(['country' => $item]) }}">
+                                 <a href="{{  request()->fullUrlWithQuery(['country' => $key]) }}">
 
                                     {{ $item }}
 

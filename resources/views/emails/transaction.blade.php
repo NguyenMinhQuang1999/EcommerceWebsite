@@ -34,7 +34,7 @@
                                 <tr>
                                     <td align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
                                         Chào  Quang
-                                        <br> Cám ơn bạn đã mua sắm tại Electrolic Store
+                                        <br> Cám ơn bạn đã mua sắm tại Siêu thị Của chúng ôi
                                         <br>
                                         <br> Đơn hàng của bạn đang
                                         <b>chờ shop</b>

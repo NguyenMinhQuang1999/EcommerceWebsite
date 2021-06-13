@@ -32,7 +32,9 @@
           <div class="form-group " >
             <label for="exampleInputEmail1">Vai trò <span class="text-danger">(*)</span></label>
             <select class="form-control" name='role'>
+                <option>Chọn vai trò </option>
                 @foreach($roles as $role) 
+                   
                     <option  {{ (isset($listRoleUser->role_id) ? $listRoleUser->role_id : '') == $role->id ? "selected='selected'" : '' }}   value="{{$role->id}}">{{  $role->display_name }}</option>
                 @endforeach
             </select>
@@ -44,13 +46,14 @@
             <label for="exampleInputEmail1 mr-2">Trạng thái </label> <br>
 
             <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="0"  {{ isset($user->status) == 0 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="inlineRadio2">Đã khóa</label>
+                  </div>
                 <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="1"  {{ isset($user->status) == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="inlineRadio1">Hoạt động</label>
               </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="0"  {{ isset($user->status) == 0 ? 'checked' : '' }}>
-                <label class="form-check-label" for="inlineRadio2">Đã khóa</label>
-              </div>
+              
           </div>
 
     </div>

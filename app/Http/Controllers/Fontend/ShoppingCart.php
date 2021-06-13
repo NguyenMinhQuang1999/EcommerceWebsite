@@ -126,7 +126,7 @@ class ShoppingCart extends Controller
         if($transitionId) {
             $shopping =\Cart::content();
             if($request->tst_temail) {
-                // Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+                 Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
             }
             foreach($shopping as $key => $item) {
                 Order::insert([

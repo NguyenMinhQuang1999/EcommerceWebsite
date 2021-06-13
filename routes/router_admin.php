@@ -3,6 +3,10 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/403', function() {
+    return view('admin.page403');
+});
+
 Route::group(['prefix' => 'admin-auth', 'namespace' => 'Admin\Auth'], function() {
 
     Route::get('login', 'AdminLoginController@getLoginAdmin')->name('get.login.admin');
@@ -59,6 +63,31 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::get('', 'AdminSactisticalController@index')->name('get.sactistical');
 
     });
+
+    Route::group(['prefix' => 'supplier'], function() {
+        Route::get('', 'AdminSupplierController@index')->name('admin.supplier.index');
+        Route::get('create', 'AdminSupplierController@create')->name('admin.supplier.create');
+        Route::post('create', 'AdminSupplierController@store');
+
+        Route::get('update/{id}', 'AdminSupplierController@edit')->name('admin.supplier.update');
+        Route::post('update/{id}', 'AdminSupplierController@update');
+
+        Route::get('delete/{id}', 'AdminSupplierController@delete')->name('admin.supplier.delete');
+ }); 
+
+    Route::group(['prefix' => 'bill'], function() {
+        Route::get('', 'AdminBillController@index')->name('admin.bill.index');
+        Route::get('create', 'AdminBillController@create')->name('admin.bill.create');
+        Route::get('view-bill-detail/{id}', 'AdminBillController@getBillDetail')->name('ajax.admin.bill.detail');
+
+        Route::post('create', 'AdminBillController@store');
+        
+
+
+
+        Route::get('delete/{id}', 'AdminBillController@delete')->name('admin.bill.delete');
+    });
+    
 
 
 

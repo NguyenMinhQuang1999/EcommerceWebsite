@@ -5,9 +5,13 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserFavouriteController extends Controller
 {
+
+
     public function index() 
     {
         $userId = \Auth::id();
@@ -16,7 +20,17 @@ class UserFavouriteController extends Controller
             $query->where('uf_user_id', $userId);
         })->select('id', 'pro_name', 'pro_slug', 'pro_avatar', 'pro_price', 'pro_category_id')
         ->paginate(10);
-        return view('user.favourite', compact('products'));
+
+        $number = DB::table('user_favourites')->where('uf_user_id', $userId)->count();
+        // dd($number);
+
+        
+        $viewData = [
+            'products' => $products,
+            'number' => $number
+        ];
+        
+        return view('user.favourite', $viewData);
     }
     //San pham yeu thich
     public function addFavourite(Request $request, $id) 

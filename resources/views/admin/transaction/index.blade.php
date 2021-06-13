@@ -100,14 +100,14 @@
                         </td>
 
                         <td>
-                            @if($transaction->payment) 
+                            @if($transaction->payment)
                             <ul>
                                  <li>Ngân hàng: {{ $transaction->payment->p_code_bank }}</li>
                                  <li> Mã giao dịch: {{ $transaction->payment->p_code_vnpay }}</li:>
                                  <li>Tổng tiền: {{ number_format($transaction->payment->p_money, 0, ',', '.') }} VNĐ</li>
                                  <li>Nội dung: {{ $transaction->payment->p_note }}</li>
                                  <li>Thời gian: {{ $transaction->payment->p_time }}</li>
-                            </ul>   
+                            </ul>
                             </ul>
                             @else
                             <span>Thanh toán khi nhận hàng</span>
@@ -125,7 +125,7 @@
                             <i class="fa fa-eye"></i> View
                           </a>
                         <div class="btn-group ">
-                            <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-xs btn-info dropdown-toggle actions{{ $transaction->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Thao tác</button>
                                     <div class="dropdown-menu">
                                    <a href="{{ route('admin.transaction.delete', $transaction->id) }}" class="dropdown-item" >
@@ -133,19 +133,17 @@
                                         </i>
                                         Xóa đơn hàng
                                     </a>
-                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider" data-id="{{ $transaction->id }}" data-status="{{ $transaction->tst_status }}"></div>
                                     <a href="{{ route('admin.transaction.action', ['process', $transaction->id]) }}" class="dropdown-item status-transaction" >
                                        <i class="fas fa-ban"> </i>  Đã xác thực</a>
                                     <a  href="{{ route('admin.transaction.action', ['success', $transaction->id]) }}" class="dropdown-item completed"> <i class="fas fa-ban"> </i>  Đã chuyển giao</a>
                                     <a  href="{{ route('admin.transaction.action', ['cancel', $transaction->id]) }}" class="dropdown-item status-transaction"> <i class="fas fa-ban"> </i>   Đã hủy</a>
-
                                   </div>
                            </div>
                       </td>
                     </tr>
                     @endforeach
                     @endif
-
                   </tbody>
                 </table>
               </div>
@@ -188,6 +186,14 @@
 @section( 'script')
     <script>
         $(function() {
+            /* $('.actions').click(function() {
+                let  status =   $('.dropdown-divider').attr('data-action');
+                $('.status-transaction').attr("disabled","disabled");
+
+                alert(status); 
+            })
+            */
+
             $(".js-preview-transaction").click(function(event) {
                 event.preventDefault() //huy hanh dong chuyen trang nut a, h
                 //huy su kien mac dinh co the huy duoc

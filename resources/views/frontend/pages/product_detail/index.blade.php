@@ -346,7 +346,7 @@
                         url: URL
                     }).done(function(result) {
                           console.log(result.messages);
-                          toastr.success(result.messages,'Thong bao');
+                          toastr.success(result.messages,'Thông báo');
 
 
                     });

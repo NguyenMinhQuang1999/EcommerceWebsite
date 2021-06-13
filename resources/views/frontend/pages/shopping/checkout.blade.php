@@ -25,53 +25,6 @@
         <div class="Checkout_section">
             <div class="row">
                <div class="col-12">
-                    {{--  <div class="user-actions">
-                        <h3>
-                            <i class="fa fa-file-o" aria-hidden="true"></i>
-                            Returning customer?
-                            <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_login" aria-expanded="true">Click here to login</a>
-
-                        </h3>
-                         <div id="checkout_login" class="collapse" data-parent="#accordion">
-                            <div class="checkout_info">
-                                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
-                                <form action="#">
-                                    <div class="form_group">
-                                        <label>Username or email <span>*</span></label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="form_group">
-                                        <label>Password  <span>*</span></label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="form_group group_3 ">
-                                        <button type="submit">Login</button>
-                                        <label for="remember_box">
-                                            <input id="remember_box" type="checkbox">
-                                            <span> Remember me </span>
-                                        </label>
-                                    </div>
-                                    <a href="#">Lost your password?</a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="user-actions">
-                        <h3>
-                            <i class="fa fa-file-o" aria-hidden="true"></i>
-                            Returning customer?
-                            <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_coupon" aria-expanded="true">Click here to enter your code</a>
-
-                        </h3>
-                         <div id="checkout_coupon" class="collapse" data-parent="#accordion">
-                            <div class="checkout_info">
-                                <form action="#">
-                                    <input placeholder="Coupon code" type="text">
-                                    <button type="submit">Apply coupon</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>  --}}
                </div>
             </div>
             <div class="checkout_form">
@@ -115,7 +68,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" id="payment_option" name="payment" value='1' />
-                                    
+
                                     <div class="col-12">
                                         <div class="order-notes">
                                              <label for="order_note">Ghi chú </label>
@@ -124,9 +77,9 @@
                                         <div class="order_button">
                                             <button id="order_submit"  type="submit">Thanh toán</button>
                                         </div>
-                                        <div class="order_button">
+                                        {{--  <div class="order_button">
                                             <button id="payment_online"  type="button">Thanh toán Online</button>
-                                        </div>
+                                        </div>  --}}
                                     </div>
                                 </div>
                             </form>
@@ -154,7 +107,7 @@
 
                                             </tr>
                                             @endforeach
-                                          
+
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -189,12 +142,12 @@
 
                                         <div id="collapsedefult" class="collapse one" data-parent="#accordion">
                                             <div class="card-body1">
-                                               <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                               <p>Thanh toán qua VN Pay; bạn có thể thanh toán bằng thẻ tín dụng của mình nếu bạn có tài khoản VNPay .</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="order_button">
-                                        <button id="order_submits"  type="button">Thanh toán bằng PayPal</button>
+                                        <button id="order_submits"  type="button">Thanh toán bằng VN Pay</button>
                                     </div>
                                 </div>
                             </form>
@@ -214,35 +167,26 @@
 @section('script')
     <script>
 
-      
-            
+
+
           $(function() {
-            $("#payment_online").click(function(){
+
+            var btnSubmit = document.getElementById('order_submits');
+            console.log(btnSubmit);
+            btnSubmit.addEventListener('click', function() {
                 $('#payment_option').val(2);
                 name = $('#tst_name').val();
-                alert('data');
                 if(name != '') {
                     $('#form_customer').submit();
                 }
 
-              });
-        
-          })
+              //  document.getElementById('form_customer').submit();
+            });
 
-            
 
-         /*   {{--  submitForm = function() {
-                document.getElementById('form_customer').submit();
-            }
-            var btnSubmit = document.getElementById('order_submit');
-            console.log(btnSubmit);
-            btnSubmit.addEventListener('click', function() {
-                console.log('sds');
-                document.getElementById('form_customer').submit();
-            });  
-        })
-        */
-        
+    })
+
+
     </script>
 
 @endsection

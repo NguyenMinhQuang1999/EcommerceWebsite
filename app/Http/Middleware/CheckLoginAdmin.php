@@ -15,8 +15,11 @@ class CheckLoginAdmin
      */
     public function handle($request, Closure $next)
     {
-        
-        if(get_user_data('admins')) {
+
+        // if(get_user_data('admins')) {
+        //     return $next($request);
+        // }
+        if(get_user_data('web')) {
             return $next($request);
         }
         return redirect()->to('/');

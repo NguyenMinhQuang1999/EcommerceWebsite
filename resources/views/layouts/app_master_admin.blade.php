@@ -194,14 +194,14 @@
               </p>
             </a>
         </li>  --}}
-        <li class="nav-item">
+        {{--  <li class="nav-item">
             <a href="{{ route('admin.attribute.index') }}" class="nav-link">
               <i class="nav-icon far fa-circle"></i>
               <p>
                 Thuộc tính sản phẩm
               </p>
             </a>
-        </li>
+        </li>  --}}
         <li class="nav-item">
             <a href="{{ route('admin.product.index') }}" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
@@ -228,24 +228,24 @@
           </a>
       </li>
 
-      {{--  <li class="nav-item">
-        <a href="{{ route('admin.menu.index') }}" class="nav-link">
-          <i class="nav-icon fas fa-th"></i></i>
+       <li class="nav-item">
+        <a href="{{ route('admin.supplier.index') }}" class="nav-link">
+          <i class="nav-icon far fa-circle"></i></i>
           <p>
-          Menu
+          Nhà cung cấp
           </p>
         </a>
-      </li>  --}}
+      </li> 
 
-      {{--  <li class="nav-item">
-        <a href="{{ route('admin.article.index') }}" class="nav-link">
-          <i class="nav-icon fas fa-th"></i></i>
+       <li class="nav-item">
+        <a href="{{ route('admin.bill.index') }}" class="nav-link">
+          <i class="nav-icon far fa-circle"></i></i>
           <p>
-            Bài viết
+            Hóa đơn nhập
             <span class="right badge badge-info"></span>
           </p>
         </a>
-      </li>  --}}
+      </li> 
 
 
       {{--  <li class="nav-item">

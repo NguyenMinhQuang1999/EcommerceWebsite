@@ -43,7 +43,7 @@ class ProductController extends Controller
         //nguoc lai loc theo gia 10000 * so thu tu $price = 1
         if($request->price) {
             $price = $request->price;
-            if($price == 6) {
+            if($price == 10) {
                 $product->where('pro_price' ,'>', 10000000);
             }else {
                 $product->where('pro_price', '<=', 1000000 * $price);

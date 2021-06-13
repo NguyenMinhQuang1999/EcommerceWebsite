@@ -30,7 +30,7 @@
                         <input type="text" class="form-control mr-2" value="{{ Request::get('id') }}" name="id" placeholder="Mã sản phẩm">
                         <input type="text" class="form-control mr-2" value="{{ Request::get('name') }}" name="name" placeholder="Nhập tên sản phẩm">
                         <select name="category" class="form-control mr-2">
-                            <option disabled value="0">Chọn danh mục</option>
+                            <option  value="">Chọn danh mục</option>
                             @foreach($categories as $item)
 
                             <option value="{{ $item->id }}" {{Request::get('category') == $item->id ? 'selected="selected"' : '' }}>{{ $item->c_name }}</option>
@@ -42,6 +42,7 @@
 
                     </form>
                 </div>
+                <br>
                 <a class="btn btn-primary" href="{{route('admin.product.create')}}">Thêm mới <i class="fa fa-plus"></i></a>
 
 

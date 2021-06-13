@@ -81,11 +81,13 @@
                                 </form>
                             </div>
                             <div class="header_configure_area">
+                                @if(Auth::id())
                                 <div class="header_wishlist">
-                                    <a href="wishlist.html"><i class="icon-heart"></i>
-                                        <span class="wishlist_count">0</span>
+                                    <a href="{{ route('get.user.favourite') }}"><i class="icon-heart"></i>
+                                        <span class="wishlist_count">{{ isset($number) ? $number : 0 }}</span>
                                     </a>
                                 </div>
+                                @endif
                                 <div class="mini_cart_wrapper">
                                     <a href="{{  route('get.shopping.list') }}">
                                         <i class="icon-shopping-bag2"></i>
