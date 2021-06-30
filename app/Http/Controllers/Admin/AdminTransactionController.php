@@ -104,7 +104,7 @@ class AdminTransactionController extends Controller
                     $transaction->tst_status = 3;
                     foreach($orders as $item) {
                         \DB::table('products')->where('id', $item->od_product_id)
-                                              ->decrement('pro_number', $item->od_qty);
+                        ->decrement('pro_number', $item->od_qty);
                     }
                     break;
                 }

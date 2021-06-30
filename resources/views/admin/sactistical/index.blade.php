@@ -264,7 +264,7 @@
             <!-- /.card -->
             <div class="card">
                 <div class="card-header border-transparent">
-
+                
                   <h3 class="card-title">Sản phẩm sắp hết   </h3>
 
                   <div class="card-tools">
@@ -277,6 +277,7 @@
                   </div>
                 </div>
                 <!-- /.card-header -->
+                @if($sanPhamSapHet->isNotEmpty())
                 <div class="card-body p-0">
                   <div class="table-responsive">
                     <table class="table m-0">
@@ -318,12 +319,16 @@
                   </div>
                   <!-- /.table-responsive -->
                 </div>
+                @else
+                <p class="mr-2">Không có sản phẩm nào sắp hết</p>
+                @endif
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
                     {{ $sanPhamSapHet->links() }}
                 </div>
                 <!-- /.card-footer -->
               </div>
+            
           </div>
           <!-- /.col -->
 

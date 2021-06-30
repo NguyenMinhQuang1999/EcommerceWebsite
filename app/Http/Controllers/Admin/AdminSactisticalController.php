@@ -32,7 +32,7 @@ class AdminSactisticalController extends Controller
                         ->limit(10)
                         ->get();
         $products  = Product::orderByDesc('pro_view')
-                             ->limit(10)
+                             ->limit(5)
                              ->get();
         $topPayProduct = Product::orderByDesc('pro_pay')
                             ->limit(5)

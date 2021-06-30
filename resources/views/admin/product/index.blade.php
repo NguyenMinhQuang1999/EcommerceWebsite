@@ -27,7 +27,7 @@
                 {{-- <h3 class="card-title">Responsive Hover Table</h3> --}}
                 <div class="box-title">
                     <form method="get" class="form-inline">
-                        <input type="text" class="form-control mr-2" value="{{ Request::get('id') }}" name="id" placeholder="Mã sản phẩm">
+                        {{--  <input type="text" class="form-control mr-2" value="{{ Request::get('id') }}" name="id" placeholder="Mã sản phẩm">  --}}
                         <input type="text" class="form-control mr-2" value="{{ Request::get('name') }}" name="name" placeholder="Nhập tên sản phẩm">
                         <select name="category" class="form-control mr-2">
                             <option  value="">Chọn danh mục</option>
@@ -35,7 +35,7 @@
 
                             <option value="{{ $item->id }}" {{Request::get('category') == $item->id ? 'selected="selected"' : '' }}>{{ $item->c_name }}</option>
                             @endforeach
-                        </select>                       
+                        </select>
                         <button type="submit" class="btn btn-md btn-success mr-2"> <i class="fa fa-search"> Tìm kiếm</i> </button>
                         <button type="submit" value="true" name="export" class="btn btn-md btn-info"> <i class="fa fa-save"> Xuất file excel</i> </button>
 
@@ -56,6 +56,7 @@
                       <th>Tên sản phẩm</th>
                       <th>Hình ảnh</th>
                       <th>Giá</th>
+                      <th>Số lượng </th>
                       <th>Danh mục</th>
                       <th>Active</th>
                       <th>Hot</th>
@@ -67,14 +68,14 @@
                     @if(isset($products))
                     @php
                     $i = 1
-                    
+
                     @endphp
                       @foreach($products as $product)
                     <tr>
                       <td>{{ $i++ }}</td>
                       <td>{{  \Str::limit($product->pro_name, 20)  }}</td>
                       <td>
-                         <img src="{{ pare_url_file($product->pro_avatar) }}" width="80px" height="80px" alt="Image"> 
+                         <img src="{{ pare_url_file($product->pro_avatar) }}" width="80px" height="80px" alt="Image">
                       </td>
                       <td>
                           @if($product->pro_sale)
@@ -90,6 +91,7 @@
                               {{ number_format($product->pro_price, 0, ',', '.')  }} vnđ
                           @endif
                       </td>
+                      <td>{{ $product->pro_number}}</td>
                       <td>
                           <span class="badge badge-success">{{ $product->category->c_name ?? ['N/A'] }}</span>
                       </td>
@@ -107,7 +109,7 @@
                         <a href="{{ route('admin.product.hot', $product->id) }}" class="badge badge-danger">None</a>
                         @endif
                         </td>
-                      
+
 
                       <td>{{  date("d-m-Y", strtotime($product->created_at)) }}</td>
                       <td>

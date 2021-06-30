@@ -180,7 +180,7 @@
             <a href="{{ route('admin.category.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Danh mục sản phẩm
+                Quản lý danh mục
                 <span class="right badge badge-success">Mới</span>
               </p>
             </a>
@@ -206,7 +206,7 @@
             <a href="{{ route('admin.product.index') }}" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
-              Sản phẩm
+             Quản lý sản phẩm
 
               </p>
             </a>
@@ -215,7 +215,7 @@
             <a href="{{ route('admin.user.index') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-              Người dùng
+             Quản lý người dùng
               </p>
             </a>
         </li>
@@ -223,7 +223,7 @@
           <a href="{{ route('admin.transaction.index') }}" class="nav-link">
             <i class="nav-icon far fa-file"></i></i>
             <p>
-                Đơn hàng
+              Quản lý đơn hàng bán
             </p>
           </a>
       </li>
@@ -232,20 +232,20 @@
         <a href="{{ route('admin.supplier.index') }}" class="nav-link">
           <i class="nav-icon far fa-circle"></i></i>
           <p>
-          Nhà cung cấp
+         Quản lý nhà cung cấp
           </p>
         </a>
-      </li> 
+      </li>
 
        <li class="nav-item">
         <a href="{{ route('admin.bill.index') }}" class="nav-link">
           <i class="nav-icon far fa-circle"></i></i>
           <p>
-            Hóa đơn nhập
+          Quản lý hóa đơn nhập
             <span class="right badge badge-info"></span>
           </p>
         </a>
-      </li> 
+      </li>
 
 
       {{--  <li class="nav-item">
@@ -261,7 +261,7 @@
         <a href="{{ route('admin.group_permission.index') }}" class="nav-link">
           <i class="nav-icon far fa-circle"></i></i>
           <p>
-          Nhóm quyền
+          Quản lý nhóm quyền
           </p>
         </a>
       </li>
@@ -270,7 +270,7 @@
         <a href="{{ route('admin.permission.index') }}" class="nav-link">
           <i class="nav-icon far fa-circle"></i></i>
           <p>
-          Quyền
+        Quản lý quyền
           </p>
         </a>
       </li>
@@ -279,7 +279,7 @@
         <a href="{{ route('admin.role.index') }}" class="nav-link">
           <i class="nav-icon far fa-circle"></i></i>
           <p>
-          Vai trò
+          Quản lý vai trò
           </p>
         </a>
       </li>
@@ -288,7 +288,7 @@
         <a href="{{ route('admin.rating.index') }}" class="nav-link">
           <i class="nav-icon far fa-circle"></i></i>
           <p>
-            Đánh giá
+            Quản lý đánh giá
           </p>
         </a>
       </li>
@@ -297,7 +297,7 @@
         <a href="{{ route('get.sactistical') }}" class="nav-link">
           <i class="nav-icon fas fa-chart-pie"></i></i>
           <p>
-          Thống kê
+      Thống kê
           </p>
         </a>
       </li>

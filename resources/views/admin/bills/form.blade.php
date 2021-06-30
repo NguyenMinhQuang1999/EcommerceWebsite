@@ -42,7 +42,7 @@
                         </td>
                         <td>
                             <select class="form-control " name="supplier[]">
-                                <option value=1>SamSung dgdgdfgdfdg</option>
+                                <option >Chọn nhà cung cấp</option>
 
                                 @foreach($suppliers as $supplier)
                                 <option value={{ $supplier->id }} >{{ $supplier->s_name }}</option>
@@ -85,7 +85,6 @@
 
 
 
-      
 
 
- 
+

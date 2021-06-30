@@ -27,7 +27,7 @@
                 {{-- <h3 class="card-title">Responsive Hover Table</h3> --}}
                 <div class="box-title">
                     <form method="get" class="form-inline">
-                        <input type="text" class="form-control mr-2" value="{{ Request::get('id') }}" name="id" placeholder="Mã đơn hàng">
+                        {{--  <input type="text" class="form-control mr-2" value="{{ Request::get('id') }}" name="id" placeholder="Mã đơn hàng">  --}}
                         <input type="text" class="form-control mr-2" value="{{ Request::get('email') }}" name="email" placeholder="Email">
                         <select name="type" class="form-control mr-2">
                             <option value="0" disiable>--Lựa chọn khách hàng--</option>
@@ -137,7 +137,9 @@
                                     <a href="{{ route('admin.transaction.action', ['process', $transaction->id]) }}" class="dropdown-item status-transaction" >
                                        <i class="fas fa-ban"> </i>  Đã xác thực</a>
                                     <a  href="{{ route('admin.transaction.action', ['success', $transaction->id]) }}" class="dropdown-item completed"> <i class="fas fa-ban"> </i>  Đã chuyển giao</a>
+                                    @if($transaction->tst_status != 3)
                                     <a  href="{{ route('admin.transaction.action', ['cancel', $transaction->id]) }}" class="dropdown-item status-transaction"> <i class="fas fa-ban"> </i>   Đã hủy</a>
+                                    @endif
                                   </div>
                            </div>
                       </td>
@@ -190,7 +192,7 @@
                 let  status =   $('.dropdown-divider').attr('data-action');
                 $('.status-transaction').attr("disabled","disabled");
 
-                alert(status); 
+                alert(status);
             })
             */
 

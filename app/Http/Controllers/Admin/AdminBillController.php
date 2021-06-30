@@ -19,7 +19,7 @@ class AdminBillController extends Controller
 
     public function __construct(Product $product, Supplier $supplier) {
         view()->share([
-            'products' =>$product->all(),
+            'products' =>$product->orderBy('created_at', 'desc')->get(),
             'suppliers' => $supplier->all()
         ]);
     }
@@ -71,7 +71,7 @@ class AdminBillController extends Controller
         if(isset(Auth::user()->id)) {
             $data['b_user_id'] = Auth::user()->id;
         }
-       
+
         $data['created_at'] = Carbon::now();
         $billId = Bill::insertGetId($data);
         $productId = $request->product;
@@ -83,7 +83,7 @@ class AdminBillController extends Controller
 
         if($billId) {
 
-            foreach($productId as $key => $item) {    
+            foreach($productId as $key => $item) {
                 $money += $number[$key] * $price[$key];
                     $input['d_bill_id'] = $billId;
                     $input['b_supplier_id'] = $supplier[$key];
@@ -93,6 +93,8 @@ class AdminBillController extends Controller
                     $input['created_at'] = Carbon::now();
                     BillDetail::create($input);
                     // dd($input);
+                    \DB::table('products')->where('id', $item)
+                    ->increment('pro_number', $number[$key]);
             }
             //\DB::table('bills')->update(['b_total_money' => $money]);
             \DB::table('bills')

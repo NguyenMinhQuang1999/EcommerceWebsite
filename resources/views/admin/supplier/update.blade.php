@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Cập nhật  quyền </h1>
+            <h1>Cập nhật  nhà cung cấp </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.permission.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Quản lý quyền</li>
+              <li class="breadcrumb-item"><a href="{{route('admin.supplier.index')}}">Home</a></li>
+              <li class="breadcrumb-item active">Quản  lý nhà cung cấp</li>
             </ol>
           </div>
         </div>
@@ -28,7 +28,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-             @include('admin.role.form')
+             @include('admin.supplier.form')
             </div>
             <!-- /.card -->
           </div>

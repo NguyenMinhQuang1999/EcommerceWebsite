@@ -188,7 +188,7 @@
                                     <div class="col-lg-6 mb-20">
                                         <label for="bank_code">Ngân hàng</label>
                                         <select name="bank_code" id="bank_code" class="form-control">
-                                            <option value="">Không chọn</option>
+                                            <option value=""> Chọn ngân hàng</option>
                                             <option value="NCB"> Ngan hang NCB</option>
                                             <option value="AGRIBANK"> Ngan hang Agribank</option>
                                             <option value="SCB"> Ngan hang SCB</option>

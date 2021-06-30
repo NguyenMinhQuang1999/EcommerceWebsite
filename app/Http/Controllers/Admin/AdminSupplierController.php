@@ -50,12 +50,12 @@ class AdminSupplierController extends Controller
         if($id) {
             $supplier = supplier::findOrFail($id);
         }
-        $supplier->s_name = ($request->name);
-        $supplier->s_phone = $request->phone;
-        $supplier->s_email = $request->email;
-        $supplier->s_website = $request->website;
-        $supplier->s_address = $request->address;
-        
+        $supplier->s_name = ($request->s_name);
+        $supplier->s_phone = $request->s_phone;
+        $supplier->s_email = $request->s_email;
+        $supplier->s_website = $request->s_website;
+        $supplier->s_address = $request->s_address;
+
         $supplier->save();
     }
 }
