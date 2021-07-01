@@ -73,7 +73,7 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::post('update/{id}', 'AdminSupplierController@update');
 
         Route::get('delete/{id}', 'AdminSupplierController@delete')->name('admin.supplier.delete');
- }); 
+ });
 
     Route::group(['prefix' => 'bill'], function() {
         Route::get('', 'AdminBillController@index')->name('admin.bill.index');
@@ -81,13 +81,13 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::get('view-bill-detail/{id}', 'AdminBillController@getBillDetail')->name('ajax.admin.bill.detail');
 
         Route::post('create', 'AdminBillController@store');
-        
+
 
 
 
         Route::get('delete/{id}', 'AdminBillController@delete')->name('admin.bill.delete');
     });
-    
+
 
 
 
@@ -109,14 +109,14 @@ Route::group(['prefix' => 'api-admin', 'namespace' => 'Admin', 'middleware' => '
     });
 
      //Route danh muc san pham
-    Route::group(['prefix' => 'user'], function() {
-        Route::get('', 'AdminUserController@index')->name('admin.user.index');
+    Route::group(['prefix' => 'user',  'middleware' => ['role:admin|khach-hang']], function() {
+        Route::get('', 'AdminUserController@index')->name('admin.user.index')->middleware('permission:xem-thong-tin-nguoi-dung');
         Route::get('create', 'AdminUserController@create')->name('admin.user.create');
         Route::post('create', 'AdminUserController@store');
-    
+
         Route::get('update/{id}', 'AdminUserController@edit')->name('admin.user.update');
         Route::post('update/{id}', 'AdminUserController@update');
-    
+
         Route::get('active/{id}', 'AdminUserController@active')->name('admin.user.active');
 
         Route::get('delete/{id}', 'AdminUserController@delete')->name('admin.user.delete');

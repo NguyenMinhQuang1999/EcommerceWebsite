@@ -97,9 +97,9 @@
                                     </select>
                                </div>
                                 <div class="search_box">
-                                    <form method="GET" action=" {{ route('product-list') }}}}">
+                                    <form method="POST" action="{{ route('product-list') }}">
                                         <input name="key" value="{{ Request::get('key') }}" placeholder="Search product..." type="text">
-                                        <button type="submit">Search</button>
+                                        <button type="submit">Tìm kiếm</button>
                                      </form>
                                 </div>
                             </form>
@@ -214,7 +214,7 @@
     <!--footer area start-->
 
     <!--footer area end-->
-    
+
  <!--brand area start-->
  {{-- <div class="brand_area brand_padding">
      <div class="container">
@@ -281,7 +281,7 @@
      </div>
  </div> --}}
  <!--brand area end-->
- 
+
  <!--newsletter area start-->
  <div class="newsletter_area newsletter_padding">
      <div class="container">

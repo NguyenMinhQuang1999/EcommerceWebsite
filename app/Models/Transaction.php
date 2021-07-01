@@ -16,7 +16,7 @@ class Transaction extends Model
         ],
         '2' => [
             'class' => 'info',
-            'name' => 'Đang vận chuyển'
+            'name' => 'Đã xác thực'
         ],
         '3' => [
             'class' => 'success',
@@ -30,7 +30,7 @@ class Transaction extends Model
     ];
     // Arr::get phuong thuc lay gia tri bang mang long nhau bang dau cham, chap nhan gia tri
     // mac dinh neu khong co khoa duoc chi dinh khong ton tai
-    
+
     public function getStatus() {
         return Arr::get($this->status, $this->tst_status, '[N/A]');
     }

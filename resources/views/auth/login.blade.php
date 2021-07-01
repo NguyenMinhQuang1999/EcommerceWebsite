@@ -45,7 +45,6 @@
                             <div class="login_submit">
                                <a href="{{  route('get_reset_password')}}">Quên mật khẩu?</a>
                                <a style="margin-left: 10px" href="{{  route('get.login.google', ['social' => 'google'])}}">  <i class="fa fa-google"></i> Đăng nhập Googgle</a>
-                               <a style="margin-left: 10px" href="{{  route('get.login.google', ['social' => 'facebook'])}}">  <i class="fa fa-facebook"></i> Đăng nhập Facebook</a>
 
                                 <label for="remember">
                                     <input id="remember" type="checkbox">
@@ -66,29 +65,29 @@
                         <h2>Đăng ký</h2>
                         <form method="post" action="{{route('get.register')}}">
                             @csrf
-                            <p>   
+                            <p>
                                 <label> Họ và tên <span>*</span></label>
                                 <input value="{{ old('name') }}" name= "name" type="text">
                             @error('name')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                              </p>
-                            <p>   
+                            <p>
                                 <label>Địa chỉ email <span>*</span></label>
                                 <input name= "email" value="{{old('email')}}" type="text">
                              @error('email')
                                 <span class="text-danger"> {{$message}} </span>
                              @enderror
                              </p>
-                             
-                             <p>   
+
+                             <p>
                                 <label>Mật khẩu <span>*</span></label>
                                 <input name="password" type="password">
                             @error('password')
                                 <span class="text-danger"> {{$message}} </span>
                              @enderror
                              </p>
-                             <p>   
+                             <p>
                                 <label>Điện thoại <span>*</span></label>
                                 <input name="phone" value="{{ old('phone') }}" type="text">
                             @error('phone')
@@ -99,7 +98,7 @@
                                 <button type="submit">Đăng ký</button>
                             </div>
                         </form>
-                    </div>    
+                    </div>
                 </div>
                 <!--register area end-->
             </div>

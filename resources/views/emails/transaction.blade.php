@@ -13,8 +13,8 @@
                                         </a>
                                     </td>
                                     <td align="right" valign="middle" style="padding-right:15px">
-                                        <a href="" style="border:0"> 
-                                            <img src="https://i.imgur.com/eL1uAJx.png" height="36" width="115" style="display:block;border:0px"> 
+                                        <a href="" style="border:0">
+                                            <img src="https://i.imgur.com/eL1uAJx.png" height="36" width="115" style="display:block;border:0px">
                                         </a>
                                     </td>
                                 </tr>
@@ -52,9 +52,9 @@
                         <table style="width:580px;border:1px solid #ff3333;border-top:3px solid #ff3333" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 <tr>
-                                    <td colspan="2" align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#666666;padding:10px 10px 20px 15px;line-height:17px"> 
-                                        <b>Đơn hàng của bạn </b> 
-                                        <a href="#" style="color:#ed2324;font-weight:bold;text-decoration:none" target="_blank"> 
+                                    <td colspan="2" align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#666666;padding:10px 10px 20px 15px;line-height:17px">
+                                        <b>Đơn hàng của bạn </b>
+                                        <a href="#" style="color:#ed2324;font-weight:bold;text-decoration:none" target="_blank">
                                              {{-- {{$order->order_code}} --}}
                                         </a>
                                         <span style="font-size:12px">
@@ -62,18 +62,18 @@
                                         </span>
                                     </td>
                                 </tr>
-                                @foreach($transaction as  $val)
+                                {{-- @foreach($transaction as  $val) --}}
                                 <tr>
                                     <td align="left" valign="top" style="width:120px;padding-left:15px">
-                                        <a href="#_" style="border:0"> 
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQI1bItsObNdc2j_T937GcIwrZ73vcIRF8Q&usqp=CAU" height="120" width="120" style="display:block;border:0px"> 
+                                        <a href="#_" style="border:0">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQI1bItsObNdc2j_T937GcIwrZ73vcIRF8Q&usqp=CAU" height="120" width="120" style="display:block;border:0px">
                                         </a
                                     </td>
                                     <td align="left" valign="top">
                                         <table style="width:100%" cellpadding="0" cellspacing="0" border="0">
                                             <tbody>
                                                 <tr>
-                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px">
                                                         <b>Ngày đặt </b>
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
@@ -84,11 +84,11 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px">
                                                         <b>Tên Shop</b>
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
-                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
                                                         <a href="#" style="color:#115fff;text-decoration:none" target="_blank">
                                                           Media Mart
                                                         </a>
@@ -96,7 +96,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px">
                                                         <b>Tổng thanh toán</b>
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
@@ -105,35 +105,35 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px">
                                                         <b>Người nhận</b>
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
-                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
                                                         <b>{{ $user->name  }}</b> - {{ $user->phone}}</b>
                                                         <br>
-                                                    
+
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px">
                                                         <b>Địa chỉ giao</b>
                                                     </td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
-                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> 
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
                                                         <b>{{ $user->address  }}</b>
                                                         <br>
-                                                    
+
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </td>
                                 </tr>
-                                @endforeach
+                                {{-- @endforeach --}}
                                 <tr>
                                     <td colspan="2" align="center" valign="top" style="padding-top:20px;padding-bottom:20px;border-bottom:1px solid #ebebeb">
-                                        <a href="#" style="border:0px" target="_blank"> 
+                                        <a href="#" style="border:0px" target="_blank">
                                             {{--  <img src="https://i.imgur.com/f92hL68.jpg" height="29" width="191" alt="Chi tiết đơn hàng" style="border:0px">   --}}
                                         </a>
                                     </td>
@@ -147,10 +147,10 @@
                         <table style="width:500px" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 <tr>
-                                    <td align="center" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px"> 
-                                    
-                                        <br> Nếu có bất kỳ thắc mắc hay cần giúp đỡ, Bạn vui lòng ghé thăm 
-                                        <b style="font-family:Arial,Helvetica,sans-serif;font-size:13px;text-decoration:none;font-weight:bold">Trung tâm trợ giúp</b> của chúng tôi tại địa chỉ: 
+                                    <td align="center" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">
+
+                                        <br> Nếu có bất kỳ thắc mắc hay cần giúp đỡ, Bạn vui lòng ghé thăm
+                                        <b style="font-family:Arial,Helvetica,sans-serif;font-size:13px;text-decoration:none;font-weight:bold">Trung tâm trợ giúp</b> của chúng tôi tại địa chỉ:
                                         <a href="#" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0066cc;text-decoration:none;font-weight:bold" target="_blank">
                                             help.sendo.vn
                                         </a>
@@ -162,5 +162,5 @@
                 </tr>
             </tbody>
         </table>
-    </div> 
+    </div>
 </div>

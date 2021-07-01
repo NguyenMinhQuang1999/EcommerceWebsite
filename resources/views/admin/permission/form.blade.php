@@ -3,7 +3,7 @@
       <div class="card-body">
         <div class="form-group ">
           <label for="exampleInputEmail1">Tên  Quyền <span class="text-danger">(*)</span></label>
-          <input type="text" value="{{ $permission->display_name ?? old('display_name') }}" class="form-control {{ $errors->first('display_name') ? 'is-invalid': '' }}" id="display_name" name="display_name" placeholder="Tên  quyền">
+          <input type="text" value="{{ $permission->name ?? old('display_name') }}" class="form-control {{ $errors->first('display_name') ? 'is-invalid': '' }}" id="display_name" name="display_name" placeholder="Tên  quyền">
            @error('name')
                <span class="text-danger">{{$message}}</span>
            @enderror

@@ -18,7 +18,7 @@ class AdminRatingController extends Controller
         return view('admin.rating.index', compact('ratings'));
     }
 
-    public function delete($id) 
+    public function delete($id)
     {
         $rating = Rating::find($id);
         if($rating) {
@@ -27,7 +27,7 @@ class AdminRatingController extends Controller
             $product->pro_review_star -=$rating->r_number;
             $product->save();
             $rating->delete();
-            toastr()->success('Xoa danh gia thanh cong!');
+            toastr()->success('Xóa thành bình luận thành công!');
         }
         return redirect()->back();
     }

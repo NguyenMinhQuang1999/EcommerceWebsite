@@ -134,8 +134,11 @@
                                         Xóa đơn hàng
                                     </a>
                                     <div class="dropdown-divider" data-id="{{ $transaction->id }}" data-status="{{ $transaction->tst_status }}"></div>
+                                    @if($transaction->tst_status != 3)
                                     <a href="{{ route('admin.transaction.action', ['process', $transaction->id]) }}" class="dropdown-item status-transaction" >
+
                                        <i class="fas fa-ban"> </i>  Đã xác thực</a>
+                                       @endif
                                     <a  href="{{ route('admin.transaction.action', ['success', $transaction->id]) }}" class="dropdown-item completed"> <i class="fas fa-ban"> </i>  Đã chuyển giao</a>
                                     @if($transaction->tst_status != 3)
                                     <a  href="{{ route('admin.transaction.action', ['cancel', $transaction->id]) }}" class="dropdown-item status-transaction"> <i class="fas fa-ban"> </i>   Đã hủy</a>

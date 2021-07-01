@@ -12,6 +12,7 @@ class ProductController extends Controller
 {
     //
     public function index(Request $request) {
+        // dd($request->all());
         $paramAtbSearch = $request->except('price', 'page', 'key', 'country');
 
         $productContry = new Product();
@@ -29,8 +30,11 @@ class ProductController extends Controller
 
         //Tim kiem theo ten
         if($request->key) {
-            $product->where('pro_name', 'like', '%' . $request->key . '%')
-                    ->orWhere('pro_price' ,'>=', $request->key)->get();
+
+        $product->where('pro_name', 'like', '%'. $request->key . '%')
+        ->orWhere('pro_price' , '<=' , $request->key);
+
+                
         }
 
         //Loc theo xuat xu
@@ -66,12 +70,13 @@ class ProductController extends Controller
         return view('frontend.pages.product.index', $viewData);
     }
 
-    public function getCategoryById($slug) {
+    public function getCategoryById($slug, Request $request) {
         $arraySlug = explode('-', $slug);// tach chuoi thanh mang theo ki tu phan cach
         $id = array_pop($arraySlug);// xoa phan tu cuoi mang tra ve phan tu do
 
         if($id) {
             $product = Product::findOrFail($id);
+
             $viewData = [
                 'product' => $product
             ];

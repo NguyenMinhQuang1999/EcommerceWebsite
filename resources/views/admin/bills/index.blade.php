@@ -41,7 +41,7 @@
                     <tr>
                       <th>STT</th>
                       <th>Nội dung</th>
-                      <th>Ghi chú</th>
+                      {{-- <th>Ghi chú</th> --}}
                       <th>Người nhập</th>
                       <th>Ngày tạo</th>
                       <th>Thao tác</th>
@@ -54,7 +54,7 @@
                     <tr>
                       <td>{{ ++$key }}</td>
                       <td>{!!  $bill->b_content !!}</td>
-                      <td>{{  ($bill->b_note=='') ?'[N/A]' : $bill->b_note}}</td>
+                      {{-- <td>{{  ($bill->b_note=='') ?'[N/A]' : $bill->b_note}}</td> --}}
                       <td>
                         {{  $bill->user->name  }}
                       </td>

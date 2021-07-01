@@ -16,7 +16,7 @@
                           <span class="text-danger">{{ $message }}</span>
                       @enderror
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                       <label for="">Khuyến mại: </label>
                       <input type="number" value="{{ $product->pro_sale ?? old('pro_sale', 0) }}" class="form-control" name="pro_sale" id="">
                   </div>
@@ -28,7 +28,7 @@
                         <option {{ in_array($item['id'], $attributeOld) ? 'checked' : '' }} value="{{ $item['id'] }}"> {{ $item->k_name}}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
                   <div class="form-group">
                       <label for="">Hình ảnh</label>
                       <input type="file" class="form-control-file" name="pro_avatar" id="">
@@ -125,13 +125,13 @@
                       filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
                       filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
                     };
-          
+
                    CKEDITOR.replace('content', options);
                    CKEDITOR.replace('pro_description');
                    CKEDITOR.replace('pro_content');
-                  
-          
-                      
+
+
+
               </script>
-              
+
               @endsection

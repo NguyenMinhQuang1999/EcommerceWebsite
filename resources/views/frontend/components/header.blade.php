@@ -73,7 +73,7 @@
                                         </select>
                                    </div>
                                     <div class="search_box">
-                                        <form method="GET">
+                                        <form method="GET" action="{{ route('product-list') }}">
                                         <input name="key" value="{{ Request::get('key') }}" placeholder="Tìm kiến sản phẩm..." type="text">
                                         <button type="submit">Tìm kiếm</button>
                                         </form>

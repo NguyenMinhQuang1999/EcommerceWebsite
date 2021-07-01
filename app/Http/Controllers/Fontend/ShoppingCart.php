@@ -22,20 +22,20 @@ class ShoppingCart extends Controller
         $shopping = \Cart::content();
         $viewData = [
             'shopping' =>  $shopping,
-             'title_page' => 'Giỏ hàng'
+            'title_page' => 'Giỏ hàng'
         ];
         return view('frontend.pages.shopping.index', $viewData);
     }
     public function add(Request $request, $id)
     {
         $product = Product::find($id);
-        if(!$product) return redirect()->to('/');
+        if (!$product) return redirect()->to('/');
         // if($request->sale_number < $product->pro_number) {
         //     toastr()->error('So luong khong du');
         //     return redirect()->back();
         // }
 
-        if($product->pro_number <= 0) {
+        if ($product->pro_number <= 0) {
             toastr()->error('Số lượng không đủ!');
             return redirect()->back();
         }
@@ -55,16 +55,16 @@ class ShoppingCart extends Controller
         ]);
         toastr()->success('Thêm vào giỏ hàng thành công!');
         return redirect()->back();
-
     }
 
-    public function deleteItem(Request $request, $rowId)  {
-        if($request->ajax()) {
+    public function deleteItem(Request $request, $rowId)
+    {
+        if ($request->ajax()) {
             \Cart::remove($rowId);
             return response([
                 'message' => 'Xóa sản phẩm trong giỏ hàng thành công!',
                 'totalMoney' => \Cart::subtotal(0),
-                ]);
+            ]);
         }
     }
 
@@ -72,28 +72,30 @@ class ShoppingCart extends Controller
 
     public function update(Request $request, $id)
     {
-        if($request->ajax()) {
+        if ($request->ajax()) {
             //lay tham so
             $qty = $request->qty ?? 1;
             $idProduct = $request->idProduct;
-            $product= Product::find($idProduct);
+            $product = Product::find($idProduct);
 
             //kiem tra ton tai san pham
-            if(!$product) {
+            if (!$product) {
                 return response(['message' => 'Không tồn tại sản phẩm cần cập nhật']);
             }
-            if($product->pro_number < $qty) {
+            if ($product->pro_number < $qty) {
                 return response(
                     [
-                           'message' => 'Số lượng sản phẩm không đủ!',
-                           'error' => true]);
+                        'message' => 'Số lượng sản phẩm không đủ!',
+                        'error' => true
+                    ]
+                );
             }
             \Cart::update($id, $qty);
             return response([
                 'message' => 'Cập nhật số lượng thành công!',
                 'totalMoney' => \Cart::subtotal(0),
-                'totalItem' => number_format(number_price($product->pro_price, $product->pro_sale) * $qty, 0,',', '.')
-                ]);
+                'totalItem' => number_format(number_price($product->pro_price, $product->pro_sale) * $qty, 0, ',', '.')
+            ]);
         }
     }
 
@@ -103,7 +105,7 @@ class ShoppingCart extends Controller
         $viewData = [
             'shopping' =>  $shopping,
             'totalMoney' => \Cart::subtotal(0),
-             'title_page' => 'Thanh toán'
+            'title_page' => 'Thanh toán'
         ];
         return view('frontend.pages.shopping.checkout', $viewData);
     }
@@ -111,49 +113,53 @@ class ShoppingCart extends Controller
     public function postPay(ShoppingRequest $request)
     {
         $data = $request->except('_token', 'payment');
-        if(isset(Auth::user()->id)) {
+        if (isset(Auth::user()->id)) {
             $data['tst_user_id'] = Auth::user()->id;
         }
         $data['tst_total_money'] = str_replace(',', '', \Cart::subtotal(0));
         $data['created_at'] = Carbon::now();
 
-        if($request->payment == 2) {
+        if ($request->payment == 2) {
             $totalMoney = str_replace(',', '', \Cart::subtotal(0));
             session(['info_customer' => $data]);
-            return view('frontend/pages/vnpay/index', compact('totalMoney'));
-        }
-        else {
-            $transitionId = Transaction::insertGetId($data);
-        if($transitionId) {
-            $shopping =\Cart::content();
+            $shopping = \Cart::content();
             $user = Auth::user();
-            $total=  str_replace(',', '', \Cart::subtotal(0));
-            if($request->tst_email) {
-                 Mail::to($request->tst_email)->send(new TransactionSuccess($shopping, $user, $total));
+            $total =  str_replace(',', '', \Cart::subtotal(0));
+            if ($request->tst_email) {
+                Mail::to($request->tst_email)->send(new TransactionSuccess($shopping, $user, $total));
             }
-            foreach($shopping as $key => $item) {
-                Order::insert([
-                    'od_transaction_id' => $transitionId,
-                    'od_product_id' =>$item->id,
-                    'od_sale' => $item->options->sale,
-                    'od_qty' => $item->qty,
-                    'od_price' => $item->price,
-                    'created_at' => Carbon::now()
-                ]);
-                //Tang so luong lan mua san pham do;
-                \DB::table('products')->where('id', $item->id)//chon san pham nao
-                                      ->increment('pro_pay');//tang cot pro_pay len 1
+            return view('frontend/pages/vnpay/index', compact('totalMoney'));
+        } else {
+            $transitionId = Transaction::insertGetId($data);
+            if ($transitionId) {
+                $shopping = \Cart::content();
+                $user = Auth::user();
+                $total =  str_replace(',', '', \Cart::subtotal(0));
+                if ($request->tst_email) {
+                    Mail::to($request->tst_email)->send(new TransactionSuccess($shopping, $user, $total));
+                }
+                foreach ($shopping as $key => $item) {
+                    Order::insert([
+                        'od_transaction_id' => $transitionId,
+                        'od_product_id' => $item->id,
+                        'od_sale' => $item->options->sale,
+                        'od_qty' => $item->qty,
+                        'od_price' => $item->price,
+                        'created_at' => Carbon::now()
+                    ]);
+                    //Tang so luong lan mua san pham do;
+                    \DB::table('products')->where('id', $item->id) //chon san pham nao
+                        ->increment('pro_pay'); //tang cot pro_pay len 1
+                }
             }
+            //     if($request->tst_email) {
+            //         Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+            //    }
+            \Cart::destroy();
+            toastr()->success('Đặt hàng thành công!');
+            // return redirect()->to('/');
+            return redirect()->back();
         }
-    //     if($request->tst_email) {
-    //         Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
-    //    }
-        // \Cart::destroy();
-        toastr()->success('Đặt hàng thành công!');
-       // return redirect()->to('/');
-        return redirect()->back();
-        }
-
     }
 
     public function createPayment(Request $request)
@@ -200,73 +206,65 @@ class ShoppingCart extends Controller
 
         $vnp_Url = env('VNP_URL') . "?" . $query;
         if (env('VNP_HASHSECRET')) {
-        // $vnpSecureHash = md5($vnp_HashSecret . $hashdata);
+            // $vnpSecureHash = md5($vnp_HashSecret . $hashdata);
             $vnpSecureHash = hash('sha256', env('VNP_HASHSECRET') . $hashdata);
             $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
         }
-      
-         return redirect($vnp_Url);
 
-            }
+        return redirect($vnp_Url);
+    }
 
-        public function vnpayReturn(Request $request)
-        {
-            // dd($request->toArray());
-            if(session()->has('info_customer') && ($request->vnp_ResponseCode == '00')) {
-                \DB::beginTransaction();
-                try {
-                    $vnpayData = $request->all();
-                    $data = session()->get('info_customer');
-                    $transactionId = Transaction::insertGetId($data);
-                    if($transactionId) {
-                        $shopping = \Cart::content();
-                        foreach($shopping as $key => $item) {
-                            Order::insert([
-                                'od_transaction_id' => $transactionId,
-                                'od_product_id' =>$item->id,
-                                'od_sale' => $item->options->sale,
-                                'od_qty' => $item->qty,
-                                'od_price' => $item->price,
-                                'created_at' => Carbon::now()
-                            ]);
-                            \DB::table('products')->where('id', $item->id)->increment('pro_pay');
-
-                        }
-
-                        $dataPayment = [
-                            'p_transaction_id' => $transactionId,
-                            'p_transaction_code' => $vnpayData['vnp_TxnRef'],
-                            'p_user_id' => $data['tst_user_id'],
-                            'p_money' => $data['tst_total_money'],
-                            'p_note' => $vnpayData['vnp_OrderInfo'],
-                            'p_vnp_response_code' => $vnpayData['vnp_ResponseCode'],
-                            'p_code_vnpay' => $vnpayData['vnp_TransactionNo'],
-                            'p_code_bank' => $vnpayData['vnp_BankCode'],
-                            'p_time' => date('Y-m-d H:i', strtotime($vnpayData['vnp_PayDate']))
-                        ];
-
-                        Payment::insert($dataPayment);
-                        \Cart::destroy();
-                        \DB::commit();
-                        toastr()->success('Thanh toán thành công!', 'Thông báo');
-
-                        return view('frontend/pages/vnpay/vnp_return', compact('vnpayData'));
-
-                        
+    public function vnpayReturn(Request $request)
+    {
+        // dd($request->toArray());
+        if (session()->has('info_customer') && ($request->vnp_ResponseCode == '00')) {
+            \DB::beginTransaction();
+            try {
+                $vnpayData = $request->all();
+                $data = session()->get('info_customer');
+                $transactionId = Transaction::insertGetId($data);
+                if ($transactionId) {
+                    $shopping = \Cart::content();
+                    foreach ($shopping as $key => $item) {
+                        Order::insert([
+                            'od_transaction_id' => $transactionId,
+                            'od_product_id' => $item->id,
+                            'od_sale' => $item->options->sale,
+                            'od_qty' => $item->qty,
+                            'od_price' => $item->price,
+                            'created_at' => Carbon::now()
+                        ]);
+                        \DB::table('products')->where('id', $item->id)->increment('pro_pay');
                     }
-                }
-                catch(\Exception $exception) {
-                    \DB::rollBack();
-                    toastr()->warning('Không thể thực hiện thanh toán (Catch)!', 'Thông báo');
 
-                    return redirect()->to('/');
+                    $dataPayment = [
+                        'p_transaction_id' => $transactionId,
+                        'p_transaction_code' => $vnpayData['vnp_TxnRef'],
+                        'p_user_id' => $data['tst_user_id'],
+                        'p_money' => $data['tst_total_money'],
+                        'p_note' => $vnpayData['vnp_OrderInfo'],
+                        'p_vnp_response_code' => $vnpayData['vnp_ResponseCode'],
+                        'p_code_vnpay' => $vnpayData['vnp_TransactionNo'],
+                        'p_code_bank' => $vnpayData['vnp_BankCode'],
+                        'p_time' => date('Y-m-d H:i', strtotime($vnpayData['vnp_PayDate']))
+                    ];
+
+                    Payment::insert($dataPayment);
+                    \Cart::destroy();
+                    \DB::commit();
+                    toastr()->success('Thanh toán thành công!', 'Thông báo');
+
+                    return view('frontend/pages/vnpay/vnp_return', compact('vnpayData'));
                 }
-           }
-            else {
-                toastr()->warning('Không thể thực hiện thanh toán!', 'Thông báo');
+            } catch (\Exception $exception) {
+                \DB::rollBack();
+                toastr()->warning('Không thể thực hiện thanh toán (Catch)!', 'Thông báo');
+
                 return redirect()->to('/');
             }
+        } else {
+            toastr()->warning('Không thể thực hiện thanh toán!', 'Thông báo');
+            return redirect()->to('/');
         }
-
-
+    }
 }

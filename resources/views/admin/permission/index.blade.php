@@ -56,7 +56,7 @@
                       @foreach($permissions as $permission)
                     <tr>
                       <td>{{ $i++ }}</td>
-                      <td>{{  $permission->display_name }}</td>
+                      <td>{{  $permission->name }}</td>
                       <td>{{  $permission->groups->name }}</td>
                       <td>
                         {{  $permission->description  }}

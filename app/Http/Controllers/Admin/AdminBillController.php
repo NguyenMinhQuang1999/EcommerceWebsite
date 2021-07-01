@@ -36,10 +36,11 @@ class AdminBillController extends Controller
 
     public function delete($id)
     {
+        
         $bills = Bill::find($id);
         if($bills) {
             $bills->delete();
-            \DB::table('bill_details')->where('d_bill_id', $id)
+             \DB::table('bill_details')->where('d_bill_id', $id)
                                   ->delete();
 
         }

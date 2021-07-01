@@ -29,21 +29,11 @@ class AdminGroupPermissionController extends Controller
     }
 
     public function update( AdminRequestGroupPermission $request, $id) {
-        \DB::beginTransaction();
-        try {
+
             $this->createOrUpdate($request, $id);
-        
+
             return redirect()->back();
-            
-            \DB::commit();
-        } catch (Exception $e) {
-            \DB::rollBack();
-            
-            
-            throw new \Exception($e->getMessage());
-            return redirect()->back();
-        }
-       
+
     }
 
     public function store(AdminRequestGroupPermission $request) {
@@ -73,7 +63,7 @@ class AdminGroupPermissionController extends Controller
         }
     }
 
-    public function createOrUpdate(AdminRequestGroupPermission $request, $id='') 
+    public function createOrUpdate(AdminRequestGroupPermission $request, $id='')
     {
         $group  = new GroupPermission();
         if($id) {
